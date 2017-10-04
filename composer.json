@@ -1,0 +1,16 @@
+{
+    "name": "digitonic/passona-client",
+    "description": "A client for Passona, the campaign management app",
+    "type": "laravel 5 package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "YannickGl",
+            "email": "yannick@digitonic.co.uk"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "nesbot/carbon": "^1.22"
+    }
+}
