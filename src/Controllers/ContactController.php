@@ -61,7 +61,6 @@ class ContactController extends Controller implements ContactControllerInterface
     public function upsertContactsToContactGroup(int $groupId, array $contacts): ContactUploadResponse
     {
         $json = $this->createJsonInput($contacts);
-
         $response = $this->client->post("groups/{$groupId}/contacts", [
             'headers' => $this->headers,
             'json' => $json
@@ -120,7 +119,7 @@ class ContactController extends Controller implements ContactControllerInterface
 
         /** @var ContactRequest $contact */
         foreach ($contacts as $contact) {
-            $json['data'] = $this->contactRequestMapper->toArray($contact);
+            $json['data'][] = $this->contactRequestMapper->toArray($contact);
         }
 
         return $json;

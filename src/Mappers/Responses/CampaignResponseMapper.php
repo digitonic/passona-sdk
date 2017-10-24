@@ -52,7 +52,10 @@ class CampaignResponseMapper implements CampaignResponseMapperInterface
         $campaign->setUpdatedAt(Carbon::parse($campaignResponseParameters->updatedAt));
         $campaign->setExpiryDate(Carbon::parse($campaignResponseParameters->expiryDate));
         $campaign->setBody($campaignResponseParameters->body);
-        $campaign->setFinishedSendingAt(Carbon::parse($campaignResponseParameters->finishedSendingAt));
+        $finishedSendingAt = isset($campaignResponseParameters->finishedSendingAt->date)
+            ? $campaignResponseParameters->finishedSendingAt->date
+            : $campaignResponseParameters->finishedSendingAt;
+        $campaign->setFinishedSendingAt(Carbon::parse($finishedSendingAt));
         $campaign->setNumberOfRecipient($campaignResponseParameters->numberOfRecipients);
 
         if ($campaignResponseParameters->recipientType === 'groups') {

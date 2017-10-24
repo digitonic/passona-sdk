@@ -11,7 +11,7 @@ class ContactRequest implements ContactRequestInterface
     /**
      * @var string
      */
-    private $phoneNumber;
+    private $phoneNumber = '';
 
     /**
      * @var array

@@ -30,7 +30,7 @@ class ContactGroupResponseMapper implements ContactGroupResponseMapperInterface
         $contactGroupResponse->setId($contactGroupResponseParameters->id);
         $contactGroupResponse->setNumberOfUniqueProfiles($contactGroupResponseParameters->numberOfUniqueProfiles);
         $contactGroupResponse->setNumberOfContacts($contactGroupResponseParameters->numberOfContacts);
-        $contactGroupResponse->setDescription($contactGroupResponseParameters->description);
+        $contactGroupResponse->setDescription($contactGroupResponseParameters->description ?? '');
 
         $fields = [];
         foreach($contactGroupResponseParameters->fields as $key => $value){

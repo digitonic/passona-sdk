@@ -27,7 +27,7 @@ class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
         $link2->setVanityDomainId(2);
 
         $this->campaign1 = new CampaignRequest();
-        $this->campaign1->setMessageTemplateId(1);
+        $this->campaign1->setTemplateId(1);
         $this->campaign1->setName('my first campaign');
         $this->campaign1->setBody('my body is ready');
         $this->campaign1->setSender('sender');

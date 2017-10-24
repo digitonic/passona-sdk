@@ -31,12 +31,15 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
     {
         $campaignArray = [
             'name' => $campaign->getName(),
-            'messageTemplateId' => $campaign->getMessageTemplateId(),
             'sender' => $campaign->getSender(),
-            'expiryDate' => $campaign->getExpiryDate()->toW3cString(),
-            'body' => $campaign->getBody(),
+            'expiryDate' => $campaign->getExpiryDate()->format('Y-m-d H:i:s'),
             'recipientType' => $campaign->getRecipientType(),
         ];
+        if ($campaign->getTemplateId()){
+            $campaignArray['templateId'] = $campaign->getTemplateId();
+        } else {
+            $campaignArray['body'] = $campaign->getBody();
+        }
 
         if ($campaign->getRecipientType() === 'groups') {
             $campaignArray['includedContactGroupIds'] = $campaign->getIncludedContactGroupIds();
@@ -48,7 +51,7 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         }
 
         if ($campaign->getScheduledSendDate()) {
-            $campaignArray['scheduledSendDate'] = $campaign->getScheduledSendDate()->toW3cString();
+            $campaignArray['scheduledSendDate'] = $campaign->getScheduledSendDate()->format('Y-m-d H:i:s');
         }
 
         foreach ($campaign->getLinks() as $link) {
@@ -71,7 +74,7 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         /** @var CampaignRequest $campaignRequest */
         $campaignRequest = $reflectionClass->newInstance();
         $campaignRequest->setName($campaignRequestParameters['name']);
-        $campaignRequest->setMessageTemplateId($campaignRequestParameters['messageTemplateId']);
+        $campaignRequest->setTemplateId($campaignRequestParameters['templateId']);
         $campaignRequest->setSender($campaignRequestParameters['sender']);
         $campaignRequest->setExpiryDate(Carbon::parse($campaignRequestParameters['expiryDate']));
         $campaignRequest->setBody($campaignRequestParameters['body']);
@@ -108,11 +111,15 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
     {
         $campaignStdClass = new \stdClass();
         $campaignStdClass->name = $campaign->getName();
-        $campaignStdClass->messageTemplateId = $campaign->getMessageTemplateId();
         $campaignStdClass->sender = $campaign->getSender();
-        $campaignStdClass->expiryDate = $campaign->getExpiryDate()->toW3cString();
-        $campaignStdClass->body = $campaign->getBody();
+        $campaignStdClass->expiryDate = $campaign->getExpiryDate()->format('Y-m-d H:i:s');
         $campaignStdClass->recipientType = $campaign->getRecipientType();
+
+        if ($campaign->getTemplateId()){
+            $campaignStdClass->templateId = $campaign->getTemplateId();
+        } else {
+            $campaignStdClass->body = $campaign->getBody();
+        }
 
         if ($campaign->getRecipientType() === 'groups') {
             $campaignStdClass->includedContactGroupIds = $campaign->getIncludedContactGroupIds();
@@ -124,7 +131,7 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         }
 
         if ($campaign->getScheduledSendDate()) {
-            $campaignStdClass->scheduledSendDate = $campaign->getScheduledSendDate()->toW3cString();
+            $campaignStdClass->scheduledSendDate = $campaign->getScheduledSendDate()->format('Y-m-d H:i:s');
         }
 
         foreach ($campaign->getLinks() as $link) {
@@ -147,7 +154,7 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         /** @var CampaignRequest $campaignRequest */
         $campaignRequest = $reflectionClass->newInstance();
         $campaignRequest->setName($campaignRequestParameters->name);
-        $campaignRequest->setMessageTemplateId($campaignRequestParameters->messageTemplateId);
+        $campaignRequest->setTemplateId($campaignRequestParameters->templateId);
         $campaignRequest->setSender($campaignRequestParameters->sender);
         $campaignRequest->setExpiryDate(Carbon::parse($campaignRequestParameters->expiryDate));
         $campaignRequest->setBody($campaignRequestParameters->body);

@@ -27,14 +27,14 @@ interface CampaignRequest
     public function getBody(): string;
 
     /**
-     * @param int $messageTemplateId
+     * @param int $templateId
      */
-    public function setMessageTemplateId(int $messageTemplateId);
+    public function setTemplateId(int $templateId);
 
     /**
      * @return int
      */
-    public function getMessageTemplateId(): int;
+    public function getTemplateId(): int;
 
     /**
      * @param string $sender

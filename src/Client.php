@@ -4,11 +4,11 @@
 namespace Digitonic\PassonaClient;
 
 
-use Digitonic\PassonaClient\Contracts\Controllers\CampaignController;
-use Digitonic\PassonaClient\Contracts\Controllers\ContactGroupController;
-use Digitonic\PassonaClient\Contracts\Controllers\ContactController;
-use Digitonic\PassonaClient\Contracts\Controllers\TemplateController;
-use Digitonic\PassonaClient\Contracts\Controllers\VanityDomainController;
+use Digitonic\PassonaClient\Contracts\Controllers\CampaignController as CampaignControllerInterface;
+use Digitonic\PassonaClient\Contracts\Controllers\ContactGroupController as ContactGroupControllerInterface;
+use Digitonic\PassonaClient\Contracts\Controllers\ContactController as ContactControllerInterface;
+use Digitonic\PassonaClient\Contracts\Controllers\TemplateController as TemplateControllerInterface;
+use Digitonic\PassonaClient\Contracts\Controllers\VanityDomainController as VanityDomainControllerInterface;
 use Digitonic\PassonaClient\Contracts\Entities\Requests\CampaignRequest;
 use Digitonic\PassonaClient\Contracts\Entities\Requests\ContactGroupRequest;
 use Digitonic\PassonaClient\Contracts\Entities\Requests\TemplateRequest;
@@ -17,8 +17,27 @@ use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactGroupResponse;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactResponse;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactUploadResponse;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\TemplateResponse;
+use Digitonic\PassonaClient\Controllers\CampaignController;
+use Digitonic\PassonaClient\Controllers\ContactController;
+use Digitonic\PassonaClient\Controllers\ContactGroupController;
+use Digitonic\PassonaClient\Controllers\TemplateController;
+use Digitonic\PassonaClient\Controllers\VanityDomainController;
+use Digitonic\PassonaClient\Mappers\Requests\CampaignRequestMapper;
+use Digitonic\PassonaClient\Mappers\Requests\ContactGroupRequestMapper;
+use Digitonic\PassonaClient\Mappers\Requests\ContactRequestMapper;
+use Digitonic\PassonaClient\Mappers\Requests\LinkRequestMapper;
+use Digitonic\PassonaClient\Mappers\Requests\TemplateRequestMapper;
+use Digitonic\PassonaClient\Mappers\Responses\CampaignResponseMapper;
+use Digitonic\PassonaClient\Mappers\Responses\ContactGroupResponseMapper;
+use Digitonic\PassonaClient\Mappers\Responses\ContactResponseMapper;
+use Digitonic\PassonaClient\Mappers\Responses\ContactUploadResponseMapper;
+use Digitonic\PassonaClient\Mappers\Responses\LinkResponseMapper;
+use Digitonic\PassonaClient\Mappers\Responses\TemplateResponseMapper;
+use Digitonic\PassonaClient\Mappers\Responses\UploadedCsvFileResponseMapper;
+use Digitonic\PassonaClient\Mappers\Responses\VanityDomainResponseMapper;
+use GuzzleHttp\Client as GuzzleClient;
 
-class Client implements CampaignController, ContactGroupController, ContactController, TemplateController, VanityDomainController
+class Client implements CampaignControllerInterface, ContactGroupControllerInterface, ContactControllerInterface, TemplateControllerInterface, VanityDomainControllerInterface
 {
     /**
      * @var CampaignController
@@ -46,18 +65,27 @@ class Client implements CampaignController, ContactGroupController, ContactContr
     private $vanityDomainManager;
 
     public function __construct(
-        CampaignController $campaignManager,
-        ContactGroupController $contactGroupManager,
-        ContactController $contactManager,
-        TemplateController $templateManager,
-        VanityDomainController $vanityDomainManager
+        $orgId,
+        $apiToken,
+        $baseUri = 'https://passona.digitonic.co.uk/api/external/v1/'
     )
     {
-        $this->campaignManager = $campaignManager;
-        $this->contactGroupManager = $contactGroupManager;
-        $this->contactManager = $contactManager;
-        $this->templateManager = $templateManager;
-        $this->vanityDomainManager = $vanityDomainManager;
+        $guzzleClient = new GuzzleClient(['base_uri' => $baseUri]);
+        $this->campaignManager = new CampaignController($guzzleClient, $orgId, $apiToken);
+        $this->campaignManager->setCampaignResponseMapper(new CampaignResponseMapper(new LinkResponseMapper(new VanityDomainResponseMapper())));
+        $this->campaignManager->setCampaignRequestMapper(new CampaignRequestMapper(new LinkRequestMapper()));
+        $this->contactGroupManager = new ContactGroupController($guzzleClient, $orgId, $apiToken);
+        $this->contactGroupManager->setContactGroupRequestMapper(new ContactGroupRequestMapper());
+        $this->contactGroupManager->setContactGroupResponseMapper(new ContactGroupResponseMapper());
+        $this->contactManager = new ContactController($guzzleClient, $orgId, $apiToken);
+        $this->contactManager->setContactUploadMapper(new ContactUploadResponseMapper(new UploadedCsvFileResponseMapper()));
+        $this->contactManager->setContactRequestMapper(new ContactRequestMapper());
+        $this->contactManager->setContactResponseMapper(new ContactResponseMapper());
+        $this->templateManager = new TemplateController($guzzleClient, $orgId, $apiToken);
+        $this->templateManager->setTemplateRequestMapper(new TemplateRequestMapper(new LinkRequestMapper()));
+        $this->templateManager->setTemplateResponseMapper(new TemplateResponseMapper(new LinkResponseMapper(new VanityDomainResponseMapper())));
+        $this->vanityDomainManager = new VanityDomainController($guzzleClient, $orgId, $apiToken);
+        $this->vanityDomainManager->setVanityDomainMapper(new VanityDomainResponseMapper());
     }
 
     public function getAllCampaigns(): array

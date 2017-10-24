@@ -104,7 +104,7 @@ class CampaignCrudManagementTest extends ClientTestCase
         $campaignRequest->setRecipientType($this->campaign1->getRecipientType());
         $campaignRequest->setExpiryDate($this->campaign1->getExpiryDate());
         $campaignRequest->setSender($this->campaign1->getSender());
-        $campaignRequest->setMessageTemplateId(1);
+        $campaignRequest->setTemplateId(1);
 
         /** @var LinkResponse $linkResponse */
         foreach($this->campaign1->getLinks() as $linkResponse){
@@ -131,7 +131,7 @@ class CampaignCrudManagementTest extends ClientTestCase
         $campaignRequest->setRecipientType($this->campaign1->getRecipientType());
         $campaignRequest->setExpiryDate($this->campaign1->getExpiryDate());
         $campaignRequest->setSender($this->campaign1->getSender());
-        $campaignRequest->setMessageTemplateId(1);
+        $campaignRequest->setTemplateId(1);
 
         /** @var LinkResponse $linkResponse */
         foreach($this->campaign1->getLinks() as $linkResponse){
