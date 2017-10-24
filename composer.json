@@ -9,6 +9,11 @@
             "email": "yannick@digitonic.co.uk"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Digitonic\\PassonaClient\\": "src/"
+        }
+    },
     "require": {
         "guzzlehttp/guzzle": "^6.3",
         "nesbot/carbon": "^1.22"
