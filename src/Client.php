@@ -182,4 +182,13 @@ class Client implements CampaignControllerInterface, ContactGroupControllerInter
     {
         return $this->vanityDomainManager->getAllVanityDomains();
     }
+
+    public function resetOrganizationIdHeaderForAllControllers(int $orgId)
+    {
+        $this->campaignManager->resetOrganizationIdHeader($orgId);
+        $this->contactManager->resetOrganizationIdHeader($orgId);
+        $this->contactGroupManager->resetOrganizationIdHeader($orgId);
+        $this->templateManager->resetOrganizationIdHeader($orgId);
+        $this->vanityDomainManager->resetOrganizationIdHeader($orgId);
+    }
 }

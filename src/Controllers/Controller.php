@@ -26,4 +26,9 @@ abstract class Controller
             'Organization' => $organizationId
         ];
     }
+
+    public function resetOrganizationIdHeader(int $orgId)
+    {
+        $this->headers['Organization'] = $orgId;
+    }
 }
