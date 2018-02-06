@@ -77,7 +77,7 @@ class UploadedCsvFileResponseMapper implements UploadedCsvFileResponseMapperInte
         $uploadedCsvFile->setHeadings($uploadedCsvFileResponseParameters->headings);
         $uploadedCsvFile->setRows($uploadedCsvFileResponseParameters->rows);
         $uploadedCsvFile->setOriginalFilename($uploadedCsvFileResponseParameters->originalFilename);
-        $uploadedCsvFile->setPossiblePhoneColumns($uploadedCsvFileResponseParameters->possiblePhoneColumns);
+        $uploadedCsvFile->setPossiblePhoneColumns((array) $uploadedCsvFileResponseParameters->possiblePhoneColumns);
 
         return $uploadedCsvFile;
     }
