@@ -47,7 +47,7 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         }
 
         if ($campaign->getRecipientType() === 'numbers') {
-            $campaignArray['recipients'] = implode(',', $campaign->getRecipients());
+            $campaignArray['recipients'] = $campaign->getRecipients();
         }
 
         if ($campaign->getScheduledSendDate()) {
@@ -127,7 +127,7 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         }
 
         if ($campaign->getRecipientType() === 'numbers') {
-            $campaignStdClass->recipients = implode(',', $campaign->getRecipients());
+            $campaignStdClass->recipients = $campaign->getRecipients();
         }
 
         if ($campaign->getScheduledSendDate()) {
