@@ -1,5 +1,5 @@
 {
-    "name": "digitonic/passona-client",
+    "name": "digitonic/passona-sdk",
     "description": "A client for Passona, the campaign management app",
     "type": "laravel 5 package",
     "license": "MIT",
