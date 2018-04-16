@@ -4,12 +4,13 @@ namespace Tests\Unit\Mappers\Responses;
 
 use Digitonic\PassonaClient\Entities\VanityDomainResponse;
 use Digitonic\PassonaClient\Mappers\Responses\VanityDomainResponseMapper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @property VanityDomainResponseMapper mapper
  * @property VanityDomainResponse vanityDomainResponse
  */
-class VanityDomainResponseMapperTest extends \PHPUnit_Framework_TestCase
+class VanityDomainResponseMapperTest extends TestCase
 {
     public function setUp()
     {

@@ -78,12 +78,6 @@ class TemplateCrudManagementTest extends ClientTestCase
     }
 
     /** @test */
-    public function getTemplate()
-    {
-        $this->assertEquals($this->templateResponse1, $this->client->getTemplate(1));
-    }
-
-    /** @test */
     public function postTemplate()
     {
         $templateRequest = new TemplateRequest();
@@ -101,7 +95,17 @@ class TemplateCrudManagementTest extends ClientTestCase
         }
         $templateRequest->setLinks($linkRequests);
 
-        $this->assertEquals($this->templateResponse1, $this->client->postTemplate($templateRequest));
+        $template = $this->client->postTemplate($templateRequest);
+        $this->assertEquals($this->templateResponse1->getName(), $template->getName());
+        $this->assertEquals($this->templateResponse1->getBody(), $template->getBody());
+        $this->assertEquals($this->templateResponse1->getLinks()[0]->getName(), $template->getLinks()[0]->getName());
+        $this->assertEquals($this->templateResponse1->getLinks()[0]->getDestination(), $template->getLinks()[0]->getDestination());
+    }
+
+    /** @test */
+    public function getTemplate()
+    {
+        $this->assertEquals($this->templateResponse1, $this->client->getTemplate(1));
     }
 
     /** @test */

@@ -6,13 +6,14 @@ use Digitonic\PassonaClient\Entities\LinkResponse;
 use Digitonic\PassonaClient\Entities\VanityDomainResponse;
 use Digitonic\PassonaClient\Mappers\Responses\LinkResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\VanityDomainResponseMapper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @property LinkResponseMapper mapper
  * @property LinkResponse linkResponse
  * @property VanityDomainResponse vanityDomainResponse
  */
-class LinkResponseMapperTest extends \PHPUnit_Framework_TestCase
+class LinkResponseMapperTest extends TestCase
 {
     public function setUp()
     {

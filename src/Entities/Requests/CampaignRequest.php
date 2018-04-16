@@ -71,6 +71,14 @@ class CampaignRequest implements CampaignRequestInterface
      */
     private $templateId;
 
+    public function __construct()
+    {
+        $this->excludedContactGroupIds = [];
+        $this->includedContactGroupIds = [];
+        $this->recipients = [];
+        $this->links = [];
+    }
+
     /**
      * @return string
      */
@@ -186,7 +194,7 @@ class CampaignRequest implements CampaignRequestInterface
     /**
      * @return string
      */
-    public function getBody(): string
+    public function getBody(): ?string
     {
         return $this->body ?? '';
     }
@@ -194,7 +202,7 @@ class CampaignRequest implements CampaignRequestInterface
     /**
      * @param string $body
      */
-    public function setBody(string $body)
+    public function setBody(?string $body)
     {
         $this->body = $body;
     }
@@ -255,7 +263,7 @@ class CampaignRequest implements CampaignRequestInterface
     /**
      * @param int $templateId
      */
-    public function setTemplateId(int $templateId)
+    public function setTemplateId(?int $templateId)
     {
         $this->templateId = $templateId;
     }
@@ -263,7 +271,7 @@ class CampaignRequest implements CampaignRequestInterface
     /**
      * @return int
      */
-    public function getTemplateId(): int
+    public function getTemplateId(): ?int
     {
         return $this->templateId;
     }

@@ -74,10 +74,13 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         /** @var CampaignRequest $campaignRequest */
         $campaignRequest = $reflectionClass->newInstance();
         $campaignRequest->setName($campaignRequestParameters['name']);
-        $campaignRequest->setTemplateId($campaignRequestParameters['templateId']);
+        if (isset($campaignRequestParameters['templateId'])){
+            $campaignRequest->setTemplateId($campaignRequestParameters['templateId']);
+        } else {
+            $campaignRequest->setBody($campaignRequestParameters['body']);
+        }
         $campaignRequest->setSender($campaignRequestParameters['sender']);
         $campaignRequest->setExpiryDate(Carbon::parse($campaignRequestParameters['expiryDate']));
-        $campaignRequest->setBody($campaignRequestParameters['body']);
         $campaignRequest->setRecipientType($campaignRequestParameters['recipientType']);
 
         if ($campaignRequestParameters['recipientType'] === 'groups') {
@@ -154,10 +157,13 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         /** @var CampaignRequest $campaignRequest */
         $campaignRequest = $reflectionClass->newInstance();
         $campaignRequest->setName($campaignRequestParameters->name);
-        $campaignRequest->setTemplateId($campaignRequestParameters->templateId);
+        if ($campaignRequestParameters->templateId){
+            $campaignRequest->setTemplateId($campaignRequestParameters->templateId);
+        } else {
+            $campaignRequest->setBody($campaignRequestParameters->body);
+        }
         $campaignRequest->setSender($campaignRequestParameters->sender);
         $campaignRequest->setExpiryDate(Carbon::parse($campaignRequestParameters->expiryDate));
-        $campaignRequest->setBody($campaignRequestParameters->body);
         $campaignRequest->setRecipientType($campaignRequestParameters->recipientType);
 
         if ($campaignRequestParameters->recipientType === 'groups') {

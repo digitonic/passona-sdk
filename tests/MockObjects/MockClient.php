@@ -29,7 +29,7 @@ class MockClient extends Client
      *
      * @return ResponseInterface
      */
-    public function get($uri, array $options = [])
+    public function get( $uri, array $options = []): ResponseInterface
     {
         $uri = explode('/', $uri);
 
@@ -65,7 +65,7 @@ class MockClient extends Client
         }
     }
 
-    public function post($uri, array $options = [])
+    public function post($uri, array $options = []): ResponseInterface
     {
         if (!isset($options['json'])) {
             throw new \Exception('json not set');
@@ -90,7 +90,7 @@ class MockClient extends Client
         }
     }
 
-    public function put($uri, array $options = [])
+    public function put($uri, array $options = []): ResponseInterface
     {
         if (!isset($options['json'])) {
             throw new \Exception('json not set');
@@ -111,7 +111,7 @@ class MockClient extends Client
         }
     }
 
-    public function delete($uri, array $options = [])
+    public function delete($uri, array $options = []): ResponseInterface
     {
         return new DeleteMockResponse('');
     }

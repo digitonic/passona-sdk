@@ -4,12 +4,13 @@ namespace Tests\Unit\Mappers\Responses;
 
 use Digitonic\PassonaClient\Entities\UploadedCsvFileResponse;
 use Digitonic\PassonaClient\Mappers\Responses\UploadedCsvFileResponseMapper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @property UploadedCsvFileResponseMapper mapper
  * @property UploadedCsvFileResponse uploadedCsvFileResponse
  */
-class UploadedCsvFileResponseMapperTest extends \PHPUnit_Framework_TestCase
+class UploadedCsvFileResponseMapperTest extends TestCase
 {
     public function setUp()
     {

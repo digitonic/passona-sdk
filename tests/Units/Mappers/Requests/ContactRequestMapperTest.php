@@ -9,7 +9,7 @@ use Digitonic\PassonaClient\Mappers\Requests\ContactRequestMapper;
  * @property ContactRequestMapper mapper
  * @property ContactRequest contactRequest
  */
-class ContactRequestMapperTest extends \PHPUnit_Framework_TestCase
+class ContactRequestMapperTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {

@@ -4,12 +4,13 @@ namespace Tests\Unit\Mappers\Requests;
 
 use Digitonic\PassonaClient\Entities\LinkRequest;
 use Digitonic\PassonaClient\Mappers\Requests\LinkRequestMapper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @property LinkRequestMapper mapper
  * @property LinkRequest linkRequest
  */
-class LinkRequestMapperTest extends \PHPUnit_Framework_TestCase
+class LinkRequestMapperTest extends TestCase
 {
     public function setUp()
     {

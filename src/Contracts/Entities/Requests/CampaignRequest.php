@@ -19,22 +19,22 @@ interface CampaignRequest
     /**
      * @param string $body
      */
-    public function setBody(string $body);
+    public function setBody(?string $body);
 
     /**
      * @return string
      */
-    public function getBody(): string;
+    public function getBody(): ?string;
 
     /**
      * @param int $templateId
      */
-    public function setTemplateId(int $templateId);
+    public function setTemplateId(?int $templateId);
 
     /**
      * @return int
      */
-    public function getTemplateId(): int;
+    public function getTemplateId(): ?int;
 
     /**
      * @param string $sender
@@ -109,7 +109,7 @@ interface CampaignRequest
     /**
      * @return Carbon
      */
-    public function getScheduledSendDate(): Carbon;
+    public function getScheduledSendDate(): ?Carbon;
 
     /**
      * @param array $recipients
@@ -119,5 +119,5 @@ interface CampaignRequest
     /**
      * @return string
      */
-    public function getRecipients(): string;
+    public function getRecipients(): ?string;
 }

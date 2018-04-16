@@ -6,12 +6,13 @@ use Digitonic\PassonaClient\Entities\LinkRequest;
 use Digitonic\PassonaClient\Entities\TemplateRequest;
 use Digitonic\PassonaClient\Mappers\Requests\LinkRequestMapper;
 use Digitonic\PassonaClient\Mappers\Requests\TemplateRequestMapper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @property TemplateRequestMapper mapper
  * @property TemplateRequest templateRequest
  */
-class TemplateRequestMapperTest extends \PHPUnit_Framework_TestCase
+class TemplateRequestMapperTest extends TestCase
 {
     public function setUp()
     {

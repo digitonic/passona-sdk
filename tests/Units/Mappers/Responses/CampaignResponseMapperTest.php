@@ -9,12 +9,13 @@ use Digitonic\PassonaClient\Entities\VanityDomainResponse;
 use Digitonic\PassonaClient\Mappers\Responses\CampaignResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\LinkResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\VanityDomainResponseMapper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @property CampaignResponseMapper mapper
  * @property CampaignResponse campaignResponse
  */
-class CampaignResponseMapperTest extends \PHPUnit_Framework_TestCase
+class CampaignResponseMapperTest extends TestCase
 {
     public function setUp()
     {
