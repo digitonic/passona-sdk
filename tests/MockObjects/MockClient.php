@@ -4,6 +4,7 @@
 namespace Tests\MockObjects;
 
 
+use Digitonic\PassonaClient\Contracts\Clients\HttpClient;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use Tests\MockObjects\CampaignResponses\GetAllCampaignsMockResponse;
@@ -21,7 +22,7 @@ use Tests\MockObjects\TemplatesResponses\PostOrPutTemplateMockResponse;
 use Tests\MockObjects\TemplatesResponses\UpsertContactMockResponse;
 use Tests\MockObjects\VanityDomainResponse\GetAllVanityDomainsMockResponse;
 
-class MockClient extends Client
+class MockClient extends Client implements HttpClient
 {
     /**
      * @param \Psr\Http\Message\UriInterface|string $uri

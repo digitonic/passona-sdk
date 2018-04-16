@@ -23,7 +23,7 @@ class VanityDomainCrudManagementTest extends ClientTestCase
             $this->assertCount(4, $vanityDomain->getNameservers());
 
             foreach($vanityDomain->getNameservers() as $nameserver){
-                $this->assertRegExp('#^(\w+).(\w+).(\w+).$#', $nameserver);
+                $this->assertRegExp('#^([\w-]+).([\w-]+).([\w-]+).$#', $nameserver);
             }
             $this->assertRegExp('#^(?:\w+.)(\w+).(\w+)$#', $vanityDomain->getDomain());
         }

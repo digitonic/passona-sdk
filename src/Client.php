@@ -4,6 +4,7 @@
 namespace Digitonic\PassonaClient;
 
 
+use Digitonic\PassonaClient\Contracts\Clients\HttpClient;
 use Digitonic\PassonaClient\Contracts\Controllers\CampaignController as CampaignControllerInterface;
 use Digitonic\PassonaClient\Contracts\Controllers\ContactGroupController as ContactGroupControllerInterface;
 use Digitonic\PassonaClient\Contracts\Controllers\ContactController as ContactControllerInterface;
@@ -22,6 +23,7 @@ use Digitonic\PassonaClient\Controllers\ContactController;
 use Digitonic\PassonaClient\Controllers\ContactGroupController;
 use Digitonic\PassonaClient\Controllers\TemplateController;
 use Digitonic\PassonaClient\Controllers\VanityDomainController;
+use Digitonic\PassonaClient\Exceptions\HttpClientException;
 use Digitonic\PassonaClient\Mappers\Requests\CampaignRequestMapper;
 use Digitonic\PassonaClient\Mappers\Requests\ContactGroupRequestMapper;
 use Digitonic\PassonaClient\Mappers\Requests\ContactRequestMapper;
@@ -35,7 +37,6 @@ use Digitonic\PassonaClient\Mappers\Responses\LinkResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\TemplateResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\UploadedCsvFileResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\VanityDomainResponseMapper;
-use GuzzleHttp\Client as GuzzleClient;
 
 class Client implements CampaignControllerInterface, ContactGroupControllerInterface, ContactControllerInterface, TemplateControllerInterface, VanityDomainControllerInterface
 {
@@ -67,10 +68,13 @@ class Client implements CampaignControllerInterface, ContactGroupControllerInter
     public function __construct(
         $orgId,
         $apiToken,
-        $baseUri = 'https://passona.digitonic.co.uk/api/external/v1/'
+        $baseUri = 'https://passona.digitonic.co.uk/api/external/v1/',
+        string $clientClass
     )
     {
-        $guzzleClient = new GuzzleClient(['base_uri' => $baseUri]);
+        $this->validateClientClass($clientClass);
+
+        $guzzleClient = new $clientClass(['base_uri' => $baseUri]);
         $this->campaignManager = new CampaignController($guzzleClient, $orgId, $apiToken);
         $this->campaignManager->setCampaignResponseMapper(new CampaignResponseMapper(new LinkResponseMapper(new VanityDomainResponseMapper())));
         $this->campaignManager->setCampaignRequestMapper(new CampaignRequestMapper(new LinkRequestMapper()));
@@ -190,5 +194,20 @@ class Client implements CampaignControllerInterface, ContactGroupControllerInter
         $this->contactGroupManager->resetOrganizationIdHeader($orgId);
         $this->templateManager->resetOrganizationIdHeader($orgId);
         $this->vanityDomainManager->resetOrganizationIdHeader($orgId);
+    }
+
+    /**
+     * @param string $clientClass
+     * @throws HttpClientException
+     */
+    private function validateClientClass(string $clientClass): void
+    {
+        $reflectionClass = new \ReflectionClass($clientClass);
+
+        if (!$reflectionClass->implementsInterface(HttpClient::class)) {
+            throw new HttpClientException(
+                'The client class ' . $clientClass . ' doesn\'t implement the ' . HttpClient::class . ' interface'
+            );
+        }
     }
 }

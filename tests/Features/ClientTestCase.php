@@ -21,7 +21,7 @@ class ClientTestCase extends TestCase
 //        $this->client = new PassonaClient();
 //        $client = new Client(['base_uri' => "http://sms.platonic.com/api/external/v1/"]);
 
-        $this->client = new PassonaClient(getenv('ORG_ID'), getenv('API_KEY'), getenv('API_URI'));
+        $this->client = new PassonaClient(getenv('ORG_ID'), getenv('API_KEY'), getenv('API_URI'), MockClient::class);
     }
 
 }
