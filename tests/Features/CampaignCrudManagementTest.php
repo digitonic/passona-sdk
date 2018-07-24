@@ -4,12 +4,12 @@
 namespace Tests\Feature;
 
 
-use Digitonic\PassonaClient\Entities\CampaignResponse;
-use Digitonic\PassonaClient\Entities\LinkRequest;
+use Digitonic\PassonaClient\Entities\Responses\CampaignResponse;
+use Digitonic\PassonaClient\Entities\Requests\LinkRequest;
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\CampaignRequest;
-use Digitonic\PassonaClient\Entities\LinkResponse;
-use Digitonic\PassonaClient\Entities\VanityDomainResponse;
+use Digitonic\PassonaClient\Entities\Requests\CampaignRequest;
+use Digitonic\PassonaClient\Entities\Responses\LinkResponse;
+use Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse;
 
 class CampaignCrudManagementTest extends ClientTestCase
 {
@@ -18,7 +18,7 @@ class CampaignCrudManagementTest extends ClientTestCase
      */
     private $campaign1;
     /**
-     * @var CampaignRequest
+     * @var \Digitonic\PassonaClient\Entities\Requests\CampaignRequest
      */
     private $campaign2;
 
@@ -105,7 +105,7 @@ class CampaignCrudManagementTest extends ClientTestCase
         $campaignRequest->setExpiryDate($this->campaign1->getExpiryDate());
         $campaignRequest->setSender($this->campaign1->getSender());
 
-        /** @var LinkResponse $linkResponse */
+        /** @var \Digitonic\PassonaClient\Entities\Responses\LinkResponse $linkResponse */
         foreach($this->campaign1->getLinks() as $linkResponse){
             $linkRequest = new LinkRequest();
             $linkRequest->setName($linkResponse->getName());
@@ -131,7 +131,7 @@ class CampaignCrudManagementTest extends ClientTestCase
         $campaignRequest->setExpiryDate($this->campaign1->getExpiryDate());
         $campaignRequest->setSender($this->campaign1->getSender());
 
-        /** @var LinkResponse $linkResponse */
+        /** @var \Digitonic\PassonaClient\Entities\Responses\LinkResponse $linkResponse */
         foreach($this->campaign1->getLinks() as $linkResponse){
             $linkRequest = new LinkRequest();
             $linkRequest->setName($linkResponse->getName());
@@ -150,7 +150,7 @@ class CampaignCrudManagementTest extends ClientTestCase
     }
 
     /**
-     * @return VanityDomainResponse
+     * @return \Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse
      */
     private function buildVanityDomain(int $id, int $status, array $nameservers, string $domain, string $hostedZoneId): VanityDomainResponse
     {

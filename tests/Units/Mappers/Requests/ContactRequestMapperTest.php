@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Mappers\Requests;
 
-use Digitonic\PassonaClient\Entities\ContactRequest;
+use Digitonic\PassonaClient\Entities\Requests\ContactRequest;
 use Digitonic\PassonaClient\Mappers\Requests\ContactRequestMapper;
 
 /**

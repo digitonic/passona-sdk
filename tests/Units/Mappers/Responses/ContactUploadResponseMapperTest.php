@@ -3,8 +3,8 @@
 namespace Tests\Unit\Mappers\Responses;
 
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\ContactUploadResponse;
-use Digitonic\PassonaClient\Entities\UploadedCsvFileResponse;
+use Digitonic\PassonaClient\Entities\Responses\ContactUploadResponse;
+use Digitonic\PassonaClient\Entities\Responses\UploadedCsvFileResponse;
 use Digitonic\PassonaClient\Mappers\Responses\ContactUploadResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\UploadedCsvFileResponseMapper;
 use PHPUnit\Framework\TestCase;

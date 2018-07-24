@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Mappers\Requests;
 
-use Digitonic\PassonaClient\Entities\LinkRequest;
+use Digitonic\PassonaClient\Entities\Requests\LinkRequest;
 use Digitonic\PassonaClient\Mappers\Requests\LinkRequestMapper;
 use PHPUnit\Framework\TestCase;
 

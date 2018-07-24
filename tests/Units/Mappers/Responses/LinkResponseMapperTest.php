@@ -2,15 +2,15 @@
 
 namespace Tests\Unit\Mappers\Responses;
 
-use Digitonic\PassonaClient\Entities\LinkResponse;
-use Digitonic\PassonaClient\Entities\VanityDomainResponse;
+use Digitonic\PassonaClient\Entities\Responses\LinkResponse;
+use Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse;
 use Digitonic\PassonaClient\Mappers\Responses\LinkResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\VanityDomainResponseMapper;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @property LinkResponseMapper mapper
- * @property LinkResponse linkResponse
+ * @property \Digitonic\PassonaClient\Entities\Responses\LinkResponse linkResponse
  * @property VanityDomainResponse vanityDomainResponse
  */
 class LinkResponseMapperTest extends TestCase

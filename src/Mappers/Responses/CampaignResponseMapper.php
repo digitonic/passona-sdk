@@ -7,7 +7,7 @@ namespace Digitonic\PassonaClient\Mappers\Responses;
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\CampaignResponseMapper as CampaignResponseMapperInterface;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\CampaignResponse as CampaignResponseInterface;
-use Digitonic\PassonaClient\Entities\CampaignResponse;
+use Digitonic\PassonaClient\Entities\Responses\CampaignResponse;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 

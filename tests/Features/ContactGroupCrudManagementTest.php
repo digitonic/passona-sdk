@@ -5,8 +5,8 @@ namespace Tests\Feature;
 
 
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\ContactGroupRequest;
-use Digitonic\PassonaClient\Entities\ContactGroupResponse;
+use Digitonic\PassonaClient\Entities\Requests\ContactGroupRequest;
+use Digitonic\PassonaClient\Entities\Responses\ContactGroupResponse;
 
 class ContactGroupCrudManagementTest extends ClientTestCase
 {

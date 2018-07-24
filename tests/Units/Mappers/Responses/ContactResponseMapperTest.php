@@ -3,7 +3,7 @@
 namespace Tests\Unit\Mappers\Responses;
 
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\ContactResponse;
+use Digitonic\PassonaClient\Entities\Responses\ContactResponse;
 use Digitonic\PassonaClient\Mappers\Responses\ContactResponseMapper;
 use PHPUnit\Framework\TestCase;
 

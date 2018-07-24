@@ -3,7 +3,7 @@
 namespace Digitonic\PassonaClient\Contracts\Entities\Responses;
 
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\LinkRequest;
+use Digitonic\PassonaClient\Entities\Requests\LinkRequest;
 
 interface CampaignResponse
 {

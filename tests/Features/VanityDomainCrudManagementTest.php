@@ -4,7 +4,7 @@
 namespace Tests\Feature;
 
 
-use Digitonic\PassonaClient\Entities\VanityDomainResponse;
+use Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse;
 
 class VanityDomainCrudManagementTest extends ClientTestCase
 {

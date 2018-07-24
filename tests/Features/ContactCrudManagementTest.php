@@ -5,19 +5,19 @@ namespace Tests\Feature;
 
 
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\ContactRequest;
-use Digitonic\PassonaClient\Entities\ContactResponse;
-use Digitonic\PassonaClient\Entities\ContactUploadResponse;
-use Digitonic\PassonaClient\Entities\UploadedCsvFileResponse;
+use Digitonic\PassonaClient\Entities\Requests\ContactRequest;
+use Digitonic\PassonaClient\Entities\Responses\ContactResponse;
+use Digitonic\PassonaClient\Entities\Responses\ContactUploadResponse;
+use Digitonic\PassonaClient\Entities\Responses\UploadedCsvFileResponse;
 
 class ContactCrudManagementTest extends ClientTestCase
 {
     /**
-     * @var ContactRequest
+     * @var \Digitonic\PassonaClient\Entities\Requests\ContactRequest
      */
     private $contact1;
     /**
-     * @var ContactRequest
+     * @var \Digitonic\PassonaClient\Entities\Requests\ContactRequest
      */
     private $contact2;
     /**

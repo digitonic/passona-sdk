@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Mappers\Responses;
 
-use Digitonic\PassonaClient\Entities\VanityDomainResponse;
+use Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse;
 use Digitonic\PassonaClient\Mappers\Responses\VanityDomainResponseMapper;
 use PHPUnit\Framework\TestCase;
 

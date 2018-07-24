@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Digitonic\PassonaClient\Entities;
+namespace Digitonic\PassonaClient\Entities\Responses;
 
 use Digitonic\PassonaClient\Contracts\Entities\Responses\VanityDomainResponse;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\LinkResponse as LinkResponseInterface;
@@ -33,7 +33,7 @@ class LinkResponse implements LinkResponseInterface
      */
     private $deleted;
     /**
-     * @var VanityDomainResponse
+     * @var \Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse
      */
     private $vanityDomain;
 
@@ -134,7 +134,7 @@ class LinkResponse implements LinkResponseInterface
     }
 
     /**
-     * @return VanityDomainResponse
+     * @return \Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse
      */
     public function getVanityDomain(): VanityDomainResponse
     {
@@ -142,7 +142,7 @@ class LinkResponse implements LinkResponseInterface
     }
 
     /**
-     * @param VanityDomainResponse $vanityDomain
+     * @param \Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse $vanityDomain
      */
     public function setVanityDomain(VanityDomainResponse $vanityDomain)
     {

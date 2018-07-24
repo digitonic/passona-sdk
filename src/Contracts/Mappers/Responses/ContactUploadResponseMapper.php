@@ -3,7 +3,7 @@
 namespace Digitonic\PassonaClient\Contracts\Mappers\Responses;
 
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactUploadResponse as ContactUploadResponseInterface;
-use Digitonic\PassonaClient\Entities\ContactUploadResponse;
+use Digitonic\PassonaClient\Entities\Responses\ContactUploadResponse;
 
 interface ContactUploadResponseMapper
 {

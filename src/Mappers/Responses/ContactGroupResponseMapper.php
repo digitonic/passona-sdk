@@ -7,7 +7,7 @@ namespace Digitonic\PassonaClient\Mappers\Responses;
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactGroupResponse as ContactGroupResponseInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\ContactGroupResponseMapper as ContactGroupResponseMapperInterface;
-use Digitonic\PassonaClient\Entities\ContactGroupResponse;
+use Digitonic\PassonaClient\Entities\Responses\ContactGroupResponse;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 

@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Mappers\Requests;
 
-use Digitonic\PassonaClient\Entities\ContactGroupRequest;
+use Digitonic\PassonaClient\Entities\Requests\ContactGroupRequest;
 use Digitonic\PassonaClient\Mappers\Requests\ContactGroupRequestMapper;
 
 /**
  * @property ContactGroupRequestMapper mapper
- * @property ContactGroupRequest contactGroupRequest
+ * @property \Digitonic\PassonaClient\Entities\Requests\ContactGroupRequest contactGroupRequest
  */
 class ContactGroupRequestMapperTest extends \PHPUnit\Framework\TestCase
 {

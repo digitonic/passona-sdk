@@ -6,7 +6,7 @@ namespace Digitonic\PassonaClient\Mappers\Requests;
 
 use Digitonic\PassonaClient\Contracts\Entities\Requests\ContactRequest as ContactRequestInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Requests\ContactRequestMapper as ContactRequestMapperInterface;
-use Digitonic\PassonaClient\Entities\ContactRequest;
+use Digitonic\PassonaClient\Entities\Requests\ContactRequest;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 

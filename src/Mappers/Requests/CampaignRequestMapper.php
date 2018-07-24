@@ -7,7 +7,7 @@ namespace Digitonic\PassonaClient\Mappers\Requests;
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Entities\Requests\CampaignRequest as CampaignRequestInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Requests\CampaignRequestMapper as CampaignRequestMapperInterface;
-use Digitonic\PassonaClient\Entities\CampaignRequest;
+use Digitonic\PassonaClient\Entities\Requests\CampaignRequest;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 
@@ -71,7 +71,7 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         $reflectionClass = new \ReflectionClass($campaignRequestClass);
         $this->validateCampaignRequestClass($reflectionClass);
 
-        /** @var CampaignRequest $campaignRequest */
+        /** @var \Digitonic\PassonaClient\Entities\Requests\CampaignRequest $campaignRequest */
         $campaignRequest = $reflectionClass->newInstance();
         $campaignRequest->setName($campaignRequestParameters['name']);
         if (isset($campaignRequestParameters['templateId'])){

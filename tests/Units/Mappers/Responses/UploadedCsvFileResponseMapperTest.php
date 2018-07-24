@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Mappers\Responses;
 
-use Digitonic\PassonaClient\Entities\UploadedCsvFileResponse;
+use Digitonic\PassonaClient\Entities\Responses\UploadedCsvFileResponse;
 use Digitonic\PassonaClient\Mappers\Responses\UploadedCsvFileResponseMapper;
 use PHPUnit\Framework\TestCase;
 

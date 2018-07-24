@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Digitonic\PassonaClient\Entities;
+namespace Digitonic\PassonaClient\Entities\Responses;
 
 
 use Carbon\Carbon;
@@ -30,7 +30,7 @@ class ContactUploadResponse implements ContactUploadResponseInterface
      */
     private $createdAt;
     /**
-     * @var UploadedCsvFileResponse
+     * @var \Digitonic\PassonaClient\Entities\Responses\UploadedCsvFileResponse
      */
     private $uploadedCsvFile;
 
@@ -99,14 +99,14 @@ class ContactUploadResponse implements ContactUploadResponseInterface
     }
 
     /**
-     * @return UploadedCsvFileResponse
+     * @return \Digitonic\PassonaClient\Entities\Responses\UploadedCsvFileResponse
      */
     public function getUploadedCsvFile(): UploadedCsvFileResponse
     {
         return $this->uploadedCsvFile;
     }
     /**
-     * @param UploadedCsvFileResponse $uploadedCsvFile
+     * @param \Digitonic\PassonaClient\Entities\Responses\UploadedCsvFileResponse $uploadedCsvFile
      */
     public function setUploadedCsvFile(UploadedCsvFileResponse $uploadedCsvFile)
     {

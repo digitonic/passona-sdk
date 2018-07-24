@@ -2,15 +2,15 @@
 
 namespace Tests\Unit\Mappers\Requests;
 
-use Digitonic\PassonaClient\Entities\LinkRequest;
-use Digitonic\PassonaClient\Entities\TemplateRequest;
+use Digitonic\PassonaClient\Entities\Requests\LinkRequest;
+use Digitonic\PassonaClient\Entities\Requests\TemplateRequest;
 use Digitonic\PassonaClient\Mappers\Requests\LinkRequestMapper;
 use Digitonic\PassonaClient\Mappers\Requests\TemplateRequestMapper;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @property TemplateRequestMapper mapper
- * @property TemplateRequest templateRequest
+ * @property \Digitonic\PassonaClient\Entities\Requests\TemplateRequest templateRequest
  */
 class TemplateRequestMapperTest extends TestCase
 {

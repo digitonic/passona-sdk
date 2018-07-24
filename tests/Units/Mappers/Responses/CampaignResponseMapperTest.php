@@ -3,9 +3,9 @@
 namespace Tests\Unit\Mappers\Responses;
 
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\CampaignResponse;
-use Digitonic\PassonaClient\Entities\LinkResponse;
-use Digitonic\PassonaClient\Entities\VanityDomainResponse;
+use Digitonic\PassonaClient\Entities\Responses\CampaignResponse;
+use Digitonic\PassonaClient\Entities\Responses\LinkResponse;
+use Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse;
 use Digitonic\PassonaClient\Mappers\Responses\CampaignResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\LinkResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\VanityDomainResponseMapper;
@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @property CampaignResponseMapper mapper
- * @property CampaignResponse campaignResponse
+ * @property \Digitonic\PassonaClient\Entities\Responses\CampaignResponse campaignResponse
  */
 class CampaignResponseMapperTest extends TestCase
 {

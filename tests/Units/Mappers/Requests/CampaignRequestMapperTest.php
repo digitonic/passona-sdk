@@ -3,15 +3,15 @@
 namespace Tests\Unit\Mappers\Requests;
 
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\CampaignRequest;
-use Digitonic\PassonaClient\Entities\LinkRequest;
+use Digitonic\PassonaClient\Entities\Requests\CampaignRequest;
+use Digitonic\PassonaClient\Entities\Requests\LinkRequest;
 use Digitonic\PassonaClient\Mappers\Requests\CampaignRequestMapper;
 use Digitonic\PassonaClient\Mappers\Requests\LinkRequestMapper;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @property CampaignRequestMapper mapper
- * @property CampaignRequest campaign1
+ * @property \Digitonic\PassonaClient\Entities\Requests\CampaignRequest campaign1
  */
 class CampaignRequestMapperTest extends TestCase
 {
