@@ -50,12 +50,12 @@ class CampaignCrudManagementTest extends ClientTestCase
         $this->campaign1->setLinks([
             $link1, $link2
         ]);
-        $this->campaign1->setFinishedSendingAt(Carbon::parse('2017-09-26 16:29:39'));
-        $this->campaign1->setScheduledSendDate(Carbon::parse('2017-09-26 14:30:21'));
-        $this->campaign1->setStartedSendingAt(Carbon::parse('2017-09-26 14:32:14'));
-        $this->campaign1->setExpiryDate(Carbon::parse('2017-09-27 16:28:33'));
-        $this->campaign1->setUpdatedAt(Carbon::parse('2017-09-26 16:27:20'));
-        $this->campaign1->setCreatedAt(Carbon::parse('2017-09-26 16:27:02'));
+        $this->campaign1->setFinishedSendingAt(Carbon::parse('2017-09-26 16:29:39', 'Europe/London'));
+        $this->campaign1->setScheduledSendDate(Carbon::parse('2017-09-26 14:30:21', 'Europe/London'));
+        $this->campaign1->setStartedSendingAt(Carbon::parse('2017-09-26 14:32:14', 'Europe/London'));
+        $this->campaign1->setExpiryDate(Carbon::parse('2017-09-27 16:28:33', 'Europe/London'));
+        $this->campaign1->setUpdatedAt(Carbon::parse('2017-09-26 16:27:20', 'Europe/London'));
+        $this->campaign1->setCreatedAt(Carbon::parse('2017-09-26 16:27:02', 'Europe/London'));
 
         $this->campaign2 = new CampaignResponse();
         $this->campaign2->setId(2);
@@ -72,11 +72,11 @@ class CampaignCrudManagementTest extends ClientTestCase
         $this->campaign2->setIsEditable(false);
         $this->campaign2->setIsViewable(false);
         $this->campaign2->setScheduledSend(false);
-        $this->campaign2->setFinishedSendingAt(Carbon::parse('2017-09-26 16:29:39'));
-        $this->campaign2->setStartedSendingAt(Carbon::parse('2017-09-26 14:32:14'));
-        $this->campaign2->setExpiryDate(Carbon::parse('2017-09-27 16:28:33'));
-        $this->campaign2->setUpdatedAt(Carbon::parse('2017-09-26 16:27:20'));
-        $this->campaign2->setCreatedAt(Carbon::parse('2017-09-26 16:27:02'));
+        $this->campaign2->setFinishedSendingAt(Carbon::parse('2017-09-26 16:29:39', 'Europe/London'));
+        $this->campaign2->setStartedSendingAt(Carbon::parse('2017-09-26 14:32:14', 'Europe/London'));
+        $this->campaign2->setExpiryDate(Carbon::parse('2017-09-27 16:28:33', 'Europe/London'));
+        $this->campaign2->setUpdatedAt(Carbon::parse('2017-09-26 16:27:20', 'Europe/London'));
+        $this->campaign2->setCreatedAt(Carbon::parse('2017-09-26 16:27:02', 'Europe/London'));
 
     }
 

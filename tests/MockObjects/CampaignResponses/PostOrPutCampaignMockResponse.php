@@ -41,8 +41,8 @@ class PostOrPutCampaignMockResponse extends MockResponse
               "excludedContactGroupIds": [
                 2
               ],
-              "scheduledSendDate": "'.$jsonDecoded->scheduledSendDate.'",
-              "expiryDate": "'.$jsonDecoded->expiryDate.'",
+              "scheduledSendDate": "'.$jsonDecoded->scheduledSendDate.'+01:00",
+              "expiryDate": "'.$jsonDecoded->expiryDate.'+01:00",
               "body": "'.$jsonDecoded->body.'",
               "finishedSendingAt": "2017-09-26T16:29:39.000000+0100",
               "numberOfRecipients": 1,

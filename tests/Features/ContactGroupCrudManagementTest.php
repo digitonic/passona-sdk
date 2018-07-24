@@ -24,8 +24,8 @@ class ContactGroupCrudManagementTest extends ClientTestCase
         parent::setUp();
         $this->contactGroup1 = new ContactGroupResponse();
         $this->contactGroup1->setId(1);
-        $this->contactGroup1->setCreatedAt(Carbon::parse('2017-09-26 14:43:52+00:00'));
-        $this->contactGroup1->setUpdatedAt(Carbon::parse('2017-09-26 14:44:15+00:00'));
+        $this->contactGroup1->setCreatedAt(Carbon::parse('2017-09-26 14:43:52', 'Europe/London'));
+        $this->contactGroup1->setUpdatedAt(Carbon::parse('2017-09-26 14:44:15', 'Europe/London'));
         $this->contactGroup1->setName('my group 1');
         $this->contactGroup1->setDescription('Description for my group 1');
         $this->contactGroup1->setFields(['firstName', 'lastName']);
@@ -34,8 +34,8 @@ class ContactGroupCrudManagementTest extends ClientTestCase
 
         $this->contactGroup2 = new ContactGroupResponse();
         $this->contactGroup2->setId(2);
-        $this->contactGroup2->setCreatedAt(Carbon::parse('2017-09-26 14:43:52+00:00'));
-        $this->contactGroup2->setUpdatedAt(Carbon::parse('2017-09-26 14:44:15+00:00'));
+        $this->contactGroup2->setCreatedAt(Carbon::parse('2017-09-26 14:43:52', 'Europe/London'));
+        $this->contactGroup2->setUpdatedAt(Carbon::parse('2017-09-26 14:44:15', 'Europe/London'));
         $this->contactGroup2->setName('my group 2');
         $this->contactGroup2->setDescription('Description for my group 2');
         $this->contactGroup2->setFields(['firstName', 'lastName']);

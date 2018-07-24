@@ -4,7 +4,6 @@
 namespace Tests\MockObjects;
 
 
-use Digitonic\PassonaClient\Contracts\Clients\HttpClient;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use Tests\MockObjects\CampaignResponses\GetAllCampaignsMockResponse;
@@ -12,17 +11,15 @@ use Tests\MockObjects\CampaignResponses\GetCampaignMockeResponse;
 use Tests\MockObjects\CampaignResponses\PostOrPutCampaignMockResponse;
 use Tests\MockObjects\ContactGroupResponses\GetAllContactGroupsMockResponse;
 use Tests\MockObjects\ContactGroupResponses\PostOrPutContactGroupMockResponse;
-use Tests\MockObjects\ContactResponses\DeleteContactMockResponse;
 use Tests\MockObjects\ContactResponses\GetAllContactsMockResponse;
 use Tests\MockObjects\ContactResponses\GetContactMockResponse;
-use Tests\MockObjects\DeleteMockResponse;
 use Tests\MockObjects\TemplatesResponses\GetAllTemplatesMockResponse;
 use Tests\MockObjects\TemplatesResponses\GetTemplateMockResponse;
 use Tests\MockObjects\TemplatesResponses\PostOrPutTemplateMockResponse;
 use Tests\MockObjects\TemplatesResponses\UpsertContactMockResponse;
 use Tests\MockObjects\VanityDomainResponse\GetAllVanityDomainsMockResponse;
 
-class MockClient extends Client implements HttpClient
+class MockClient extends Client
 {
     /**
      * @param \Psr\Http\Message\UriInterface|string $uri

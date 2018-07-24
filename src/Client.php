@@ -37,6 +37,7 @@ use Digitonic\PassonaClient\Mappers\Responses\LinkResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\TemplateResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\UploadedCsvFileResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\VanityDomainResponseMapper;
+use GuzzleHttp\ClientInterface;
 
 class Client implements CampaignControllerInterface, ContactGroupControllerInterface, ContactControllerInterface, TemplateControllerInterface, VanityDomainControllerInterface
 {
@@ -204,9 +205,9 @@ class Client implements CampaignControllerInterface, ContactGroupControllerInter
     {
         $reflectionClass = new \ReflectionClass($clientClass);
 
-        if (!$reflectionClass->implementsInterface(HttpClient::class)) {
+        if (!$reflectionClass->implementsInterface(ClientInterface::class)) {
             throw new HttpClientException(
-                'The client class ' . $clientClass . ' doesn\'t implement the ' . HttpClient::class . ' interface'
+                'The client class ' . $clientClass . ' doesn\'t implement the ' . ClientInterface::class . ' interface'
             );
         }
     }
