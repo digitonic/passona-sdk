@@ -22,7 +22,12 @@ class PassonaSDKServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(\Digitonic\PassonaClient\Client::class, function () {
-            return new Client(config('passona_org_id'), config('passona_token'));
+            $config = config('passona-sdk');
+            return new Client(
+                $config['passona_org_id'],
+                $config['passona_token'],
+                $config['passona_base_uri'],
+                \GuzzleHttp\Client::class);
         });
     }
 }

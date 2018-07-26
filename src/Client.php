@@ -75,7 +75,7 @@ class Client implements CampaignControllerInterface, ContactGroupControllerInter
     {
         $this->validateClientClass($clientClass);
 
-        $guzzleClient = new $clientClass(['base_uri' => $baseUri]);
+        $guzzleClient = new $clientClass(['base_uri' => $baseUri, 'http_errors' => false]);
         $this->campaignManager = new CampaignController($guzzleClient, $orgId, $apiToken);
         $this->campaignManager->setCampaignResponseMapper(new CampaignResponseMapper(new LinkResponseMapper(new VanityDomainResponseMapper())));
         $this->campaignManager->setCampaignRequestMapper(new CampaignRequestMapper(new LinkRequestMapper()));
