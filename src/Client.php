@@ -188,6 +188,11 @@ class Client implements CampaignControllerInterface, ContactGroupControllerInter
         return $this->vanityDomainManager->getAllVanityDomains();
     }
 
+    public function upsertGroupsToContact(int $contactId, array $groups)
+    {
+        return $this->contactManager->upsertGroupsToContact($contactId, $groups);
+    }
+
     public function resetOrganizationIdHeaderForAllControllers(int $orgId)
     {
         $this->campaignManager->resetOrganizationIdHeader($orgId);
