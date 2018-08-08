@@ -83,6 +83,20 @@ class ContactController extends Controller implements ContactControllerInterface
         return $response->getStatusCode() === 204;
     }
 
+    public function upsertGroupsToContact(int $contactId, array $contact, array $groups)
+    {
+//        $json = json_encode(['groups' => $groups, 'contact' => $this->createJsonInput($contact)]);
+
+        $json = ['groups' => $groups, 'contact' => $this->createJsonInput($contact)];
+
+        $response = $this->client->post("contact/{$contactId}/groups/", [
+            'headers' => $this->headers,
+            'json' => $json
+        ]);
+
+        return $response;
+    }
+
     /**
      * @param ContactResponseMapper $contactResponseMapper
      */
