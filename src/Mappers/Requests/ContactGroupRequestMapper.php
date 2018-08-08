@@ -6,7 +6,7 @@ namespace Digitonic\PassonaClient\Mappers\Requests;
 
 use Digitonic\PassonaClient\Contracts\Entities\Requests\ContactGroupRequest as ContactGroupRequestInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Requests\ContactGroupRequestMapper as ContactGroupRequestMapperInterface;
-use Digitonic\PassonaClient\Entities\ContactGroupRequest;
+use Digitonic\PassonaClient\Entities\Requests\ContactGroupRequest;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 
@@ -82,7 +82,7 @@ class ContactGroupRequestMapper implements ContactGroupRequestMapperInterface
     /**
      * @param string $contactGroupRequestParameters
      * @param string $contactGroupRequestClass
-     * @return ContactGroupRequestInterface|ContactGroupRequest
+     * @return ContactGroupRequestInterface|\Digitonic\PassonaClient\Entities\Requests\ContactGroupRequest
      */
     public function fromJson(string $contactGroupRequestParameters, string $contactGroupRequestClass = ContactGroupRequest::class): ContactGroupRequestInterface
     {

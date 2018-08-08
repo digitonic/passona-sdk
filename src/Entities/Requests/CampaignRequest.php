@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Digitonic\PassonaClient\Entities;
+namespace Digitonic\PassonaClient\Entities\Requests;
 
 
 use Carbon\Carbon;
@@ -69,7 +69,15 @@ class CampaignRequest implements CampaignRequestInterface
     /**
      * @var int
      */
-    private $messageTemplateId;
+    private $templateId;
+
+    public function __construct()
+    {
+        $this->excludedContactGroupIds = [];
+        $this->includedContactGroupIds = [];
+        $this->recipients = [];
+        $this->links = [];
+    }
 
     /**
      * @return string
@@ -186,15 +194,15 @@ class CampaignRequest implements CampaignRequestInterface
     /**
      * @return string
      */
-    public function getBody(): string
+    public function getBody(): ?string
     {
-        return $this->body;
+        return $this->body ?? '';
     }
 
     /**
      * @param string $body
      */
-    public function setBody(string $body)
+    public function setBody(?string $body)
     {
         $this->body = $body;
     }
@@ -204,7 +212,7 @@ class CampaignRequest implements CampaignRequestInterface
      */
     public function getLinks(): array
     {
-        return $this->links;
+        return $this->links ?? [];
     }
 
     /**
@@ -253,18 +261,18 @@ class CampaignRequest implements CampaignRequestInterface
     }
 
     /**
-     * @param int $messageTemplateId
+     * @param int $templateId
      */
-    public function setMessageTemplateId(int $messageTemplateId)
+    public function setTemplateId(?int $templateId)
     {
-        $this->messageTemplateId = $messageTemplateId;
+        $this->templateId = $templateId;
     }
 
     /**
      * @return int
      */
-    public function getMessageTemplateId(): int
+    public function getTemplateId(): ?int
     {
-        return $this->messageTemplateId;
+        return $this->templateId;
     }
 }

@@ -3,7 +3,7 @@
 namespace Digitonic\PassonaClient\Contracts\Mappers\Responses;
 
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactGroupResponse as ContactGroupResponseInterface;
-use Digitonic\PassonaClient\Entities\ContactGroupResponse;
+use Digitonic\PassonaClient\Entities\Responses\ContactGroupResponse;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 

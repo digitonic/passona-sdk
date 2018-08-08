@@ -7,7 +7,7 @@ namespace Digitonic\PassonaClient\Mappers\Responses;
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\CampaignResponseMapper as CampaignResponseMapperInterface;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\CampaignResponse as CampaignResponseInterface;
-use Digitonic\PassonaClient\Entities\CampaignResponse;
+use Digitonic\PassonaClient\Entities\Responses\CampaignResponse;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 
@@ -52,7 +52,10 @@ class CampaignResponseMapper implements CampaignResponseMapperInterface
         $campaign->setUpdatedAt(Carbon::parse($campaignResponseParameters->updatedAt));
         $campaign->setExpiryDate(Carbon::parse($campaignResponseParameters->expiryDate));
         $campaign->setBody($campaignResponseParameters->body);
-        $campaign->setFinishedSendingAt(Carbon::parse($campaignResponseParameters->finishedSendingAt));
+        $finishedSendingAt = isset($campaignResponseParameters->finishedSendingAt->date)
+            ? $campaignResponseParameters->finishedSendingAt->date
+            : $campaignResponseParameters->finishedSendingAt;
+        $campaign->setFinishedSendingAt(Carbon::parse($finishedSendingAt));
         $campaign->setNumberOfRecipient($campaignResponseParameters->numberOfRecipients);
 
         if ($campaignResponseParameters->recipientType === 'groups') {

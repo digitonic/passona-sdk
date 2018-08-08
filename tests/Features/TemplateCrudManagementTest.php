@@ -4,11 +4,11 @@
 namespace Tests\Feature;
 
 
-use Digitonic\PassonaClient\Entities\LinkRequest;
-use Digitonic\PassonaClient\Entities\LinkResponse;
-use Digitonic\PassonaClient\Entities\TemplateRequest;
-use Digitonic\PassonaClient\Entities\TemplateResponse;
-use Digitonic\PassonaClient\Entities\VanityDomainResponse;
+use Digitonic\PassonaClient\Entities\Requests\LinkRequest;
+use Digitonic\PassonaClient\Entities\Responses\LinkResponse;
+use Digitonic\PassonaClient\Entities\Requests\TemplateRequest;
+use Digitonic\PassonaClient\Entities\Responses\TemplateResponse;
+use Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse;
 
 class TemplateCrudManagementTest extends ClientTestCase
 {
@@ -78,12 +78,6 @@ class TemplateCrudManagementTest extends ClientTestCase
     }
 
     /** @test */
-    public function getTemplate()
-    {
-        $this->assertEquals($this->templateResponse1, $this->client->getTemplate(1));
-    }
-
-    /** @test */
     public function postTemplate()
     {
         $templateRequest = new TemplateRequest();
@@ -101,7 +95,17 @@ class TemplateCrudManagementTest extends ClientTestCase
         }
         $templateRequest->setLinks($linkRequests);
 
-        $this->assertEquals($this->templateResponse1, $this->client->postTemplate($templateRequest));
+        $template = $this->client->postTemplate($templateRequest);
+        $this->assertEquals($this->templateResponse1->getName(), $template->getName());
+        $this->assertEquals($this->templateResponse1->getBody(), $template->getBody());
+        $this->assertEquals($this->templateResponse1->getLinks()[0]->getName(), $template->getLinks()[0]->getName());
+        $this->assertEquals($this->templateResponse1->getLinks()[0]->getDestination(), $template->getLinks()[0]->getDestination());
+    }
+
+    /** @test */
+    public function getTemplate()
+    {
+        $this->assertEquals($this->templateResponse1, $this->client->getTemplate(1));
     }
 
     /** @test */
@@ -114,7 +118,7 @@ class TemplateCrudManagementTest extends ClientTestCase
         $templateRequest->setName($this->templateResponse1->getName());
 
         $linkRequests = [];
-        /** @var LinkResponse $linkResponse */
+        /** @var \Digitonic\PassonaClient\Entities\Responses\LinkResponse $linkResponse */
         foreach ($this->templateResponse1->getLinks() as $linkResponse){
             $linkRequest = new LinkRequest();
             $linkRequest->setName($linkResponse->getName());

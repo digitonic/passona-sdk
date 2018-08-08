@@ -7,7 +7,7 @@ namespace Digitonic\PassonaClient\Mappers\Requests;
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Entities\Requests\CampaignRequest as CampaignRequestInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Requests\CampaignRequestMapper as CampaignRequestMapperInterface;
-use Digitonic\PassonaClient\Entities\CampaignRequest;
+use Digitonic\PassonaClient\Entities\Requests\CampaignRequest;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 
@@ -31,12 +31,15 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
     {
         $campaignArray = [
             'name' => $campaign->getName(),
-            'messageTemplateId' => $campaign->getMessageTemplateId(),
             'sender' => $campaign->getSender(),
-            'expiryDate' => $campaign->getExpiryDate()->toW3cString(),
-            'body' => $campaign->getBody(),
+            'expiryDate' => $campaign->getExpiryDate()->format('Y-m-d H:i:s'),
             'recipientType' => $campaign->getRecipientType(),
         ];
+        if ($campaign->getTemplateId()){
+            $campaignArray['templateId'] = $campaign->getTemplateId();
+        } else {
+            $campaignArray['body'] = $campaign->getBody();
+        }
 
         if ($campaign->getRecipientType() === 'groups') {
             $campaignArray['includedContactGroupIds'] = $campaign->getIncludedContactGroupIds();
@@ -44,11 +47,11 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         }
 
         if ($campaign->getRecipientType() === 'numbers') {
-            $campaignArray['recipients'] = implode(',', $campaign->getRecipients());
+            $campaignArray['recipients'] = $campaign->getRecipients();
         }
 
         if ($campaign->getScheduledSendDate()) {
-            $campaignArray['scheduledSendDate'] = $campaign->getScheduledSendDate()->toW3cString();
+            $campaignArray['scheduledSendDate'] = $campaign->getScheduledSendDate()->format('Y-m-d H:i:s');
         }
 
         foreach ($campaign->getLinks() as $link) {
@@ -68,13 +71,16 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         $reflectionClass = new \ReflectionClass($campaignRequestClass);
         $this->validateCampaignRequestClass($reflectionClass);
 
-        /** @var CampaignRequest $campaignRequest */
+        /** @var \Digitonic\PassonaClient\Entities\Requests\CampaignRequest $campaignRequest */
         $campaignRequest = $reflectionClass->newInstance();
         $campaignRequest->setName($campaignRequestParameters['name']);
-        $campaignRequest->setMessageTemplateId($campaignRequestParameters['messageTemplateId']);
+        if (isset($campaignRequestParameters['templateId'])){
+            $campaignRequest->setTemplateId($campaignRequestParameters['templateId']);
+        } else {
+            $campaignRequest->setBody($campaignRequestParameters['body']);
+        }
         $campaignRequest->setSender($campaignRequestParameters['sender']);
         $campaignRequest->setExpiryDate(Carbon::parse($campaignRequestParameters['expiryDate']));
-        $campaignRequest->setBody($campaignRequestParameters['body']);
         $campaignRequest->setRecipientType($campaignRequestParameters['recipientType']);
 
         if ($campaignRequestParameters['recipientType'] === 'groups') {
@@ -108,11 +114,15 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
     {
         $campaignStdClass = new \stdClass();
         $campaignStdClass->name = $campaign->getName();
-        $campaignStdClass->messageTemplateId = $campaign->getMessageTemplateId();
         $campaignStdClass->sender = $campaign->getSender();
-        $campaignStdClass->expiryDate = $campaign->getExpiryDate()->toW3cString();
-        $campaignStdClass->body = $campaign->getBody();
+        $campaignStdClass->expiryDate = $campaign->getExpiryDate()->format('Y-m-d H:i:s');
         $campaignStdClass->recipientType = $campaign->getRecipientType();
+
+        if ($campaign->getTemplateId()){
+            $campaignStdClass->templateId = $campaign->getTemplateId();
+        } else {
+            $campaignStdClass->body = $campaign->getBody();
+        }
 
         if ($campaign->getRecipientType() === 'groups') {
             $campaignStdClass->includedContactGroupIds = $campaign->getIncludedContactGroupIds();
@@ -120,11 +130,11 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         }
 
         if ($campaign->getRecipientType() === 'numbers') {
-            $campaignStdClass->recipients = implode(',', $campaign->getRecipients());
+            $campaignStdClass->recipients = $campaign->getRecipients();
         }
 
         if ($campaign->getScheduledSendDate()) {
-            $campaignStdClass->scheduledSendDate = $campaign->getScheduledSendDate()->toW3cString();
+            $campaignStdClass->scheduledSendDate = $campaign->getScheduledSendDate()->format('Y-m-d H:i:s');
         }
 
         foreach ($campaign->getLinks() as $link) {
@@ -147,10 +157,13 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         /** @var CampaignRequest $campaignRequest */
         $campaignRequest = $reflectionClass->newInstance();
         $campaignRequest->setName($campaignRequestParameters->name);
-        $campaignRequest->setMessageTemplateId($campaignRequestParameters->messageTemplateId);
+        if ($campaignRequestParameters->templateId){
+            $campaignRequest->setTemplateId($campaignRequestParameters->templateId);
+        } else {
+            $campaignRequest->setBody($campaignRequestParameters->body);
+        }
         $campaignRequest->setSender($campaignRequestParameters->sender);
         $campaignRequest->setExpiryDate(Carbon::parse($campaignRequestParameters->expiryDate));
-        $campaignRequest->setBody($campaignRequestParameters->body);
         $campaignRequest->setRecipientType($campaignRequestParameters->recipientType);
 
         if ($campaignRequestParameters->recipientType === 'groups') {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Digitonic\PassonaClient\Entities;
+namespace Digitonic\PassonaClient\Entities\Responses;
 
 
 use Carbon\Carbon;

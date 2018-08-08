@@ -3,7 +3,7 @@
 namespace Digitonic\PassonaClient\Contracts\Mappers\Responses;
 
 use Digitonic\PassonaClient\Contracts\Entities\Responses\UploadedCsvFileResponse as UploadedCsvFileResponseInterface;
-use Digitonic\PassonaClient\Entities\UploadedCsvFileResponse;
+use Digitonic\PassonaClient\Entities\Responses\UploadedCsvFileResponse;
 
 interface UploadedCsvFileResponseMapper
 {

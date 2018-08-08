@@ -3,16 +3,17 @@
 namespace Tests\Unit\Mappers\Responses;
 
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\ContactUploadResponse;
-use Digitonic\PassonaClient\Entities\UploadedCsvFileResponse;
+use Digitonic\PassonaClient\Entities\Responses\ContactUploadResponse;
+use Digitonic\PassonaClient\Entities\Responses\UploadedCsvFileResponse;
 use Digitonic\PassonaClient\Mappers\Responses\ContactUploadResponseMapper;
 use Digitonic\PassonaClient\Mappers\Responses\UploadedCsvFileResponseMapper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @property ContactUploadResponseMapper mapper
  * @property ContactUploadResponse contactUploadResponse
  */
-class ContactUploadResponseMapperTest extends \PHPUnit_Framework_TestCase
+class ContactUploadResponseMapperTest extends TestCase
 {
     public function setUp()
     {

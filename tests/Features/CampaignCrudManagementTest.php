@@ -4,12 +4,12 @@
 namespace Tests\Feature;
 
 
-use Digitonic\PassonaClient\Entities\CampaignResponse;
-use Digitonic\PassonaClient\Entities\LinkRequest;
+use Digitonic\PassonaClient\Entities\Responses\CampaignResponse;
+use Digitonic\PassonaClient\Entities\Requests\LinkRequest;
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\CampaignRequest;
-use Digitonic\PassonaClient\Entities\LinkResponse;
-use Digitonic\PassonaClient\Entities\VanityDomainResponse;
+use Digitonic\PassonaClient\Entities\Requests\CampaignRequest;
+use Digitonic\PassonaClient\Entities\Responses\LinkResponse;
+use Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse;
 
 class CampaignCrudManagementTest extends ClientTestCase
 {
@@ -18,7 +18,7 @@ class CampaignCrudManagementTest extends ClientTestCase
      */
     private $campaign1;
     /**
-     * @var CampaignRequest
+     * @var \Digitonic\PassonaClient\Entities\Requests\CampaignRequest
      */
     private $campaign2;
 
@@ -50,12 +50,12 @@ class CampaignCrudManagementTest extends ClientTestCase
         $this->campaign1->setLinks([
             $link1, $link2
         ]);
-        $this->campaign1->setFinishedSendingAt(Carbon::parse('2017-09-26 16:29:39'));
-        $this->campaign1->setScheduledSendDate(Carbon::parse('2017-09-26 14:30:21'));
-        $this->campaign1->setStartedSendingAt(Carbon::parse('2017-09-26 14:32:14'));
-        $this->campaign1->setExpiryDate(Carbon::parse('2017-09-27 16:28:33'));
-        $this->campaign1->setUpdatedAt(Carbon::parse('2017-09-26 16:27:20'));
-        $this->campaign1->setCreatedAt(Carbon::parse('2017-09-26 16:27:02'));
+        $this->campaign1->setFinishedSendingAt(Carbon::parse('2017-09-26 16:29:39', 'Europe/London'));
+        $this->campaign1->setScheduledSendDate(Carbon::parse('2017-09-26 14:30:21', 'Europe/London'));
+        $this->campaign1->setStartedSendingAt(Carbon::parse('2017-09-26 14:32:14', 'Europe/London'));
+        $this->campaign1->setExpiryDate(Carbon::parse('2017-09-27 16:28:33', 'Europe/London'));
+        $this->campaign1->setUpdatedAt(Carbon::parse('2017-09-26 16:27:20', 'Europe/London'));
+        $this->campaign1->setCreatedAt(Carbon::parse('2017-09-26 16:27:02', 'Europe/London'));
 
         $this->campaign2 = new CampaignResponse();
         $this->campaign2->setId(2);
@@ -72,11 +72,11 @@ class CampaignCrudManagementTest extends ClientTestCase
         $this->campaign2->setIsEditable(false);
         $this->campaign2->setIsViewable(false);
         $this->campaign2->setScheduledSend(false);
-        $this->campaign2->setFinishedSendingAt(Carbon::parse('2017-09-26 16:29:39'));
-        $this->campaign2->setStartedSendingAt(Carbon::parse('2017-09-26 14:32:14'));
-        $this->campaign2->setExpiryDate(Carbon::parse('2017-09-27 16:28:33'));
-        $this->campaign2->setUpdatedAt(Carbon::parse('2017-09-26 16:27:20'));
-        $this->campaign2->setCreatedAt(Carbon::parse('2017-09-26 16:27:02'));
+        $this->campaign2->setFinishedSendingAt(Carbon::parse('2017-09-26 16:29:39', 'Europe/London'));
+        $this->campaign2->setStartedSendingAt(Carbon::parse('2017-09-26 14:32:14', 'Europe/London'));
+        $this->campaign2->setExpiryDate(Carbon::parse('2017-09-27 16:28:33', 'Europe/London'));
+        $this->campaign2->setUpdatedAt(Carbon::parse('2017-09-26 16:27:20', 'Europe/London'));
+        $this->campaign2->setCreatedAt(Carbon::parse('2017-09-26 16:27:02', 'Europe/London'));
 
     }
 
@@ -104,9 +104,8 @@ class CampaignCrudManagementTest extends ClientTestCase
         $campaignRequest->setRecipientType($this->campaign1->getRecipientType());
         $campaignRequest->setExpiryDate($this->campaign1->getExpiryDate());
         $campaignRequest->setSender($this->campaign1->getSender());
-        $campaignRequest->setMessageTemplateId(1);
 
-        /** @var LinkResponse $linkResponse */
+        /** @var \Digitonic\PassonaClient\Entities\Responses\LinkResponse $linkResponse */
         foreach($this->campaign1->getLinks() as $linkResponse){
             $linkRequest = new LinkRequest();
             $linkRequest->setName($linkResponse->getName());
@@ -131,9 +130,8 @@ class CampaignCrudManagementTest extends ClientTestCase
         $campaignRequest->setRecipientType($this->campaign1->getRecipientType());
         $campaignRequest->setExpiryDate($this->campaign1->getExpiryDate());
         $campaignRequest->setSender($this->campaign1->getSender());
-        $campaignRequest->setMessageTemplateId(1);
 
-        /** @var LinkResponse $linkResponse */
+        /** @var \Digitonic\PassonaClient\Entities\Responses\LinkResponse $linkResponse */
         foreach($this->campaign1->getLinks() as $linkResponse){
             $linkRequest = new LinkRequest();
             $linkRequest->setName($linkResponse->getName());
@@ -152,7 +150,7 @@ class CampaignCrudManagementTest extends ClientTestCase
     }
 
     /**
-     * @return VanityDomainResponse
+     * @return \Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse
      */
     private function buildVanityDomain(int $id, int $status, array $nameservers, string $domain, string $hostedZoneId): VanityDomainResponse
     {

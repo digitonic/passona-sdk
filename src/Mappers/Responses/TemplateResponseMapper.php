@@ -6,7 +6,7 @@ namespace Digitonic\PassonaClient\Mappers\Responses;
 
 use Digitonic\PassonaClient\Contracts\Entities\Responses\TemplateResponse as TemplateResponseInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\TemplateResponseMapper as TemplateResponseMapperInterface;
-use Digitonic\PassonaClient\Entities\TemplateResponse;
+use Digitonic\PassonaClient\Entities\Responses\TemplateResponse;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 

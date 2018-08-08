@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Digitonic\PassonaClient\Entities;
+namespace Digitonic\PassonaClient\Entities\Requests;
 
 
 use Digitonic\PassonaClient\Contracts\Entities\Requests\ContactRequest as ContactRequestInterface;
@@ -11,7 +11,7 @@ class ContactRequest implements ContactRequestInterface
     /**
      * @var string
      */
-    private $phoneNumber;
+    private $phoneNumber = '';
 
     /**
      * @var array

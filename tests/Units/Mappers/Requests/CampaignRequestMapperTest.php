@@ -3,16 +3,17 @@
 namespace Tests\Unit\Mappers\Requests;
 
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\CampaignRequest;
-use Digitonic\PassonaClient\Entities\LinkRequest;
+use Digitonic\PassonaClient\Entities\Requests\CampaignRequest;
+use Digitonic\PassonaClient\Entities\Requests\LinkRequest;
 use Digitonic\PassonaClient\Mappers\Requests\CampaignRequestMapper;
 use Digitonic\PassonaClient\Mappers\Requests\LinkRequestMapper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @property CampaignRequestMapper mapper
- * @property CampaignRequest campaign1
+ * @property \Digitonic\PassonaClient\Entities\Requests\CampaignRequest campaign1
  */
-class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
+class CampaignRequestMapperTest extends TestCase
 {
     public function setUp()
     {
@@ -27,9 +28,8 @@ class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
         $link2->setVanityDomainId(2);
 
         $this->campaign1 = new CampaignRequest();
-        $this->campaign1->setMessageTemplateId(1);
+        $this->campaign1->setTemplateId(1);
         $this->campaign1->setName('my first campaign');
-        $this->campaign1->setBody('my body is ready');
         $this->campaign1->setSender('sender');
         $this->campaign1->setRecipientType('groups');
         $this->campaign1->setIncludedContactGroupIds([1]);
@@ -49,14 +49,13 @@ class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
     {
         $expected = [
             'name' => 'my first campaign',
-            'messageTemplateId' => 1,
+            'templateId' => 1,
             'sender' => 'sender',
-            'expiryDate' => '2017-09-27T16:28:33+01:00',
-            'body' => 'my body is ready',
+            'expiryDate' => '2017-09-27 16:28:33',
             'recipientType' => 'groups',
             'includedContactGroupIds' => [1],
             'excludedContactGroupIds' => [2],
-            'scheduledSendDate' => '2017-09-26T14:30:21+01:00',
+            'scheduledSendDate' => '2017-09-26 14:30:21',
             'links' => [
                 [
                     'name' => 'my link',
@@ -78,14 +77,13 @@ class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
     {
         $campaignArray = [
             'name' => 'my first campaign',
-            'messageTemplateId' => 1,
+            'templateId' => 1,
             'sender' => 'sender',
-            'expiryDate' => '2017-09-27T16:28:33+01:00',
-            'body' => 'my body is ready',
+            'expiryDate' => '2017-09-27 16:28:33',
             'recipientType' => 'groups',
             'includedContactGroupIds' => [1],
             'excludedContactGroupIds' => [2],
-            'scheduledSendDate' => '2017-09-26T14:30:21+01:00',
+            'scheduledSendDate' => '2017-09-26 14:30:21',
             'links' => [
                 [
                     'name' => 'my link',
@@ -107,14 +105,13 @@ class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
     {
         $expected = new \stdClass();
         $expected->name = 'my first campaign';
-        $expected->messageTemplateId = 1;
+        $expected->templateId = 1;
         $expected->sender = 'sender';
-        $expected->expiryDate = '2017-09-27T16:28:33+01:00';
-        $expected->body = 'my body is ready';
+        $expected->expiryDate = '2017-09-27 16:28:33';
         $expected->recipientType = 'groups';
         $expected->includedContactGroupIds = [1];
         $expected->excludedContactGroupIds = [2];
-        $expected->scheduledSendDate = '2017-09-26T14:30:21+01:00';
+        $expected->scheduledSendDate = '2017-09-26 14:30:21';
 
         $link1 = new \stdClass();
         $link1->name = 'my link';
@@ -136,14 +133,13 @@ class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
     {
         $campaignStdClass = new \stdClass();
         $campaignStdClass->name = 'my first campaign';
-        $campaignStdClass->messageTemplateId = 1;
+        $campaignStdClass->templateId = 1;
         $campaignStdClass->sender = 'sender';
-        $campaignStdClass->expiryDate = '2017-09-27T16:28:33+01:00';
-        $campaignStdClass->body = 'my body is ready';
+        $campaignStdClass->expiryDate = '2017-09-27 16:28:33';
         $campaignStdClass->recipientType = 'groups';
         $campaignStdClass->includedContactGroupIds = [1];
         $campaignStdClass->excludedContactGroupIds = [2];
-        $campaignStdClass->scheduledSendDate = '2017-09-26T14:30:21+01:00';
+        $campaignStdClass->scheduledSendDate = '2017-09-26 14:30:21';
 
         $link1 = new \stdClass();
         $link1->name = 'my link';
@@ -163,7 +159,7 @@ class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function toJson()
     {
-        $expected = '{"name":"my first campaign","messageTemplateId":1,"sender":"sender","expiryDate":"2017-09-27T16:28:33+01:00","body":"my body is ready","recipientType":"groups","includedContactGroupIds":[1],"excludedContactGroupIds":[2],"scheduledSendDate":"2017-09-26T14:30:21+01:00","links":[{"name":"my link","destination":"http:\/\/my.destination.co.uk","vanityDomainId":1},{"name":"my link 2","destination":"http:\/\/my.destination.com","vanityDomainId":2}]}';
+        $expected = '{"name":"my first campaign","sender":"sender","expiryDate":"2017-09-27 16:28:33","recipientType":"groups","templateId":1,"includedContactGroupIds":[1],"excludedContactGroupIds":[2],"scheduledSendDate":"2017-09-26 14:30:21","links":[{"name":"my link","destination":"http:\/\/my.destination.co.uk","vanityDomainId":1},{"name":"my link 2","destination":"http:\/\/my.destination.com","vanityDomainId":2}]}';
 
         $this->assertEquals($expected, $this->mapper->toJson($this->campaign1));
     }
@@ -171,7 +167,7 @@ class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function fromJson()
     {
-        $campaignJson = '{"name":"my first campaign","messageTemplateId":1,"sender":"sender","expiryDate":"2017-09-27T16:28:33+01:00","body":"my body is ready","recipientType":"groups","includedContactGroupIds":[1],"excludedContactGroupIds":[2],"scheduledSendDate":"2017-09-26T14:30:21+01:00","links":[{"name":"my link","destination":"http:\/\/my.destination.co.uk","vanityDomainId":1},{"name":"my link 2","destination":"http:\/\/my.destination.com","vanityDomainId":2}]}';
+        $campaignJson = '{"name":"my first campaign","sender":"sender","expiryDate":"2017-09-27 16:28:33","recipientType":"groups","templateId":1,"includedContactGroupIds":[1],"excludedContactGroupIds":[2],"scheduledSendDate":"2017-09-26 14:30:21","links":[{"name":"my link","destination":"http:\/\/my.destination.co.uk","vanityDomainId":1},{"name":"my link 2","destination":"http:\/\/my.destination.com","vanityDomainId":2}]}';
 
         $this->assertEquals($this->campaign1, $this->mapper->fromJson($campaignJson, CampaignRequest::class));
     }
@@ -179,7 +175,7 @@ class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function bidirectional_mapping_json()
     {
-        $campaignJson = '{"name":"my first campaign","messageTemplateId":1,"sender":"sender","expiryDate":"2017-09-27T16:28:33+01:00","body":"my body is ready","recipientType":"groups","includedContactGroupIds":[1],"excludedContactGroupIds":[2],"scheduledSendDate":"2017-09-26T14:30:21+01:00","links":[{"name":"my link","destination":"http:\/\/my.destination.co.uk","vanityDomainId":1},{"name":"my link 2","destination":"http:\/\/my.destination.com","vanityDomainId":2}]}';
+        $campaignJson = '{"name":"my first campaign","sender":"sender","expiryDate":"2017-09-27 16:28:33","recipientType":"groups","templateId":1,"includedContactGroupIds":[1],"excludedContactGroupIds":[2],"scheduledSendDate":"2017-09-26 14:30:21","links":[{"name":"my link","destination":"http:\/\/my.destination.co.uk","vanityDomainId":1},{"name":"my link 2","destination":"http:\/\/my.destination.com","vanityDomainId":2}]}';
 
         $this->assertEquals($campaignJson, $this->mapper->toJson($this->mapper->fromJson($campaignJson, CampaignRequest::class)));
     }
@@ -189,14 +185,13 @@ class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
     {
         $campaignArray = [
             'name' => 'my first campaign',
-            'messageTemplateId' => 1,
+            'templateId' => 1,
             'sender' => 'sender',
-            'expiryDate' => '2017-09-27T16:28:33+01:00',
-            'body' => 'my body is ready',
+            'expiryDate' => '2017-09-27 16:28:33',
             'recipientType' => 'groups',
             'includedContactGroupIds' => [1],
             'excludedContactGroupIds' => [2],
-            'scheduledSendDate' => '2017-09-26T14:30:21+01:00',
+            'scheduledSendDate' => '2017-09-26 14:30:21',
             'links' => [
                 [
                     'name' => 'my link',
@@ -218,14 +213,13 @@ class CampaignRequestMapperTest extends \PHPUnit_Framework_TestCase
     {
         $campaignStdClass = new \stdClass();
         $campaignStdClass->name = 'my first campaign';
-        $campaignStdClass->messageTemplateId = 1;
+        $campaignStdClass->templateId = 1;
         $campaignStdClass->sender = 'sender';
-        $campaignStdClass->expiryDate = '2017-09-27T16:28:33+01:00';
-        $campaignStdClass->body = 'my body is ready';
+        $campaignStdClass->expiryDate = '2017-09-27 16:28:33';
         $campaignStdClass->recipientType = 'groups';
         $campaignStdClass->includedContactGroupIds = [1];
         $campaignStdClass->excludedContactGroupIds = [2];
-        $campaignStdClass->scheduledSendDate = '2017-09-26T14:30:21+01:00';
+        $campaignStdClass->scheduledSendDate = '2017-09-26 14:30:21';
 
         $link1 = new \stdClass();
         $link1->name = 'my link';

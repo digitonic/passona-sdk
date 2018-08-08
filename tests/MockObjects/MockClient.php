@@ -11,10 +11,8 @@ use Tests\MockObjects\CampaignResponses\GetCampaignMockeResponse;
 use Tests\MockObjects\CampaignResponses\PostOrPutCampaignMockResponse;
 use Tests\MockObjects\ContactGroupResponses\GetAllContactGroupsMockResponse;
 use Tests\MockObjects\ContactGroupResponses\PostOrPutContactGroupMockResponse;
-use Tests\MockObjects\ContactResponses\DeleteContactMockResponse;
 use Tests\MockObjects\ContactResponses\GetAllContactsMockResponse;
 use Tests\MockObjects\ContactResponses\GetContactMockResponse;
-use Tests\MockObjects\DeleteMockResponse;
 use Tests\MockObjects\TemplatesResponses\GetAllTemplatesMockResponse;
 use Tests\MockObjects\TemplatesResponses\GetTemplateMockResponse;
 use Tests\MockObjects\TemplatesResponses\PostOrPutTemplateMockResponse;
@@ -29,7 +27,7 @@ class MockClient extends Client
      *
      * @return ResponseInterface
      */
-    public function get($uri, array $options = [])
+    public function get( $uri, array $options = []): ResponseInterface
     {
         $uri = explode('/', $uri);
 
@@ -65,7 +63,7 @@ class MockClient extends Client
         }
     }
 
-    public function post($uri, array $options = [])
+    public function post($uri, array $options = []): ResponseInterface
     {
         if (!isset($options['json'])) {
             throw new \Exception('json not set');
@@ -90,7 +88,7 @@ class MockClient extends Client
         }
     }
 
-    public function put($uri, array $options = [])
+    public function put($uri, array $options = []): ResponseInterface
     {
         if (!isset($options['json'])) {
             throw new \Exception('json not set');
@@ -111,7 +109,7 @@ class MockClient extends Client
         }
     }
 
-    public function delete($uri, array $options = [])
+    public function delete($uri, array $options = []): ResponseInterface
     {
         return new DeleteMockResponse('');
     }

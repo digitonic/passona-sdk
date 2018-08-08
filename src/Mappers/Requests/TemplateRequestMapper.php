@@ -6,7 +6,7 @@ namespace Digitonic\PassonaClient\Mappers\Requests;
 
 use Digitonic\PassonaClient\Contracts\Entities\Requests\TemplateRequest as TemplateRequestInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Requests\TemplateRequestMapper as TemplateRequestMapperInterface;
-use Digitonic\PassonaClient\Entities\TemplateRequest;
+use Digitonic\PassonaClient\Entities\Requests\TemplateRequest;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 

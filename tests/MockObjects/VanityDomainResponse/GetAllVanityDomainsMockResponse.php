@@ -30,7 +30,7 @@ class GetAllVanityDomainsMockResponse extends MockResponse
                         "ns-1234.awsdns-27.com.",
                         "ns-1234.awsdns-27.com."],
                     "domain":"short.co.uk",
-                    "hostedZoneId":"/hostedzone/W3ZINZHDBUK27I"
+                    "hostedZoneId":"W3ZINZHDBUK2"
                 },
                 {
                     "id":2,
@@ -42,7 +42,7 @@ class GetAllVanityDomainsMockResponse extends MockResponse
                         "ns-1234.awsdns-56.com."
                     ],
                     "domain":"long.co.uk",
-                    "hostedZoneId":"/hostedzone/I72KUBDHZNIZ3W"
+                    "hostedZoneId":"I72KUBDHZNIZ"
                 }
             ],
             "meta":{

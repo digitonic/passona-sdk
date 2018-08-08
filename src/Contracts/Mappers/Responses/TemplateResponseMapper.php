@@ -3,7 +3,7 @@
 namespace Digitonic\PassonaClient\Contracts\Mappers\Responses;
 
 use Digitonic\PassonaClient\Contracts\Entities\Responses\TemplateResponse as TemplateResponseInterface;
-use Digitonic\PassonaClient\Entities\TemplateResponse;
+use Digitonic\PassonaClient\Entities\Responses\TemplateResponse;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 

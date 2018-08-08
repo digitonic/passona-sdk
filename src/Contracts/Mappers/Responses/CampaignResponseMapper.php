@@ -3,7 +3,7 @@
 namespace Digitonic\PassonaClient\Contracts\Mappers\Responses;
 
 use Digitonic\PassonaClient\Contracts\Entities\Responses\CampaignResponse as CampaignResponseInterface;
-use Digitonic\PassonaClient\Entities\CampaignResponse;
+use Digitonic\PassonaClient\Entities\Responses\CampaignResponse;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 

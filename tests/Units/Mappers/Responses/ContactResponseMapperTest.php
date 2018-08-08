@@ -3,14 +3,15 @@
 namespace Tests\Unit\Mappers\Responses;
 
 use Carbon\Carbon;
-use Digitonic\PassonaClient\Entities\ContactResponse;
+use Digitonic\PassonaClient\Entities\Responses\ContactResponse;
 use Digitonic\PassonaClient\Mappers\Responses\ContactResponseMapper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @property ContactResponseMapper mapper
  * @property ContactResponse contactResponse
  */
-class ContactResponseMapperTest extends \PHPUnit_Framework_TestCase
+class ContactResponseMapperTest extends TestCase
 {
     public function setUp()
     {

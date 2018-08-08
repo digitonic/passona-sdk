@@ -28,8 +28,8 @@ class GetAllContactGroupsMockResponse extends MockResponse
                         "lastName"
                     ],
                     "numberOfUniqueProfiles": "1",
-                    "createdAt": "2017-09-26T14:43:52+00:00",
-                    "updatedAt": "2017-09-26T14:44:15+00:00",
+                    "createdAt": "2017-09-26T14:43:52+01:00",
+                    "updatedAt": "2017-09-26T14:44:15+01:00",
                     "numberOfContacts": "1"
                 },
                 {
@@ -41,8 +41,8 @@ class GetAllContactGroupsMockResponse extends MockResponse
                         "lastName"
                     ],
                     "numberOfUniqueProfiles": "1",
-                    "createdAt": "2017-09-26T14:43:52+00:00",
-                    "updatedAt": "2017-09-26T14:44:15+00:00",
+                    "createdAt": "2017-09-26T14:43:52+01:00",
+                    "updatedAt": "2017-09-26T14:44:15+01:00",
                     "numberOfContacts": "1"
                 }
             ],

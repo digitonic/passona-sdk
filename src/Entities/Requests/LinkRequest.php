@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Digitonic\PassonaClient\Entities;
+namespace Digitonic\PassonaClient\Entities\Requests;
 
 
 use Digitonic\PassonaClient\Contracts\Entities\Requests\LinkRequest as LinkRequestInterface;

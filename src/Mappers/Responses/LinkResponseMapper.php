@@ -4,7 +4,7 @@
 namespace Digitonic\PassonaClient\Mappers\Responses;
 
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\LinkResponseMapper as LinkResponseMapperInterface;
-use Digitonic\PassonaClient\Entities\LinkResponse;
+use Digitonic\PassonaClient\Entities\Responses\LinkResponse;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\LinkResponse as LinkResponseInterface;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;

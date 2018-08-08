@@ -6,7 +6,7 @@ namespace Digitonic\PassonaClient\Mappers\Responses;
 
 use Digitonic\PassonaClient\Contracts\Entities\Responses\UploadedCsvFileResponse as UploadedCsvFileResponseInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\UploadedCsvFileResponseMapper as UploadedCsvFileResponseMapperInterface;
-use Digitonic\PassonaClient\Entities\UploadedCsvFileResponse;
+use Digitonic\PassonaClient\Entities\Responses\UploadedCsvFileResponse;
 use Digitonic\PassonaClient\Exceptions\ClassInstantiableException;
 use Digitonic\PassonaClient\Exceptions\InterfaceImplementationException;
 
@@ -77,7 +77,7 @@ class UploadedCsvFileResponseMapper implements UploadedCsvFileResponseMapperInte
         $uploadedCsvFile->setHeadings($uploadedCsvFileResponseParameters->headings);
         $uploadedCsvFile->setRows($uploadedCsvFileResponseParameters->rows);
         $uploadedCsvFile->setOriginalFilename($uploadedCsvFileResponseParameters->originalFilename);
-        $uploadedCsvFile->setPossiblePhoneColumns($uploadedCsvFileResponseParameters->possiblePhoneColumns);
+        $uploadedCsvFile->setPossiblePhoneColumns((array) $uploadedCsvFileResponseParameters->possiblePhoneColumns);
 
         return $uploadedCsvFile;
     }

@@ -17,23 +17,18 @@ abstract class Controller
      */
     protected $client;
 
-    public function __construct(Client $client, $organizationId, $username, $apiKey)
+    public function __construct(Client $client, $organizationId, $apiToken)
     {
         $this->client = $client;
         $this->headers = [
             'Content-Type' => 'application/json',
-            'Authorization' => 'Basic ' . $this->getBase64EncodedUsernameAndApiKey($username, $apiKey),
+            'Authorization' => 'Bearer ' . $apiToken,
             'Organization' => $organizationId
         ];
     }
 
-    /**
-     * @param $username
-     * @param $apiKey
-     * @return string
-     */
-    private function getBase64EncodedUsernameAndApiKey($username, $apiKey): string
+    public function resetOrganizationIdHeader(int $orgId)
     {
-        return base64_encode("{$username}:{$apiKey}");
+        $this->headers['Organization'] = $orgId;
     }
 }
