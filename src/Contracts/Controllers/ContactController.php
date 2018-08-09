@@ -13,5 +13,5 @@ interface ContactController
     public function getContactInContactGroup(int $groupId, int $contactId): ContactResponse;
     public function upsertContactsToContactGroup(int $groupId, array $contacts): ContactUploadResponse;
     public function deleteContactFromContactGroup(int $groupId, string $phoneNumber): bool;
-    public function upsertGroupsToContact(array $contact, array $groups);
+    public function upsertGroupsToContact($contact, array $groups);
 }
