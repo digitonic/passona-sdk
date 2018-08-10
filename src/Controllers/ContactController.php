@@ -62,8 +62,8 @@ class ContactController extends Controller implements ContactControllerInterface
     {
         $json = $this->createJsonInput($contacts);
         $response = $this->client->post("groups/{$groupId}/contacts", [
-            'headers' => $this->headers,
-            'json' => $json
+          'headers' => $this->headers,
+          'json' => $json
         ]);
 
         return $this->convertSingleContactUploadResponse($response);
@@ -77,22 +77,21 @@ class ContactController extends Controller implements ContactControllerInterface
     public function deleteContactFromContactGroup(int $groupId, string $phoneNumber):  bool
     {
         $response = $this->client->delete("groups/{$groupId}/contacts/{$phoneNumber}", [
-            'headers' => $this->headers
+          'headers' => $this->headers
         ]);
 
         return $response->getStatusCode() === 204;
     }
 
-    public function upsertGroupsToContact(int $contactId, array $contact, array $groups)
+    public function upsertGroupsToContact($contact, array $groups)
     {
-        $json = ['groups' => $groups, 'contact' => $this->createJsonInput($contact)];
+        $json = ['groups' => $groups, 'contact' => $contact];
 
-        $response = $this->client->post("contact/{$contactId}/groups/", [
-            'headers' => $this->headers,
-            'json' => $json
+        return $this->client->post("contact/add/groups", [
+          'headers' => $this->headers,
+          'json' => $json
         ]);
 
-        return $response;
     }
 
     /**
@@ -126,7 +125,7 @@ class ContactController extends Controller implements ContactControllerInterface
     private function createJsonInput(array $contacts): array
     {
         $json = [
-            'data' => []
+          'data' => []
         ];
 
         /** @var ContactRequest $contact */
