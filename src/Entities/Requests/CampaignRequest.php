@@ -231,7 +231,7 @@ class CampaignRequest implements CampaignRequestInterface
     /**
      * @return Carbon
      */
-    public function getScheduledSendDate(): Carbon
+    public function getScheduledSendDate(): ?Carbon
     {
         return $this->scheduledSendDate;
     }
