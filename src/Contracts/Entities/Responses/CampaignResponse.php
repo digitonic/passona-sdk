@@ -80,7 +80,7 @@ interface CampaignResponse
     /**
      * @return Carbon
      */
-    public function getStartedSendingAt(): Carbon;
+    public function getStartedSendingAt(): ?Carbon;
 
     /**
      * @param Carbon $startedSendingAt
@@ -120,22 +120,22 @@ interface CampaignResponse
     /**
      * @return Carbon
      */
-    public function getCreatedAt(): Carbon;
+    public function getCreatedAt(): ?Carbon;
 
     /**
      * @param Carbon $createdAt
      */
-    public function setCreatedAt(Carbon $createdAt);
+    public function setCreatedAt(?Carbon $createdAt);
 
     /**
      * @return Carbon
      */
-    public function getUpdatedAt(): Carbon;
+    public function getUpdatedAt(): ?Carbon;
 
     /**
      * @param Carbon $updatedAt
      */
-    public function setUpdatedAt(Carbon $updatedAt);
+    public function setUpdatedAt(?Carbon $updatedAt);
 
     /**
      * @return string
@@ -170,12 +170,12 @@ interface CampaignResponse
     /**
      * @return Carbon
      */
-    public function getExpiryDate(): Carbon;
+    public function getExpiryDate(): ?Carbon;
 
     /**
      * @param Carbon $expiryDate
      */
-    public function setExpiryDate(Carbon $expiryDate);
+    public function setExpiryDate(?Carbon $expiryDate);
 
     /**
      * @return string
@@ -190,12 +190,12 @@ interface CampaignResponse
     /**
      * @return Carbon
      */
-    public function getFinishedSendingAt(): Carbon;
+    public function getFinishedSendingAt(): ?Carbon;
 
     /**
      * @param Carbon $finishedSendingAt
      */
-    public function setFinishedSendingAt(Carbon $finishedSendingAt);
+    public function setFinishedSendingAt(?Carbon $finishedSendingAt);
 
     /**
      * @return int
@@ -225,12 +225,12 @@ interface CampaignResponse
     /**
      * @return Carbon
      */
-    public function getScheduledSendDate(): Carbon;
+    public function getScheduledSendDate(): ?Carbon;
 
     /**
      * @param Carbon $scheduledSendDate
      */
-    public function setScheduledSendDate(Carbon $scheduledSendDate);
+    public function setScheduledSendDate(?Carbon $scheduledSendDate);
 
     /**
      * @return array

@@ -229,7 +229,7 @@ class CampaignResponse implements CampaignResponseInterface
     /**
      * @return Carbon
      */
-    public function getStartedSendingAt(): Carbon
+    public function getStartedSendingAt(): ?Carbon
     {
         return $this->startedSendingAt;
     }
@@ -293,7 +293,7 @@ class CampaignResponse implements CampaignResponseInterface
     /**
      * @return Carbon
      */
-    public function getCreatedAt(): Carbon
+    public function getCreatedAt(): ?Carbon
     {
         return $this->createdAt;
     }
@@ -301,7 +301,7 @@ class CampaignResponse implements CampaignResponseInterface
     /**
      * @param Carbon $createdAt
      */
-    public function setCreatedAt(Carbon $createdAt)
+    public function setCreatedAt(?Carbon $createdAt)
     {
         $this->createdAt = $createdAt;
     }
@@ -309,7 +309,7 @@ class CampaignResponse implements CampaignResponseInterface
     /**
      * @return Carbon
      */
-    public function getUpdatedAt(): Carbon
+    public function getUpdatedAt(): ?Carbon
     {
         return $this->updatedAt;
     }
@@ -317,7 +317,7 @@ class CampaignResponse implements CampaignResponseInterface
     /**
      * @param Carbon $updatedAt
      */
-    public function setUpdatedAt(Carbon $updatedAt)
+    public function setUpdatedAt(?Carbon $updatedAt)
     {
         $this->updatedAt = $updatedAt;
     }
@@ -373,7 +373,7 @@ class CampaignResponse implements CampaignResponseInterface
     /**
      * @return Carbon
      */
-    public function getExpiryDate(): Carbon
+    public function getExpiryDate(): ?Carbon
     {
         return $this->expiryDate;
     }
@@ -381,7 +381,7 @@ class CampaignResponse implements CampaignResponseInterface
     /**
      * @param Carbon $expiryDate
      */
-    public function setExpiryDate(Carbon $expiryDate)
+    public function setExpiryDate(?Carbon $expiryDate)
     {
         $this->expiryDate = $expiryDate;
     }
@@ -405,7 +405,7 @@ class CampaignResponse implements CampaignResponseInterface
     /**
      * @return Carbon
      */
-    public function getFinishedSendingAt(): Carbon
+    public function getFinishedSendingAt(): ?Carbon
     {
         return $this->finishedSendingAt;
     }
@@ -413,7 +413,7 @@ class CampaignResponse implements CampaignResponseInterface
     /**
      * @param Carbon $finishedSendingAt
      */
-    public function setFinishedSendingAt(Carbon $finishedSendingAt)
+    public function setFinishedSendingAt(?Carbon $finishedSendingAt)
     {
         $this->finishedSendingAt = $finishedSendingAt;
     }
@@ -458,7 +458,7 @@ class CampaignResponse implements CampaignResponseInterface
     /**
      * @return Carbon
      */
-    public function getScheduledSendDate(): Carbon
+    public function getScheduledSendDate(): ?Carbon
     {
         return $this->scheduledSendDate;
     }
@@ -466,7 +466,7 @@ class CampaignResponse implements CampaignResponseInterface
     /**
      * @param Carbon $scheduledSendDate
      */
-    public function setScheduledSendDate(Carbon $scheduledSendDate)
+    public function setScheduledSendDate(?Carbon $scheduledSendDate)
     {
         $this->scheduledSendDate = $scheduledSendDate;
     }
