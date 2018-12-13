@@ -10,7 +10,7 @@ abstract class Controller
     /**
      * @var array
      */
-    protected $headers;
+    protected $headers = [];
     /**
      * @var Client
      */
@@ -19,11 +19,9 @@ abstract class Controller
     public function __construct(Client $client, $organizationId, $apiToken)
     {
         $this->client = $client;
-        $this->headers = [
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . $apiToken,
-            'Organization' => $organizationId
-        ];
+        $this->headers['Content-Type'] = 'application/json';
+        $this->resetOrganizationIdHeader($organizationId);
+        $this->resetApiTokenHeader($apiToken);
     }
 
     public function resetOrganizationIdHeader(int $orgId)
