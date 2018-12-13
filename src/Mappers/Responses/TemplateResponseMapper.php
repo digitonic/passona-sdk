@@ -108,7 +108,6 @@ class TemplateResponseMapper implements TemplateResponseMapperInterface
         ];
         foreach ($templateResponse->getLinks() as $link) {
             $templateResponseStdClass['links']['data'][] = $this->linkResponseMapper->toArray($link);
-            ;
         }
 
         return $templateResponseStdClass;
