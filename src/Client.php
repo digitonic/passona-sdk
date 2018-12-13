@@ -4,7 +4,6 @@
 namespace Digitonic\PassonaClient;
 
 
-use Digitonic\PassonaClient\Contracts\Clients\HttpClient;
 use Digitonic\PassonaClient\Contracts\Controllers\CampaignController as CampaignControllerInterface;
 use Digitonic\PassonaClient\Contracts\Controllers\ContactGroupController as ContactGroupControllerInterface;
 use Digitonic\PassonaClient\Contracts\Controllers\ContactController as ContactControllerInterface;
@@ -200,6 +199,15 @@ class Client implements CampaignControllerInterface, ContactGroupControllerInter
         $this->contactGroupManager->resetOrganizationIdHeader($orgId);
         $this->templateManager->resetOrganizationIdHeader($orgId);
         $this->vanityDomainManager->resetOrganizationIdHeader($orgId);
+    }
+
+    public function resetApiTokenForAllControllers(string $apiToken)
+    {
+        $this->campaignManager->resetApiTokenHeader($apiToken);
+        $this->contactManager->resetApiTokenHeader($apiToken);
+        $this->contactGroupManager->resetApiTokenHeader($apiToken);
+        $this->templateManager->resetApiTokenHeader($apiToken);
+        $this->vanityDomainManager->resetApiTokenHeader($apiToken);
     }
 
     /**

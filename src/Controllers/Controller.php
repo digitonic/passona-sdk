@@ -31,4 +31,9 @@ abstract class Controller
     {
         $this->headers['Organization'] = $orgId;
     }
+
+    public function resetApiTokenHeader(string $apiToken)
+    {
+        $this->headers['Authorization'] = 'Bearer ' . $apiToken;
+    }
 }
