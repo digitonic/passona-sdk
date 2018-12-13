@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Contracts\Controllers;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Requests\CampaignRequest;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\CampaignResponse;
 

@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Responses;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Responses\TemplateResponse as TemplateResponseInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\TemplateResponseMapper as TemplateResponseMapperInterface;
 use Digitonic\PassonaClient\Entities\Responses\TemplateResponse;
@@ -41,7 +40,7 @@ class TemplateResponseMapper implements TemplateResponseMapperInterface
         $templateResponse->setBody($templateResponseParameters->body);
 
         $linkResponses = [];
-        foreach($templateResponseParameters->links->data as $datum){
+        foreach ($templateResponseParameters->links->data as $datum) {
             $linkResponses[] = $this->linkResponseMapper->fromStdClass($datum);
         }
         $templateResponse->setLinks($linkResponses);
@@ -61,7 +60,7 @@ class TemplateResponseMapper implements TemplateResponseMapperInterface
         $templateResponseStdClass->body = $templateResponse->getBody();
 
         $templateResponseStdClass->links = new \stdClass();
-        foreach($templateResponse->getLinks() as $link){
+        foreach ($templateResponse->getLinks() as $link) {
             $templateResponseStdClass->links->data[] = $this->linkResponseMapper->toStdClass($link);
         }
 
@@ -85,7 +84,7 @@ class TemplateResponseMapper implements TemplateResponseMapperInterface
         $templateResponse->setBody($templateResponseParameters['body']);
 
         $linkResponses = [];
-        foreach($templateResponseParameters['links']['data'] as $datum){
+        foreach ($templateResponseParameters['links']['data'] as $datum) {
             $linkResponses[] = $this->linkResponseMapper->fromArray($datum);
         }
         $templateResponse->setLinks($linkResponses);
@@ -107,8 +106,9 @@ class TemplateResponseMapper implements TemplateResponseMapperInterface
         $templateResponseStdClass['links'] = [
             'data' => []
         ];
-        foreach($templateResponse->getLinks() as $link){
-            $templateResponseStdClass['links']['data'][] = $this->linkResponseMapper->toArray($link);;
+        foreach ($templateResponse->getLinks() as $link) {
+            $templateResponseStdClass['links']['data'][] = $this->linkResponseMapper->toArray($link);
+            ;
         }
 
         return $templateResponseStdClass;

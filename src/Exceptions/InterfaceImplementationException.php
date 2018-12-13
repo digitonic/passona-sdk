@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Exceptions;
 
-
 class InterfaceImplementationException extends \Exception
 {
     public function __construct(string $className)

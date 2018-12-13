@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Responses;
 
-
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactResponse as ContactResponseInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\ContactResponseMapper as ContactResponseMapperInterface;
@@ -32,8 +31,8 @@ class ContactResponseMapper implements ContactResponseMapperInterface
         $contact->setId($contactResponseParameters->id);
         $contact->setPhoneNumber($contactResponseParameters->phoneNumber);
         $contact->setUpdatedAt(Carbon::parse($contactResponseParameters->updatedAt));
-        if (isset($contactResponseParameters->customFields)){
-            foreach($contactResponseParameters->customFields as $key=> $value){
+        if (isset($contactResponseParameters->customFields)) {
+            foreach ($contactResponseParameters->customFields as $key => $value) {
                 $contact->addCustomField($key, $value);
             }
         }
@@ -52,9 +51,9 @@ class ContactResponseMapper implements ContactResponseMapperInterface
         $contactResponseStdClass->id = $contactResponse->getId();
         $contactResponseStdClass->phoneNumber = $contactResponse->getPhoneNumber();
         $contactResponseStdClass->updatedAt = $contactResponse->getUpdatedAt()->toW3cString();
-        if (!empty($contactResponse->getCustomFields())){
+        if (!empty($contactResponse->getCustomFields())) {
             $contactResponseStdClass->customFields = new \stdClass();
-            foreach($contactResponse->getCustomFields() as $key => $value){
+            foreach ($contactResponse->getCustomFields() as $key => $value) {
                 $contactResponseStdClass->customFields->$key = $value;
             }
         }
@@ -79,8 +78,8 @@ class ContactResponseMapper implements ContactResponseMapperInterface
         $contact->setId($contactResponseParameters['id']);
         $contact->setPhoneNumber($contactResponseParameters['phoneNumber']);
         $contact->setUpdatedAt(Carbon::parse($contactResponseParameters['updatedAt']));
-        if (isset($contactResponseParameters['customFields'])){
-            foreach($contactResponseParameters['customFields'] as $key=> $value){
+        if (isset($contactResponseParameters['customFields'])) {
+            foreach ($contactResponseParameters['customFields'] as $key => $value) {
                 $contact->addCustomField($key, $value);
             }
         }
@@ -99,9 +98,9 @@ class ContactResponseMapper implements ContactResponseMapperInterface
         $contactResponseArray['id'] = $contactResponse->getId();
         $contactResponseArray['phoneNumber'] = $contactResponse->getPhoneNumber();
         $contactResponseArray['updatedAt'] = $contactResponse->getUpdatedAt()->toW3cString();
-        if (!empty($contactResponse->getCustomFields())){
+        if (!empty($contactResponse->getCustomFields())) {
             $contactResponseArray['customFields'] = [];
-            foreach($contactResponse->getCustomFields() as $key => $value){
+            foreach ($contactResponse->getCustomFields() as $key => $value) {
                 $contactResponseArray['customFields'][$key] = $value;
             }
         }

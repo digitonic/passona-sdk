@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Controllers;
 
-
 use Digitonic\PassonaClient\Contracts\Controllers\ContactController as ContactControllerInterface;
 use Digitonic\PassonaClient\Contracts\Entities\Requests\ContactRequest;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactResponse;
@@ -91,7 +90,6 @@ class ContactController extends Controller implements ContactControllerInterface
           'headers' => $this->headers,
           'json' => $json
         ]);
-
     }
 
     /**

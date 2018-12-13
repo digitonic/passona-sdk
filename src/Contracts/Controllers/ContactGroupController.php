@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Contracts\Controllers;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Requests\ContactGroupRequest;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactGroupResponse;
 

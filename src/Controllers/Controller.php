@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Controllers;
 
-
 use GuzzleHttp\Client;
 
 abstract class Controller

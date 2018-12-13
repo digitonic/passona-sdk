@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Responses;
 
-
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactUploadResponse as ContactUploadResponseInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\ContactUploadResponseMapper as ContactUploadResponseMapperInterface;

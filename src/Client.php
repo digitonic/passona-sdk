@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient;
 
-
 use Digitonic\PassonaClient\Contracts\Controllers\CampaignController as CampaignControllerInterface;
 use Digitonic\PassonaClient\Contracts\Controllers\ContactGroupController as ContactGroupControllerInterface;
 use Digitonic\PassonaClient\Contracts\Controllers\ContactController as ContactControllerInterface;
@@ -70,8 +69,7 @@ class Client implements CampaignControllerInterface, ContactGroupControllerInter
         $apiToken,
         $baseUri = 'https://passona.digitonic.co.uk/api/external/v1/',
         string $clientClass
-    )
-    {
+    ) {
         $this->validateClientClass($clientClass);
 
         $guzzleClient = new $clientClass(['base_uri' => $baseUri]);
