@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Requests;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Requests\TemplateRequest as TemplateRequestInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Requests\TemplateRequestMapper as TemplateRequestMapperInterface;
 use Digitonic\PassonaClient\Entities\Requests\TemplateRequest;
@@ -34,7 +33,7 @@ class TemplateRequestMapper implements TemplateRequestMapperInterface
             'links' => []
         ];
 
-        foreach($template->getLinks() as $link){
+        foreach ($template->getLinks() as $link) {
             $templateRequestArray['links'][] = $this->linkMapper->toArray($link);
         }
 
@@ -57,7 +56,7 @@ class TemplateRequestMapper implements TemplateRequestMapperInterface
         $templateRequest->setBody($templateParameters['body']);
 
         $linkRequests = [];
-        foreach($templateParameters['links'] as $linkRequestParameter){
+        foreach ($templateParameters['links'] as $linkRequestParameter) {
             $linkRequests[] = $this->linkMapper->fromArray($linkRequestParameter);
         }
 
@@ -77,7 +76,7 @@ class TemplateRequestMapper implements TemplateRequestMapperInterface
         $templateRequestStdClass->body = $template->getBody();
         $templateRequestStdClass->links = [];
 
-        foreach($template->getLinks() as $link){
+        foreach ($template->getLinks() as $link) {
             $templateRequestStdClass->links[] = $this->linkMapper->toStdClass($link);
         }
 
@@ -100,7 +99,7 @@ class TemplateRequestMapper implements TemplateRequestMapperInterface
         $templateRequest->setBody($templateRequestParameters->body);
 
         $linkRequests = [];
-        foreach($templateRequestParameters->links as $linkRequestParameter){
+        foreach ($templateRequestParameters->links as $linkRequestParameter) {
             $linkRequests[] = $this->linkMapper->fromStdClass($linkRequestParameter);
         }
 

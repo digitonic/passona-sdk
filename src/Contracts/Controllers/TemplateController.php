@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Contracts\Controllers;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Requests\TemplateRequest;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\TemplateResponse;
 

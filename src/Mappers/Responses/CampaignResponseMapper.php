@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Responses;
 
-
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\CampaignResponseMapper as CampaignResponseMapperInterface;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\CampaignResponse as CampaignResponseInterface;
@@ -114,7 +113,7 @@ class CampaignResponseMapper implements CampaignResponseMapperInterface
 
         if ($campaignResponse->getRecipientType() === 'numbers') {
             $campaignResponseStdClass->recipientType = 'numbers';
-            $campaignResponseStdClass->recipients = implode(',',$campaignResponse->getRecipients());
+            $campaignResponseStdClass->recipients = implode(',', $campaignResponse->getRecipients());
         }
 
         if ($campaignResponse->isScheduledSend()) {
@@ -217,7 +216,7 @@ class CampaignResponseMapper implements CampaignResponseMapperInterface
 
         if ($campaignResponse->getRecipientType() === 'numbers') {
             $campaignResponseStdClass['recipientType'] = 'numbers';
-            $campaignResponseStdClass['recipients'] = implode(',',$campaignResponse->getRecipients());
+            $campaignResponseStdClass['recipients'] = implode(',', $campaignResponse->getRecipients());
         }
 
         if ($campaignResponse->isScheduledSend()) {

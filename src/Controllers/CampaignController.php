@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Controllers;
 
-
 use Digitonic\PassonaClient\Contracts\Controllers\CampaignController as CampaignControllerInterface;
 use Digitonic\PassonaClient\Contracts\Entities\Requests\CampaignRequest;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\CampaignResponse;
@@ -54,8 +53,7 @@ class CampaignController extends Controller implements CampaignControllerInterfa
         $response = $this->client->post('campaigns', [
             'headers' => $this->headers,
             'json' => $this->campaignRequestMapper->toArray($campaignRequest)
-            ]
-        );
+            ]);
 
         return $this->formatSingleCampaignResponse($response);
     }
@@ -70,8 +68,7 @@ class CampaignController extends Controller implements CampaignControllerInterfa
         $response = $this->client->put("campaigns/{$campaignId}", [
                 'headers' => $this->headers,
                 'json' => $this->campaignRequestMapper->toArray($campaignRequest)
-            ]
-        );
+            ]);
 
         return $this->formatSingleCampaignResponse($response);
     }

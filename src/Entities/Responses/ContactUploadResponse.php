@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Entities\Responses;
 
-
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\UploadedCsvFileResponse;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactUploadResponse as ContactUploadResponseInterface;

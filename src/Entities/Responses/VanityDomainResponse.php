@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Entities\Responses;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Responses\VanityDomainResponse as VanityDomainResponseInterface;
 
 class VanityDomainResponse implements VanityDomainResponseInterface

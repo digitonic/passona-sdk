@@ -27,7 +27,8 @@ class PassonaSDKServiceProvider extends ServiceProvider
                 $config['passona_org_id'],
                 $config['passona_token'],
                 $config['passona_base_uri'],
-                \GuzzleHttp\Client::class);
+                \GuzzleHttp\Client::class
+            );
         });
     }
 }

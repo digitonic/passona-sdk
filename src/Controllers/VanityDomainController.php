@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Controllers;
 
-
 use Digitonic\PassonaClient\Contracts\Controllers\VanityDomainController as VanityDomainControllererInterface;
 use Digitonic\PassonaClient\Mappers\Responses\VanityDomainResponseMapper;
 use Psr\Http\Message\ResponseInterface;
@@ -48,6 +47,4 @@ class VanityDomainController extends Controller implements VanityDomainControlle
 
         return $vanityDomainResponses;
     }
-
-
 }

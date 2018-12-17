@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Entities\Requests;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Requests\TemplateRequest as TemplateRequestInterface;
 
 class TemplateRequest implements TemplateRequestInterface

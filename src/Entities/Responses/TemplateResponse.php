@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Entities\Responses;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Responses\TemplateResponse as TemplateResponseInterface;
 
 class TemplateResponse implements TemplateResponseInterface

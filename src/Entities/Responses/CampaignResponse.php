@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Entities\Responses;
 
-
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\CampaignResponse as CampaignResponseInterface;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\LinkResponse;
