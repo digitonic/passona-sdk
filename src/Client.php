@@ -105,6 +105,11 @@ class Client implements CampaignControllerInterface, ContactGroupControllerInter
         return $this->campaignManager->postCampaign($campaignRequest);
     }
 
+    public function postQueueCampaign(CampaignRequest $campaignRequest)
+    {
+        return $this->campaignManager->postQueueCampaign($campaignRequest);
+    }
+
     public function putCampaign(int $campaignId, CampaignRequest $campaignRequest): CampaignResponse
     {
         return $this->campaignManager->putCampaign($campaignId, $campaignRequest);

@@ -59,6 +59,19 @@ class CampaignController extends Controller implements CampaignControllerInterfa
     }
 
     /**
+     * @param CampaignRequest $campaignRequest
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function postQueueCampaign(CampaignRequest $campaignRequest)
+    {
+        return $response = $this->client->post('campaigns/queue', [
+            'headers' => $this->headers,
+            'json' => $this->campaignRequestMapper->toArray($campaignRequest)
+        ]);
+    }
+
+    /**
      * @param int $campaignId
      * @param CampaignRequest $campaignRequest
      * @return CampaignResponse
