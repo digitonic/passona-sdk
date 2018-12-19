@@ -65,7 +65,7 @@ class CampaignController extends Controller implements CampaignControllerInterfa
      */
     public function postQueueCampaign(CampaignRequest $campaignRequest)
     {
-        return $response = $this->client->post('campaigns/queue', [
+        return $this->client->post('campaigns/queue', [
             'headers' => $this->headers,
             'json' => $this->campaignRequestMapper->toArray($campaignRequest)
         ]);
