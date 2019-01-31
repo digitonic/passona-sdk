@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Requests;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Requests\ContactGroupRequest as ContactGroupRequestInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Requests\ContactGroupRequestMapper as ContactGroupRequestMapperInterface;
 use Digitonic\PassonaClient\Entities\Requests\ContactGroupRequest;

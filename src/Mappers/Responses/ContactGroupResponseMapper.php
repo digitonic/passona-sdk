@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Responses;
 
-
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactGroupResponse as ContactGroupResponseInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\ContactGroupResponseMapper as ContactGroupResponseMapperInterface;
@@ -33,7 +32,7 @@ class ContactGroupResponseMapper implements ContactGroupResponseMapperInterface
         $contactGroupResponse->setDescription($contactGroupResponseParameters->description ?? '');
 
         $fields = [];
-        foreach($contactGroupResponseParameters->fields as $key => $value){
+        foreach ($contactGroupResponseParameters->fields as $key => $value) {
             $fields[$key] = $value;
         }
 
@@ -57,7 +56,7 @@ class ContactGroupResponseMapper implements ContactGroupResponseMapperInterface
         $contactGroupResponseStdClass->numberOfContacts = $contactGroupResponse->getNumberOfContacts();
         $contactGroupResponseStdClass->description = $contactGroupResponse->getDescription();
         $contactGroupResponseStdClass->fields = new \stdClass();
-        foreach($contactGroupResponse->getFields() as $key => $value){
+        foreach ($contactGroupResponse->getFields() as $key => $value) {
             $contactGroupResponseStdClass->fields->$key = $value;
         }
         $contactGroupResponseStdClass->name = $contactGroupResponse->getName();

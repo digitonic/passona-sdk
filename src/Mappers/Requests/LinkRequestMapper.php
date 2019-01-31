@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Requests;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Requests\LinkRequest as LinkRequestInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Requests\LinkRequestMapper as LinkRequestMapperInterface;
 use Digitonic\PassonaClient\Entities\Requests\LinkRequest;

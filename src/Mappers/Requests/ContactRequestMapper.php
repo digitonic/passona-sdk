@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Requests;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Requests\ContactRequest as ContactRequestInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Requests\ContactRequestMapper as ContactRequestMapperInterface;
 use Digitonic\PassonaClient\Entities\Requests\ContactRequest;
@@ -41,8 +40,8 @@ class ContactRequestMapper implements ContactRequestMapperInterface
         /** @var ContactRequestInterface $contactRequest */
         $contactRequest = $reflectionClass->newInstance();
         $contactRequest->setPhoneNumber($contactRequestParameters['phoneNumber']);
-        foreach($contactRequestParameters as $key => $value){
-            if ($key !== 'phoneNumber'){
+        foreach ($contactRequestParameters as $key => $value) {
+            if ($key !== 'phoneNumber') {
                 $contactRequest->addCustomField($key, $value);
             }
         }
@@ -78,8 +77,8 @@ class ContactRequestMapper implements ContactRequestMapperInterface
         /** @var ContactRequestInterface $contactRequest */
         $contactRequest = $reflectionClass->newInstance();
         $contactRequest->setPhoneNumber($contactRequestParameters->phoneNumber);
-        foreach($contactRequestParameters as $key => $value){
-            if ($key !== 'phoneNumber'){
+        foreach ($contactRequestParameters as $key => $value) {
+            if ($key !== 'phoneNumber') {
                 $contactRequest->addCustomField($key, $value);
             }
         }

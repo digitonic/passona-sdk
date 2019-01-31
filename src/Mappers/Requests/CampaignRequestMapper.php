@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Requests;
 
-
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Entities\Requests\CampaignRequest as CampaignRequestInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Requests\CampaignRequestMapper as CampaignRequestMapperInterface;
@@ -35,7 +34,7 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
             'expiryDate' => $campaign->getExpiryDate()->format('Y-m-d H:i:s'),
             'recipientType' => $campaign->getRecipientType(),
         ];
-        if ($campaign->getTemplateId()){
+        if ($campaign->getTemplateId()) {
             $campaignArray['templateId'] = $campaign->getTemplateId();
         } else {
             $campaignArray['body'] = $campaign->getBody();
@@ -74,7 +73,7 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         /** @var \Digitonic\PassonaClient\Entities\Requests\CampaignRequest $campaignRequest */
         $campaignRequest = $reflectionClass->newInstance();
         $campaignRequest->setName($campaignRequestParameters['name']);
-        if (isset($campaignRequestParameters['templateId'])){
+        if (isset($campaignRequestParameters['templateId'])) {
             $campaignRequest->setTemplateId($campaignRequestParameters['templateId']);
         } else {
             $campaignRequest->setBody($campaignRequestParameters['body']);
@@ -118,7 +117,7 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         $campaignStdClass->expiryDate = $campaign->getExpiryDate()->format('Y-m-d H:i:s');
         $campaignStdClass->recipientType = $campaign->getRecipientType();
 
-        if ($campaign->getTemplateId()){
+        if ($campaign->getTemplateId()) {
             $campaignStdClass->templateId = $campaign->getTemplateId();
         } else {
             $campaignStdClass->body = $campaign->getBody();
@@ -157,7 +156,7 @@ class CampaignRequestMapper implements CampaignRequestMapperInterface
         /** @var CampaignRequest $campaignRequest */
         $campaignRequest = $reflectionClass->newInstance();
         $campaignRequest->setName($campaignRequestParameters->name);
-        if ($campaignRequestParameters->templateId){
+        if ($campaignRequestParameters->templateId) {
             $campaignRequest->setTemplateId($campaignRequestParameters->templateId);
         } else {
             $campaignRequest->setBody($campaignRequestParameters->body);

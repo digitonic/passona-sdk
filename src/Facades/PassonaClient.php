@@ -1,5 +1,6 @@
 <?php
 namespace Digitonic\PassonaClient\Facades;
+
 use Digitonic\PassonaClient\Client;
 use Illuminate\Support\Facades\Facade;
 

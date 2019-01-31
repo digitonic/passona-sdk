@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Responses;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Responses\UploadedCsvFileResponse as UploadedCsvFileResponseInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\UploadedCsvFileResponseMapper as UploadedCsvFileResponseMapperInterface;
 use Digitonic\PassonaClient\Entities\Responses\UploadedCsvFileResponse;
@@ -136,6 +135,4 @@ class UploadedCsvFileResponseMapper implements UploadedCsvFileResponseMapperInte
             throw new ClassInstantiableException();
         }
     }
-
-
 }

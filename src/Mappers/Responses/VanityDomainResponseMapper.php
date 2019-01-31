@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Mappers\Responses;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Responses\VanityDomainResponse as VanityDomainResponseInterface;
 use Digitonic\PassonaClient\Contracts\Mappers\Responses\VanityDomainResponseMapper as VanityDomainResponseMapperInterface;
 use Digitonic\PassonaClient\Entities\Responses\VanityDomainResponse;

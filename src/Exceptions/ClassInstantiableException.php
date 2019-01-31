@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Exceptions;
 
-
 class ClassInstantiableException extends \Exception
 {
     public function __construct()

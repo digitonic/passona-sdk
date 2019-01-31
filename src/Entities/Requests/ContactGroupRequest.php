@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Entities\Requests;
 
-
 use Digitonic\PassonaClient\Contracts\Entities\Requests\ContactGroupRequest as ContactGroupRequestInterface;
 
 class ContactGroupRequest implements ContactGroupRequestInterface

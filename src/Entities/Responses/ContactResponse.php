@@ -3,7 +3,6 @@
 
 namespace Digitonic\PassonaClient\Entities\Responses;
 
-
 use Carbon\Carbon;
 use Digitonic\PassonaClient\Contracts\Entities\Responses\ContactResponse as ContactResponseInterface;
 
@@ -94,9 +93,10 @@ class ContactResponse implements ContactResponseInterface
     /**
      * @param string $key
      */
-    public function removeCustomField(string $key){
-        if (isset($this->customFields[$key])){
-            unset ($this->customFields[$key]);
+    public function removeCustomField(string $key)
+    {
+        if (isset($this->customFields[$key])) {
+            unset($this->customFields[$key]);
         }
     }
 }
