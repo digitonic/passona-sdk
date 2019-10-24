@@ -30,6 +30,13 @@
             "Digitonic\\PassonaClient\\": "src/"
         }
     },
+
+    "autoload-dev": {
+        "psr-4": {
+            "Digitonic\\PassonaClient\\": "src/",
+            "Digitonic\\PassonaClient\\Tests\\": "tests/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
