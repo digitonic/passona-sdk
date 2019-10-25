@@ -1,0 +1,26 @@
+<?php
+
+namespace Digitonic\PassonaClient\Entities\Templates;
+
+use Digitonic\PassonaClient\Requests\BaseRequest;
+
+class Create extends BaseRequest
+{
+    const ENDPOINT = 'templates/';
+
+    /**
+     * @return string
+     */
+    protected function getFullEndpoint(): string
+    {
+        return self::ENDPOINT;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function requiresTeamIdentifier(): bool
+    {
+        return false;
+    }
+}
