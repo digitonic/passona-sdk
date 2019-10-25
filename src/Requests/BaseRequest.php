@@ -96,6 +96,26 @@ abstract class BaseRequest
     }
 
     /**
+     * @param string $entityIdentifier
+     * @return Collection
+     * @throws InvalidData
+     */
+    public function delete(string $entityIdentifier): Collection
+    {
+        $this->method = 'DELETE';
+
+        if ($this->requiresEntityUuid()) {
+            $this->entityUuid = $entityIdentifier;
+        }
+
+        if ($this->entityUuid === '') {
+            throw InvalidData::invalidValuesProvided('A valid team UUID identifier is required for a DELETE request');
+        }
+
+        return $this->send();
+    }
+
+    /**
      * @return string
      */
     private function buildEndpoint(): string
