@@ -32,11 +32,11 @@ class CreateTest extends BaseTestCase
         $handler = HandlerStack::create($mock);
         $client = new Client(['handler' => $handler]);
 
-        $iexApi = new \Digitonic\PassonaClient\Client($client);
+        $passonaApi = new \Digitonic\PassonaClient\Client($client);
 
-        $usage = new Create($iexApi);
+        $usage = new Create($passonaApi);
 
-        $response = $usage->post();
+        $response = $usage->post($data);
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(1, $response);

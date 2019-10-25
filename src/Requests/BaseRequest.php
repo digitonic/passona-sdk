@@ -47,20 +47,19 @@ abstract class BaseRequest
         return collect(json_decode($response->getBody()->getContents()));
     }
 
-
     /**
      * @param array $payload
      * @return Collection
+     * @throws InvalidData
      */
     public function post(array $payload = []): Collection
     {
         $this->method = 'POST';
+        $this->payload = $payload;
 
         if (empty($this->payload)) {
-            InvalidData::invalidValuesProvided('A payload is required for a POST request');
+            throw InvalidData::invalidValuesProvided('A payload is required for a POST request');
         }
-
-        $this->payload = $payload;
 
         return $this->send();
     }
