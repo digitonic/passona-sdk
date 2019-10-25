@@ -1,12 +1,12 @@
 <?php
 
-namespace Digitonic\PassonaClient\Entities\Templates;
+namespace Digitonic\PassonaClient\Entities\Campaigns;
 
 use Digitonic\PassonaClient\Requests\BaseRequest;
 
-class Create extends BaseRequest
+class Update extends BaseRequest
 {
-    const ENDPOINT = 'templates/';
+    const ENDPOINT = 'campaigns/{campaignUuid}';
 
     /**
      * @return string
@@ -21,6 +21,6 @@ class Create extends BaseRequest
      */
     protected function requiresEntityUuid(): bool
     {
-        return false;
+        return true;
     }
 }

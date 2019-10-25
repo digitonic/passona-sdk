@@ -12,6 +12,6 @@ class InvalidData extends Exception
      */
     public static function invalidValuesProvided(string $message)
     {
-        return new static($message);
+        return new static($message, 422);
     }
 }
