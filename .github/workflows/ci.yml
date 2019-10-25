@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - 'version2'
+      - 'feature/**'
 jobs:
   php:
     name: PHP (PHP ${{ matrix.php-versions }})
