@@ -25,7 +25,7 @@ class Create extends BaseRequest
     /**
      * @return bool
      */
-    protected function requiresTeamIdentifier(): bool
+    protected function requiresEntityUuid(): bool
     {
         return false;
     }

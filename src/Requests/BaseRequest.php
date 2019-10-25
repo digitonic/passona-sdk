@@ -27,6 +27,12 @@ abstract class BaseRequest
     protected $api;
 
     /**
+     * @var string
+     */
+    protected $entityUuid = '';
+
+
+    /**
      * BaseRequest constructor.
      * @param Passona $api
      */
@@ -40,7 +46,7 @@ abstract class BaseRequest
      */
     public function send(): Collection
     {
-        $request = new Request($this->method, $this->getFullEndpoint(), [], json_encode($this->payload));
+        $request = new Request($this->method, $this->buildEndpoint(), [], json_encode($this->payload));
 
         $response = $this->api->send($request);
 
@@ -65,6 +71,46 @@ abstract class BaseRequest
     }
 
     /**
+     * @param string $entityIdentifier
+     * @param array $payload
+     * @return Collection
+     * @throws InvalidData
+     */
+    public function put(string $entityIdentifier, array $payload = []): Collection
+    {
+        $this->method = 'PUT';
+        $this->payload = $payload;
+
+        if ($this->requiresEntityUuid()) {
+            $this->entityUuid = $entityIdentifier;
+        }
+        if ($this->entityUuid === '') {
+            throw InvalidData::invalidValuesProvided('A valid team UUID identifier is required for a PUT request');
+        }
+
+        if (empty($this->payload)) {
+            throw InvalidData::invalidValuesProvided('A payload is required for a PUT request');
+        }
+
+        return $this->send();
+    }
+
+    /**
+     * @return string
+     */
+    private function buildEndpoint(): string
+    {
+        if ($this->requiresEntityUuid()) {
+            $endpoint = $this->getFullEndpoint();
+
+            $endpoint = substr($endpoint, 0, strpos($endpoint, '/'));
+            return $endpoint .= "/{$this->entityUuid}";
+        }
+
+        return $this->getFullEndpoint();
+    }
+
+    /**
      * @return string
      */
     abstract protected function getFullEndpoint(): string;
@@ -72,5 +118,5 @@ abstract class BaseRequest
     /**
      * @return bool
      */
-    abstract protected function requiresTeamIdentifier(): bool;
+    abstract protected function requiresEntityUuid(): bool;
 }
