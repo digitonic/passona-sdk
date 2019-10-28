@@ -85,7 +85,7 @@ abstract class BaseRequest
             $this->entityUuid = $entityIdentifier;
         }
         if ($this->entityUuid === '') {
-            throw InvalidData::invalidValuesProvided('A valid team UUID identifier is required for a PUT request');
+            throw InvalidData::invalidValuesProvided('A valid entity UUID identifier is required for a PUT request');
         }
 
         if (empty($this->payload)) {
@@ -109,7 +109,25 @@ abstract class BaseRequest
         }
 
         if ($this->entityUuid === '') {
-            throw InvalidData::invalidValuesProvided('A valid team UUID identifier is required for a DELETE request');
+            throw InvalidData::invalidValuesProvided('A valid entity UUID identifier is required for a DELETE request');
+        }
+
+        return $this->send();
+    }
+
+    /**
+     * @param string $entityIdentifier
+     * @return Collection
+     * @throws InvalidData
+     */
+    public function get(string $entityIdentifier): Collection
+    {
+        if ($this->requiresEntityUuid()) {
+            $this->entityUuid = $entityIdentifier;
+        }
+
+        if ($this->entityUuid === '') {
+            throw InvalidData::invalidValuesProvided('A valid entity UUID identifier is required for a GET request');
         }
 
         return $this->send();
