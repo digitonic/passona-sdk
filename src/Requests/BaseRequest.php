@@ -122,9 +122,9 @@ abstract class BaseRequest
     {
         if ($this->requiresEntityUuid()) {
             $endpoint = $this->getFullEndpoint();
+            $regex = '/({((?:[^{}]* | (?1))*)})/x';
 
-            $endpoint = substr($endpoint, 0, strpos($endpoint, '/'));
-            return $endpoint .= "/{$this->entityUuid}";
+            return preg_replace($regex, $this->entityUuid, $endpoint);
         }
 
         return $this->getFullEndpoint();
