@@ -2,9 +2,7 @@
 
 namespace Digitonic\PassonaClient\Tests\Campaign;
 
-use Digitonic\PassonaClient\Entities\Campaigns\Create;
 use Digitonic\PassonaClient\Entities\Campaigns\Index;
-use Digitonic\PassonaClient\Exceptions\InvalidData;
 use Digitonic\PassonaClient\Tests\BaseTestCase;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -17,7 +15,7 @@ use Illuminate\Support\Collection;
  * @property HandlerStack handler
  * @property Client client
  */
-class RetrieveCampaignsTest extends BaseTestCase
+class IndexTest extends BaseTestCase
 {
     protected function setUp(): void
     {

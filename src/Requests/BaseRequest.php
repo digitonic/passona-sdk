@@ -146,11 +146,13 @@ abstract class BaseRequest
 
         $this->requiresPagination = $requirePagination;
 
-        $this->defaultPaginateBy = $paginateBy;
-
-        if ($this->defaultPaginateBy <= 0) {
-            throw InvalidData::invalidValuesProvided('Pagination cannot be 0 or a negative integer.');
+        if ($this->requiresPagination) {
+            if ($this->defaultPaginateBy <= 0) {
+                throw InvalidData::invalidValuesProvided('Pagination cannot be 0 or a negative integer.');
+            }
         }
+
+        $this->defaultPaginateBy = $paginateBy;
 
         return $this->send();
     }
