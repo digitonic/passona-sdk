@@ -31,6 +31,16 @@ abstract class BaseRequest
      */
     protected $entityUuid = '';
 
+    /**
+     * @var int
+     */
+    protected $defaultPaginateBy = 15;
+
+    /**
+     * @var bool
+     */
+    protected $requiresPagination = false;
+
 
     /**
      * BaseRequest constructor.
@@ -93,7 +103,7 @@ abstract class BaseRequest
         }
 
         return $this->send();
-    }
+}
 
     /**
      * @param string $entityIdentifier
@@ -116,18 +126,30 @@ abstract class BaseRequest
     }
 
     /**
-     * @param string $entityIdentifier
+     * @param string|null $entityIdentifier
+     * @param int $paginateBy
+     * @param bool $requirePagination
      * @return Collection
      * @throws InvalidData
      */
-    public function get(string $entityIdentifier): Collection
+    public function get(?string $entityIdentifier, bool $requirePagination = false, ?int $paginateBy = 15): Collection
     {
         if ($this->requiresEntityUuid()) {
             $this->entityUuid = $entityIdentifier;
+
+            if ($this->entityUuid === '' || $this->entityUuid === null) {
+                throw InvalidData::invalidValuesProvided(
+                    'A valid entity UUID identifier is required for a GET request'
+                );
+            }
         }
 
-        if ($this->entityUuid === '') {
-            throw InvalidData::invalidValuesProvided('A valid entity UUID identifier is required for a GET request');
+        $this->requiresPagination = $requirePagination;
+
+        $this->defaultPaginateBy = $paginateBy;
+
+        if ($this->defaultPaginateBy <= 0) {
+            throw InvalidData::invalidValuesProvided('Pagination cannot be 0 or a negative integer.');
         }
 
         return $this->send();
@@ -138,14 +160,20 @@ abstract class BaseRequest
      */
     private function buildEndpoint(): string
     {
+        $endpoint = $this->getFullEndpoint();
+
         if ($this->requiresEntityUuid()) {
-            $endpoint = $this->getFullEndpoint();
             $regex = '/({((?:[^{}]* | (?1))*)})/x';
 
-            return preg_replace($regex, $this->entityUuid, $endpoint);
+            $endpoint = preg_replace($regex, $this->entityUuid, $endpoint);
+            return $endpoint .= $this->requiresPagination ? "/?per_page={$this->defaultPaginateBy}" : '';
         }
 
-        return $this->getFullEndpoint();
+        if ($this->requiresPagination) {
+            return $endpoint .=  "/?per_page={$this->defaultPaginateBy}";
+        }
+
+        return $endpoint;
     }
 
     /**
