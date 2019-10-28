@@ -127,8 +127,8 @@ abstract class BaseRequest
 
     /**
      * @param string|null $entityIdentifier
-     * @param int $paginateBy
      * @param bool $requirePagination
+     * @param int|null $paginateBy
      * @return Collection
      * @throws InvalidData
      */
