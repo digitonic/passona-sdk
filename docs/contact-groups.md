@@ -282,7 +282,6 @@ $data = [
   ]
 ];
 
-
 $endpoint = new AddContacts($client);
 $response = $endpoint->put('dffcefc8-fa52-11e9-b179-0a58646001fa', $data);
 
@@ -395,7 +394,7 @@ $data = [
 
 
 $endpoint = new UploadBulkContacts($client);
-$response = $endpoint->post(, $data);
+$response = $endpoint->post($data);
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\ContactGroups\UploadBulkContactsGroup;
