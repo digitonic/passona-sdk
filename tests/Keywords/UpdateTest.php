@@ -55,7 +55,7 @@ class UpdateTest extends BaseTestCase
     public function it_will_throw_an_exception_if_the_keyword_uuid_is_missing()
     {
         $data = [
-            'name' => 'SDK Group Updated'
+            'keyword' => 'TestKeywordUpdated',
         ];
 
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
