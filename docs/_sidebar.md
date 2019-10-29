@@ -2,3 +2,4 @@
 * [Quick Start](/quickstart.md)
 * [Http Actions](/http-actions.md)
 * [Campaigns](/campaigns.md)
+* [Contact Groups](/contact-groups.md)
