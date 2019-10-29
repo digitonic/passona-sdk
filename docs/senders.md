@@ -63,7 +63,7 @@ $endpoint = new Update($client);
 $response = $endpoint->put('02e8187e-fa6b-11e9-94c2-0a5864600225', $data);
 
 // Laravel
-use \Digitonic\PassonaClient\Facades\Senderes\UpdateSender;
+use \Digitonic\PassonaClient\Facades\Senders\UpdateSender;
 $response = UpdateSender::put('a6589912-fa42-11e9-80c5-0a58646001fa', $data);
 ```
 
@@ -103,7 +103,7 @@ $endpoint = new Show($client);
 $response = $endpoint->get('02e8187e-fa6b-11e9-94c2-0a5864600225', false, null);
 
 // Laravel
-use \Digitonic\PassonaClient\Facades\Keywords\ShowSender;
+use \Digitonic\PassonaClient\Facades\Senders\ShowSender;
 $response = ShowSender::get('02e8187e-fa6b-11e9-94c2-0a5864600225', false, null);
 ```
 
