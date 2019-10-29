@@ -1,2 +1,4 @@
 * [Getting Started](/getting-started.md)
+* [Quick Start](/quickstart.md)
+* [Http Actions](/http-actions.md)
 * [Campaigns](/campaigns.md)
