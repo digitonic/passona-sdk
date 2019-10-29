@@ -1,5 +1,9 @@
 # Contact Groups
 
+## Explanation
+Contact groups are collections of contacts which are used to define which contact numbers will either be considered optins or optouts for a campaign.
+
+
 ## Create
 Create a new empty contact group.
 
@@ -89,7 +93,7 @@ Collection {#233 ▼
       +"links": array:1 [▼
         0 => {#236 ▼
           +"rel": "self"
-          +"uri": "https://staging.passona.co.uk/api/2.0/contact-groups/dffcefc8-fa52-11e9-b179-0a58646001fa"
+          +"uri": "https://passona.co.uk/api/2.0/contact-groups/dffcefc8-fa52-11e9-b179-0a58646001fa"
         }
       ]
     }
@@ -136,7 +140,7 @@ Collection {#233 ▼
       +"links": array:1 [▼
         0 => {#236 ▼
           +"rel": "self"
-          +"uri": "https://staging.passona.co.uk/api/2.0/contact-groups/dffcefc8-fa52-11e9-b179-0a58646001fa"
+          +"uri": "https://passona.co.uk/api/2.0/contact-groups/dffcefc8-fa52-11e9-b179-0a58646001fa"
         }
       ]
     }
@@ -206,7 +210,7 @@ Collection {#230 ▼
         +"links": array:1 [▼
           0 => {#236 ▼
             +"rel": "self"
-            +"uri": "https://staging.passona.co.uk/api/2.0/contact-groups/dffcefc8-fa52-11e9-b179-0a58646001fa"
+            +"uri": "https://passona.co.uk/api/2.0/contact-groups/dffcefc8-fa52-11e9-b179-0a58646001fa"
           }
         ]
       }
@@ -224,14 +228,14 @@ Collection {#230 ▼
         +"links": array:1 [▼
           0 => {#233 ▼
             +"rel": "self"
-            +"uri": "https://staging.passona.co.uk/api/2.0/contact-groups/f213fd72-f986-11e9-970f-0a58646001df"
+            +"uri": "https://passona.co.uk/api/2.0/contact-groups/f213fd72-f986-11e9-970f-0a58646001df"
           }
         ]
       }
     ]
     "links" => {#224 ▼
-      +"first": "https://staging.passona.co.uk/api/2.0/contact-groups?page=1"
-      +"last": "https://staging.passona.co.uk/api/2.0/contact-groups?page=1"
+      +"first": "https://passona.co.uk/api/2.0/contact-groups?page=1"
+      +"last": "https://passona.co.uk/api/2.0/contact-groups?page=1"
       +"prev": null
       +"next": null
     }
@@ -239,7 +243,7 @@ Collection {#230 ▼
       +"current_page": 1
       +"from": 1
       +"last_page": 1
-      +"path": "https://staging.passona.co.uk/api/2.0/contact-groups"
+      +"path": "https://passona.co.uk/api/2.0/contact-groups"
       +"per_page": "20"
       +"to": 2
       +"total": 2
@@ -306,7 +310,7 @@ Collection {#233 ▼
       +"links": array:1 [▼
         0 => {#236 ▼
           +"rel": "self"
-          +"uri": "https://staging.passona.co.uk/api/2.0/contact-groups/dffcefc8-fa52-11e9-b179-0a58646001fa"
+          +"uri": "https://passona.co.uk/api/2.0/contact-groups/dffcefc8-fa52-11e9-b179-0a58646001fa"
         }
       ]
     }
@@ -362,7 +366,7 @@ Collection {#233 ▼
       +"links": array:1 [▼
         0 => {#236 ▼
           +"rel": "self"
-          +"uri": "https://staging.passona.co.uk/api/2.0/contact-groups/dffcefc8-fa52-11e9-b179-0a58646001fa"
+          +"uri": "https://passona.co.uk/api/2.0/contact-groups/dffcefc8-fa52-11e9-b179-0a58646001fa"
         }
       ]
     }
@@ -417,7 +421,7 @@ Collection {#233 ▼
       +"links": array:1 [▼
         0 => {#236 ▼
           +"rel": "self"
-          +"uri": "https://staging.passona.co.uk/api/2.0/contact-groups/c9caf71c-fa58-11e9-b486-0a58646001fa"
+          +"uri": "https://passona.co.uk/api/2.0/contact-groups/c9caf71c-fa58-11e9-b486-0a58646001fa"
         }
       ]
     }
