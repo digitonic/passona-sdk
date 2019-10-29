@@ -95,4 +95,4 @@ use \Digitonic\PassonaClient\Facades\Campaigns\RetrieveCampaigns;
 $response = RetrieveCampaigns::get(null, true, 20);
 ```
 
-Some endpoints require extra parameters being passed to the endpoint object. Please see each endpoint documentation for requirements and example usage.
+Some endpoints require extra parameters being passed to the endpoint object. Please see [Http Actions](/http-actions.md)
