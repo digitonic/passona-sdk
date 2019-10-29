@@ -7,4 +7,5 @@
 * [Senders](/senders.md)
 * [Templates](/templates.md)
 * [Template Links](/template-links.md)
+* [Users](users.md)
 * [Webhooks](webhooks.md)
