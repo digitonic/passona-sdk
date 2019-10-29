@@ -83,7 +83,7 @@ $response = $endpoint->get('493c21ac-fa5d-11e9-88db-0a58646001fa', false, null);
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Keywords\ShowKeyword;
-$response = ShowKeyword::delete('493c21ac-fa5d-11e9-88db-0a58646001fa');
+$response = ShowKeyword::get('493c21ac-fa5d-11e9-88db-0a58646001fa', false, null);
 ```
 
 **Response**
@@ -146,14 +146,14 @@ Retrieve a paginated list of keywords.
 **Example**
 
 ```php
-use \Digitonic\PassonaClient\Entities\Campaigns\Index;
+use \Digitonic\PassonaClient\Entities\Keywords\Index;
 
 $endpoint = new Index($client);
 $response = $endpoint->get(null, true, 20);
 
 // Laravel
-use \Digitonic\PassonaClient\Facades\Campaigns\RetrieveCampaigns;
-$response = RetrieveCampaigns::get(null, true, 20);
+use \Digitonic\PassonaClient\Facades\Keywords\RetrieveKeywords;
+$response = RetrieveKeywords::get(null, true, 20);
 ```
 
 **Response**
