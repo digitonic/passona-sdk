@@ -9,11 +9,6 @@ class Create extends BaseRequest
 {
     const ENDPOINT = 'campaigns/';
 
-    public function __construct(Passona $api)
-    {
-        parent::__construct($api);
-    }
-
     /**
      * @return string
      */
