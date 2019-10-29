@@ -55,8 +55,5 @@ class PassonaSDKServiceProvider extends ServiceProvider
         if (empty($config['passona_api_key'])) {
             throw InvalidConfig::passonaApiKeyNotSpecified();
         }
-        if (empty($config['passona_team_uuid'])) {
-            throw InvalidConfig::noTeamUuidSpecified();
-        }
     }
 }
