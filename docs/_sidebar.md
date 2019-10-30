@@ -8,4 +8,5 @@
 * [Senders](/senders.md)
 * [Templates](/templates.md)
 * [Users](users.md)
+* [Vanity Domains](/vanity-domains.md)
 * [Webhooks](webhooks.md)

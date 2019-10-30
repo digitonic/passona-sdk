@@ -6,7 +6,7 @@ Senders are the name of the team the message is coming from that will be display
 Senders must be between **3-11** characters in length, if it is outwith this limit it will be rejected. 
 New senders are subject to moderation from Digitonic.
 
-All teams a default sender of `88440` which can be used.
+All teams a default sender of `88440` and a 11 character version of their team name which can be used.
 
 ## Create
 Create a new sender for your current team.
