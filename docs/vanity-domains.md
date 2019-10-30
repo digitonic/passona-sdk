@@ -1,7 +1,7 @@
 # Vanity Domains
 
 ## Explanation
-Vanity domains are shorthand urls that are used in the message template to redirect to a link that is provided into the campaign.
+Vanity domains are shorthand http links redirecting to external target urls (e.g. http://google.com) and are used to monitor recipient clicks. They are displayed to recipients within the message template body.
 Trackers will be appended to these links to allow tracking of clicks to provide metrics for your campaigns.
 
 Vanity domains can either belong to Digitonic or the user of Passona can specify their own domain and point it towards our name servers.
