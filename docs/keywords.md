@@ -35,7 +35,31 @@ $response = CreateKeyword::post($data);
 **Response**
 
 ```php
-
+Collection {#233 ▼
+  #items: array:1 [▼
+    "data" => {#238 ▼
+      +"uuid": "ef464c40-faf2-11e9-bef1-0a5864600115"
+      +"keyword": "OPTOUT"
+      +"message": "Optout example."
+      +"status": "1"
+      +"help": "Optout tooltip text."
+      +"add_contact_to_group": true
+      +"contact_groups_uuid": array:1 [▼
+        0 => "c9caf71c-fa58-11e9-b486-0a58646001fa"
+      ]
+      +"call_webhook": true
+      +"webhooks_uuid": array:1 [▼
+        0 => "93ce0e94-f65f-11e9-8880-0a58646002d8"
+      ]
+      +"links": array:1 [▼
+        0 => {#236 ▼
+          +"rel": "self"
+          +"uri": "https://passona.co.uk/api/2.0/keywords/ef464c40-faf2-11e9-bef1-0a5864600115"
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ## Update
