@@ -37,13 +37,13 @@ You can now use the Guzzle client as a dependency for the Passona SDK client.
 $client = new \Digitonic\PassonaClient\Client($guzzle);
 ```
 
-The Passona API Client can now be used as a dependency for communicating with various endpoints. for example, to call the `account/metadata` endpoint - 
+The Passona API Client can now be used as a dependency for communicating with various endpoints. for example, to call the `links/show` endpoint - 
 
 ```php
-use \Digitonic\IexCloudSdk\Account\Metadata;
+use \Digitonic\PassonaClient\Links\Show;
 
-$metadata = new Metadata($client);
-$response = $metadata->get();
+$metadata = new Show($client);
+$response = $metadata->get('e8cbe94a-faf4-11e9-96cc-0a5864600115', false, null);
 
 print_r($response);
 ```
@@ -51,15 +51,17 @@ print_r($response);
 All endpoints that return data will return data as a `\Illuminate\Support\Collection`. This will provide various utility methods when searching the response. For more information on Laravel Collections see [https://laravel.com/docs/6.x/collections](https://laravel.com/docs/6.x/collections).
 
 ```php
-Collection {#275 ▼
-  #items: array:7 [▼
-    "payAsYouGoEnabled" => false
-    "effectiveDate" => 1621337109805
-    "subscriptionTermType" => "mnlhyto"
-    "tierName" => "tstar"
-    "messageLimit" => 514440
-    "messagesUsed" => 13578
-    "circuitBreaker" => null
+Collection {#239 ▼
+  #items: array:1 [▼
+    "data" => {#238 ▼
+      +"uuid": "e8cbe94a-faf4-11e9-96cc-0a5864600115"
+      +"vanity_domain_uuid": "4d47ca82-f63c-11e9-a674-0a58646002d8"
+      +"template_uuid": "ae17d458-fa63-11e9-83fe-0a58646001fd"
+      +"name": "New Link"
+      +"destination": "https://digitonic.co.uk"
+      +"created_at": "2019-10-30 09:08:59"
+      +"updated_at": "2019-10-30 09:08:59"
+    }
   ]
 }
 ```

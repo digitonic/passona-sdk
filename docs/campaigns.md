@@ -2,8 +2,8 @@
 
 ## Explanation
 Campaigns are the basis of what will be sent to the end device. They comprise of the campaign itself, 
-[Contact Groups](/contact-groups.md), [Keywords](/keywords.md),[Senders](/senders.md), [Templates](/templates.md),
-[Template Links](/template-links.md) and [Webhooks](/webhooks.md)
+[Contact Groups](/contact-groups.md), [Keywords](/keywords.md), [Links](/links.md), [Senders](/senders.md), [Templates](/templates.md) 
+and [Webhooks](/webhooks.md)
 
 ## Create
 Schedule a new campaign within Passona.
