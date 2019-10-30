@@ -1,8 +1,8 @@
 <?php
 
-namespace Digitonic\PassonaClient\Tests\VanityDomains;
+namespace Digitonic\PassonaClient\Tests\Webhooks;
 
-use Digitonic\PassonaClient\Entities\VanityDomains\Update;
+use Digitonic\PassonaClient\Entities\Webhooks\Update;
 use Digitonic\PassonaClient\Exceptions\InvalidData;
 use Digitonic\PassonaClient\Tests\BaseTestCase;
 use GuzzleHttp\Handler\MockHandler;
@@ -22,7 +22,7 @@ class UpdateTest extends BaseTestCase
     {
         parent::setUp();
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"uuid":"7ba996f0-fb03-11e9-b29e-0a586460022b","domain":"https:\/\/vaniup.io","dns_status":"Pending Validation","nameservers":"[]","status":"1","created_at":"2019-10-30 10:53:18","updated_at":"2019-10-30 10:55:43","zone_id":"","links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/vanity-domains\/7ba996f0-fb03-11e9-b29e-0a586460022b"}]}}')
+            new Response(200, [], '{"data":{"name":"Updated Webhook","uuid":"491460ee-fb0d-11e9-a46c-0a586460022b","url":"https:\/\/digitonic.co.uk\/webhook","headers":{"Content-Type":"application\/json"},"links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/webhooks\/491460ee-fb0d-11e9-a46c-0a586460022b"}]}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -30,29 +30,34 @@ class UpdateTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_update_an_existing_vanity_domain()
+    public function it_can_update_an_existing_webhooks()
     {
         $data = [
-            'domain' => 'https://vaniup.io'
-
+            'name' => 'Updated Webhook',
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
         ];
 
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
 
         $usage = new Update($passonaApi);
 
-        $response = $usage->put('7ba996f0-fb03-11e9-b29e-0a586460022b', $data);
+        $response = $usage->put('491460ee-fb0d-11e9-a46c-0a586460022b', $data);
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(1, $response);
-        $this->assertEquals($data['domain'], $response['data']->domain);
+        $this->assertEquals($data['name'], $response['data']->name);
     }
 
     /** @test */
-    public function it_will_throw_an_exception_if_the_vanity_domain_uuid_is_missing()
+    public function it_will_throw_an_exception_if_the_webhook_uuid_is_missing()
     {
         $data = [
-            'domain' => 'https://vaniup.io'
+            'name' => 'Updated Webhook',
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
         ];
 
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
@@ -73,6 +78,6 @@ class UpdateTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->put('7ba996f0-fb03-11e9-b29e-0a586460022b', []);
+        $usage->put('491460ee-fb0d-11e9-a46c-0a586460022b', []);
     }
 }
