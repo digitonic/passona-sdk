@@ -1,8 +1,8 @@
 <?php
 
-namespace Digitonic\PassonaClient\Tests\Senders;
+namespace Digitonic\PassonaClient\Tests\Users;
 
-use Digitonic\PassonaClient\Entities\Senders\Delete;
+use Digitonic\PassonaClient\Entities\Users\SyncGroups;
 use Digitonic\PassonaClient\Exceptions\InvalidData;
 use Digitonic\PassonaClient\Tests\BaseTestCase;
 use GuzzleHttp\Handler\MockHandler;
@@ -16,7 +16,7 @@ use Illuminate\Support\Collection;
  * @property HandlerStack handler
  * @property Client client
  */
-class DeleteTest extends BaseTestCase
+class SyncGroupsTest extends BaseTestCase
 {
     protected function setUp(): void
     {
@@ -31,27 +31,33 @@ class DeleteTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_delete_a_sender_in_passona()
+    public function it_can_sync_a_contact_to_a_contact_group()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
 
-        $usage = new Delete($passonaApi);
+        $usage = new SyncGroups($passonaApi);
 
-        $response = $usage->delete('c611e89e-fa6a-11e9-b302-0a5864600225');
+        $response = $usage->post([
+            'groups' => [
+                '3e70c8e0-fbd4-11e9-993f-0a586460024f',
+                '4a109a68-fbd4-11e9-a9aa-0a586460024f'
+            ],
+            'contact' => '447715898521'
+        ]);
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(0, $response);
     }
 
     /** @test */
-    public function it_will_throw_an_exception_if_the_sender_uuid_is_missing()
+    public function it_will_throw_an_exception_if_payload_is_missing()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
 
-        $usage = new Delete($passonaApi);
+        $usage = new SyncGroups($passonaApi);
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->delete('');
+        $usage->post([]);
     }
 }
