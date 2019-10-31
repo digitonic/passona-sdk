@@ -4,7 +4,7 @@ The SDK for Passona, a campaign management platform by Digitonic.
 
 ## Installation
 
-WIP
+`composer require digitonic/passona-sdk`
 
 ### Changelog
 
