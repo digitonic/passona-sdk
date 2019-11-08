@@ -168,6 +168,10 @@ abstract class BaseRequest
             throw InvalidData::invalidValuesProvided('Pagination cannot be 0 or a negative integer.');
         }
 
+        if ($pageNumber <= 0) {
+            throw InvalidData::invalidValuesProvided('The current page selector cannot be 0 or a negative integer');
+        }
+
         $this->requiresPagination = true;
         $this->paginateBy = $paginateBy;
         $this->currentPage = $pageNumber;
