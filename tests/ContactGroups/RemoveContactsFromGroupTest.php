@@ -45,7 +45,7 @@ class RemoveContactsFromGroupTest extends BaseTestCase
 
         $usage = new RemoveContacts($passonaApi);
 
-        $response = $usage->put($groupUuid, $data);
+        $response = $usage->setPayload($data)->put($groupUuid);
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(1, $response);
@@ -61,7 +61,7 @@ class RemoveContactsFromGroupTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->put('',  ['some' => 'data']);
+        $usage->setPayload(['some' => 'data'])->put('');
     }
 
     /** @test */
@@ -73,6 +73,6 @@ class RemoveContactsFromGroupTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->put('f1bdee3e-f704-11e9-95bd-0a58646001ae', []);
+        $usage->setPayload([])->put('f1bdee3e-f704-11e9-95bd-0a58646001ae');
     }
 }

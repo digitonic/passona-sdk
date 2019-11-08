@@ -38,7 +38,7 @@ class IndexTest extends BaseTestCase
 
         $usage = new Index($passonaApi);
 
-        $response = $usage->get(null, true, 20);
+        $response = $usage->paginate(20)->get();
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(3, $response);

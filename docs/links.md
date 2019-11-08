@@ -29,11 +29,11 @@ $data = [
 ];
 
 $endpoint = new Create($client);
-$response = $endpoint->post($data);
+$response = $endpoint->setPayload($data)->post();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Links\CreateLink;
-$response = CreateLink::post($data);
+$response = CreateLink::setPayload($data)->post();
 ```
 
 **Response**
@@ -69,11 +69,11 @@ $data = [
 ];
 
 $endpoint = new Update($client);
-$response = $endpoint->put('e8cbe94a-faf4-11e9-96cc-0a5864600115', $data);
+$response = $endpoint->setPayload($data)->put('e8cbe94a-faf4-11e9-96cc-0a5864600115');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Links\UpdateLink;
-$response = UpdateLink::put('e8cbe94a-faf4-11e9-96cc-0a5864600115', $data);
+$response = UpdateLink::setPayload($data)->put('e8cbe94a-faf4-11e9-96cc-0a5864600115');
 ```
 
 **Response**
@@ -104,11 +104,11 @@ Retrieve a specific link.
 use \Digitonic\PassonaClient\Entities\Links\Show;
 
 $endpoint = new Show($client);
-$response = $endpoint->get('93c21ac-fa5d-11e9-88db-0a58646001fa', false, null);
+$response = $endpoint->get('93c21ac-fa5d-11e9-88db-0a58646001fa');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Links\ShowLink;
-$response = ShowLink::get('93c21ac-fa5d-11e9-88db-0a58646001fa', false, null);
+$response = ShowLink::get('93c21ac-fa5d-11e9-88db-0a58646001fa');
 ```
 
 **Response**

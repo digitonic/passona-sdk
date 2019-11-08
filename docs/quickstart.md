@@ -43,7 +43,7 @@ The Passona API Client can now be used as a dependency for communicating with va
 use \Digitonic\PassonaClient\Links\Show;
 
 $metadata = new Show($client);
-$response = $metadata->get('e8cbe94a-faf4-11e9-96cc-0a5864600115', false, null);
+$response = $metadata->get('e8cbe94a-faf4-11e9-96cc-0a5864600115');
 
 print_r($response);
 ```
@@ -94,7 +94,7 @@ With Laravel you may use the facades directly which provides a much faster and f
 ```php
 use \Digitonic\PassonaClient\Facades\Campaigns\RetrieveCampaigns;
 
-$response = RetrieveCampaigns::get(null, true, 20);
+$response = RetrieveCampaigns::paginate()->index();
 ```
 
 Some endpoints require extra parameters being passed to the endpoint object. Please see [Http Actions](/http-actions.md)

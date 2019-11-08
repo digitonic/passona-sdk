@@ -46,7 +46,7 @@ class BulkContactsTest extends BaseTestCase
 
         $usage = new UploadBulkContacts($passonaApi);
 
-        $response = $usage->post($data);
+        $response = $usage->setPayload($data)->post();
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(1, $response);
@@ -63,6 +63,6 @@ class BulkContactsTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->post([]);
+        $usage->setPayload([])->post();
     }
 }

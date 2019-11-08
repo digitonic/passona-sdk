@@ -41,7 +41,7 @@ class SwitchTeamTest extends BaseTestCase
 
         $usage = new SwitchTeam($passonaApi);
 
-        $response = $usage->get($teamUuid, false, null);
+        $response = $usage->get($teamUuid);
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(1, $response);
@@ -57,6 +57,6 @@ class SwitchTeamTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->get('', false, null);
+        $usage->get('');
     }
 }

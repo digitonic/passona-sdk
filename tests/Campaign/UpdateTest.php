@@ -42,7 +42,7 @@ class UpdateTest extends BaseTestCase
 
         $usage = new Update($passonaApi);
 
-        $response = $usage->put('bedf2e8a-f653-11e9-bcd4-0a58646002d9', $data);
+        $response = $usage->setPayload($data)->put('bedf2e8a-f653-11e9-bcd4-0a58646002d9');
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(1, $response);
@@ -64,7 +64,7 @@ class UpdateTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->put('', $data);
+        $usage->setPayload($data)->put('');
     }
 
     /** @test */
@@ -76,6 +76,6 @@ class UpdateTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->put('bedf2e8a-f653-11e9-bcd4-0a58646002d9', []);
+        $usage->setPayload([])->put('bedf2e8a-f653-11e9-bcd4-0a58646002d9');
     }
 }

@@ -24,11 +24,11 @@ $data = [
 ];
 
 $endpoint = new Create($client);
-$response = $endpoint->post($data);
+$response = $endpoint->setPayload($data)->post();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Campaigns\CreateCampaign;
-$response = CreateCampaign::post($data);
+$response = CreateCampaign::setPayload($data)->post();
 ```
 
 **Response**
@@ -80,11 +80,11 @@ $data = [
 ];
 
 $endpoint = new Update($client);
-$response = $endpoint->put('a6589912-fa42-11e9-80c5-0a58646001fa', $data);
+$response = $endpoint->setPayload($data)->put('a6589912-fa42-11e9-80c5-0a58646001fa');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Campaigns\UpdateCampaign;
-$response = UpdateCampaign::put('a6589912-fa42-11e9-80c5-0a58646001fa', $data);
+$response = UpdateCampaign::setPayload($data)->put('a6589912-fa42-11e9-80c5-0a58646001fa');
 ```
 
 **Response**
@@ -151,11 +151,11 @@ Retrieve a paginated list of campaigns
 use \Digitonic\PassonaClient\Entities\Campaigns\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->get(null, true, 20);
+$response = $endpoint->paginate(20)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Campaigns\RetrieveCampaigns;
-$response = RetrieveCampaigns::get(null, true, 20);
+$response = RetrieveCampaigns::paginate(20)->get();
 ```
 
 **Response**
@@ -224,11 +224,11 @@ $data = [
 
 
 $endpoint = new SendTest($client);
-$response = $endpoint->post($data);
+$response = $endpoint->setPayload($data)->post();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Campaigns\SendTestCampaign;
-$response = SendTestCampaign::post($data);
+$response = SendTestCampaign::setPayload($data)->post();
 ```
 
 **Response**

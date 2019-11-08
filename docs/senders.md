@@ -21,11 +21,11 @@ $data = [
 ];
 
 $endpoint = new Create($client);
-$response = $endpoint->post($data);
+$response = $endpoint->setPayload($data)->post();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Senders\CreateSender;
-$response = CreateSender::post($data);
+$response = CreateSender::setPayload($data)->post();
 ```
 
 **Response**
@@ -60,11 +60,11 @@ $data = [
 ];
 
 $endpoint = new Update($client);
-$response = $endpoint->put('02e8187e-fa6b-11e9-94c2-0a5864600225', $data);
+$response = $endpoint->setPayload($data)->put('02e8187e-fa6b-11e9-94c2-0a5864600225');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Senders\UpdateSender;
-$response = UpdateSender::put('a6589912-fa42-11e9-80c5-0a58646001fa', $data);
+$response = UpdateSender::setPayload($data)->put('a6589912-fa42-11e9-80c5-0a58646001fa');
 ```
 
 **Response**
@@ -100,11 +100,11 @@ Retrieve a specific sender.
 use \Digitonic\PassonaClient\Entities\Senders\Show;
 
 $endpoint = new Show($client);
-$response = $endpoint->get('02e8187e-fa6b-11e9-94c2-0a5864600225', false, null);
+$response = $endpoint->get('02e8187e-fa6b-11e9-94c2-0a5864600225');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Senders\ShowSender;
-$response = ShowSender::get('02e8187e-fa6b-11e9-94c2-0a5864600225', false, null);
+$response = ShowSender::get('02e8187e-fa6b-11e9-94c2-0a5864600225');
 ```
 
 **Response**
@@ -166,11 +166,11 @@ Retrieve a paginated list of senders.
 use \Digitonic\PassonaClient\Entities\Senders\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->get(null, true, 20);
+$response = $endpoint->paginate(20)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Senders\RetrieveSenders;
-$response = RetrieveSenders::get(null, true, 20);
+$response = RetrieveSenders::paginate(20)->get();
 ```
 
 **Response**

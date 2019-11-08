@@ -6,18 +6,16 @@ take extra parameters depending on what you wish to do with them. This is explai
 ## Explanation
 
 ## GET
-The `GET` endpoint used by the `Passona SDK API Client` takes three parameters.
+The `GET` endpoint used by the `Passona SDK API Client` takes one parameter __which is optional__ dependant on its usage.
 
 ```php
-    public function get(?string $entityIdentifier, bool $requirePagination = false, ?int $paginateBy = 15)
+    public function get(string $entityIdentifier)
 ```
 
 The `$entityIdentifier` parameter takes in a UUID for the particular entity you wish to retrieve. If you wish to retrieve only one entity from
 an endpoint then a UUID passed in as the first and only parameter will return the expected result.
 
-However if you wish to retrieve a paginated collection of entities and would like to customise the pagination length, you can do so
-by passing in `NULL` as the parameter for `$entityIdentifier`, `true` for `$requirePagination` and an integer value
-greater than 0 of your choosing for `$paginateBy`
+The get function can also be used for an index or retrieval of all entities in a paginated return.
 
 ### Examples
 
@@ -41,21 +39,21 @@ use \Digitonic\PassonaClient\Entities\Templates\Index;
 
 $endpoint = new Index($client);
 //Paginated return with 20 entites per page, default is 15 per page
-$response = $endpoint->get(null, true, 20);
+$response = $endpoint->paginate(20)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Templates\RetrieveTemplates;
-$response = RetrieveTemplates::get(null, true, 20);
+$response = RetrieveTemplates::paginate(20)->get();
 ```
 
 ## POST
-The `POST` endpoint used by the `Passona SDK API Client` takes a single parameter.
+The `POST` endpoint used by the `Passona SDK API Client` can be called on to create new entities within Passona.
 
 ```php
-    public function post(array $payload)
+    public function post()
 ```
 
-The `$payload` parameter takes an array of key values pairs as is expected by Passona for the respective entity being created.
+The payload that is set requires array of key values pairs as is expected by Passona for the respective entity being created.
 You can find our [API documentation here.](https://digitonic.co.uk) 
 
 ### Examples
@@ -76,22 +74,23 @@ $data = [
 ];
 
 $endpoint = new Create($client);
-$response = $endpoint->post($data);
+$response = $endpoint->setPayload($data)->post();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Campaigns\CreateCampaign;
-$response = CreateCampaign::post($data);
+$response = CreateCampaign::setPayload($data)->post();
 ```
 
 ## PUT
-The `PUT` endpoint used by the `Passona SDK API Client` takes two parameters
+The `PUT` endpoint used by the `Passona SDK API Client` takes one parameter and can be called on to update an existing entity within Passona.
 
 ```php
-        public function put(string $entityIdentifier, array $payload)
+        public function put(string $entityIdentifier)
 ```
 
 The `$entityIdentifier` parameter takes in a UUID for the particular entity you wish to update.
-The `$payload` parameter takes an array of key values pairs as is expected by Passona for the respective entity being created.
+
+The payload that is set requires array of key values pairs as is expected by Passona for the respective entity being created.
 You can find our [API documentation here.](https://digitonic.co.uk) 
 
 ### Examples
@@ -112,11 +111,11 @@ $data = [
 ];
 
 $endpoint = new Update($client);
-$response = $endpoint->put($data);
+$response = $endpoint->setPayload($data)->put('a6589912-fa42-11e9-80c5-0a58646001fa');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Campaigns\UpdateCampaign;
-$response = UpdateCampaign::put('a6589912-fa42-11e9-80c5-0a58646001fa', $data);
+$response = UpdateCampaign::setPayload($data)->put('a6589912-fa42-11e9-80c5-0a58646001fa');
 ```
 
 ## DELETE

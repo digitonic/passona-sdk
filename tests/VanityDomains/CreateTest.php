@@ -42,7 +42,7 @@ class CreateTest extends BaseTestCase
 
         $usage = new Create($passonaApi);
 
-        $response = $usage->post($data);
+        $response = $usage->setPayload($data)->post();
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(1, $response);
@@ -58,6 +58,6 @@ class CreateTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->post([]);
+        $usage->setPayload([])->post();
     }
 }

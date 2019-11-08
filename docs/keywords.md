@@ -25,11 +25,11 @@ $data = [
 ];
 
 $endpoint = new Create($client);
-$response = $endpoint->post($data);
+$response = $endpoint->setPayload($data)->post();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Keywords\CreateKeyword;
-$response = CreateKeyword::post($data);
+$response = CreateKeyword::setPayload($data)->post();
 ```
 
 **Response**
@@ -80,11 +80,11 @@ $data = [
 ];
 
 $endpoint = new Update($client);
-$response = $endpoint->put('a6589912-fa42-11e9-80c5-0a58646001fa', $data);
+$response = $endpoint->setPayload($data)->put('a6589912-fa42-11e9-80c5-0a58646001fa');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Keywords\UpdateKeyword;
-$response = UpdateKeyword::put('a6589912-fa42-11e9-80c5-0a58646001fa', $data);
+$response = UpdateKeyword::setPayload($data)->put('a6589912-fa42-11e9-80c5-0a58646001fa');
 ```
 
 **Response**
@@ -103,11 +103,11 @@ Retrieve a specific keyword.
 use \Digitonic\PassonaClient\Entities\Keywords\Show;
 
 $endpoint = new Show($client);
-$response = $endpoint->get('493c21ac-fa5d-11e9-88db-0a58646001fa', false, null);
+$response = $endpoint->get('493c21ac-fa5d-11e9-88db-0a58646001fa');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Keywords\ShowKeyword;
-$response = ShowKeyword::get('493c21ac-fa5d-11e9-88db-0a58646001fa', false, null);
+$response = ShowKeyword::get('493c21ac-fa5d-11e9-88db-0a58646001fa');
 ```
 
 **Response**
@@ -173,11 +173,11 @@ Retrieve a paginated list of keywords.
 use \Digitonic\PassonaClient\Entities\Keywords\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->get(null, true, 20);
+$response = $endpoint->paginate(20)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Keywords\RetrieveKeywords;
-$response = RetrieveKeywords::get(null, true, 20);
+$response = RetrieveKeywords::paginate(20)->get();
 ```
 
 **Response**
