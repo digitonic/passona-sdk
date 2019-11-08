@@ -94,7 +94,7 @@ With Laravel you may use the facades directly which provides a much faster and f
 ```php
 use \Digitonic\PassonaClient\Facades\Campaigns\RetrieveCampaigns;
 
-$response = RetrieveCampaigns::paginate()->index();
+$response = RetrieveCampaigns::paginate(20)->index();
 ```
 
 Some endpoints require extra parameters being passed to the endpoint object. Please see [Http Actions](/http-actions.md)

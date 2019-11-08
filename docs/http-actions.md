@@ -17,6 +17,10 @@ an endpoint then a UUID passed in as the first and only parameter will return th
 
 The get function can also be used for an index or retrieval of all entities in a paginated return.
 
+#### Paginate
+When using the `paginate` function it can take two parameters, the first is how many entities you want to return per page
+and the second variable is the current page you wish to retrieve is the result is split into many paginated pages.
+
 ### Examples
 
 **Retrieving a single template entity**
@@ -141,8 +145,3 @@ $response = $endpoint->delete('a6589912-fa42-11e9-80c5-0a58646001fa');
 use \Digitonic\PassonaClient\Facades\Campaigns\DeleteCampaign;
 $response = DeleteCampaign::delete('a6589912-fa42-11e9-80c5-0a58646001fa');
 ```
-
-
-
-
-

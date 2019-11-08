@@ -37,6 +37,11 @@ abstract class BaseRequest
     protected $paginateBy = 15;
 
     /**
+     * @var int
+     */
+    protected $currentPage;
+
+    /**
      * @var bool
      */
     protected $requiresPagination = false;
@@ -153,10 +158,11 @@ abstract class BaseRequest
 
     /**
      * @param int $paginateBy
+     * @param int $pageNumber
      * @return $this
      * @throws InvalidData
      */
-    public function paginate(int $paginateBy = 15)
+    public function paginate(int $paginateBy = 15, int $pageNumber = 1)
     {
         if ($paginateBy <= 0) {
             throw InvalidData::invalidValuesProvided('Pagination cannot be 0 or a negative integer.');
@@ -164,6 +170,7 @@ abstract class BaseRequest
 
         $this->requiresPagination = true;
         $this->paginateBy = $paginateBy;
+        $this->currentPage = $pageNumber;
 
         return $this;
     }
@@ -179,11 +186,11 @@ abstract class BaseRequest
             $regex = '/({((?:[^{}]* | (?1))*)})/x';
 
             $endpoint = preg_replace($regex, $this->entityUuid, $endpoint);
-            return $endpoint .= $this->requiresPagination ? "/?per_page={$this->paginateBy}" : '';
+            return $endpoint;
         }
 
         if ($this->requiresPagination) {
-            return $endpoint .=  "/?per_page={$this->paginateBy}";
+            return $endpoint .= "/?per_page={$this->paginateBy}&page={$this->currentPage}";
         }
 
         return $endpoint;
