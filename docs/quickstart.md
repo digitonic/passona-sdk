@@ -26,7 +26,7 @@ $guzzle = new Client([
     'headers' => [
         'Accept' => 'application/json',
         'Content-Type' => 'application/json',
-        'Authorization' => "Bearer {$passonaApiKey}"
+        'Authorization' => "Bearer $passonaApiKey"
     ],
 ]);
 ```
@@ -42,8 +42,8 @@ The Passona API Client can now be used as a dependency for communicating with va
 ```php
 use \Digitonic\PassonaClient\Links\Show;
 
-$metadata = new Show($client);
-$response = $metadata->get('e8cbe94a-faf4-11e9-96cc-0a5864600115', false, null);
+$links = new Show($client);
+$response = $links->get('e8cbe94a-faf4-11e9-96cc-0a5864600115', false, null);
 
 print_r($response);
 ```
@@ -68,7 +68,7 @@ Collection {#239 ▼
 
 ## Laravel Usage
 
-The SDK comes with a Laravel Service Provider to facilitate a much cleaner and streamlined setup. The SDK supports Laravel 5.4 and upwards, the service provider will only be auto discovered from Laravel 5.5 onwards.
+The SDK comes with a Laravel Service Provider to facilitate a much cleaner and streamlined setup. The SDK supports Laravel 5.4 and onwards, the service provider will only be auto discovered from Laravel 5.5 onwards.
 
 You can publish the config file of this package with this command:
 
