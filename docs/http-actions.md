@@ -21,6 +21,11 @@ The get function can also be used for an index or retrieval of all entities in a
 When using the `paginate` function it can take two parameters, the first is how many entities you want to return per page
 and the second variable is the current page you wish to retrieve is the result is split into many paginated pages.
 
+```php
+// First parameter links
+->paginate(20, 1)
+```
+
 ### Examples
 
 **Retrieving a single template entity**

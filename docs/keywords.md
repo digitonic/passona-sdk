@@ -173,11 +173,11 @@ Retrieve a paginated list of keywords.
 use \Digitonic\PassonaClient\Entities\Keywords\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->paginate(20)->get();
+$response = $endpoint->paginate(20, 1)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Keywords\RetrieveKeywords;
-$response = RetrieveKeywords::paginate(20)->get();
+$response = RetrieveKeywords::paginate(20, 1)->get();
 ```
 
 **Response**

@@ -183,11 +183,11 @@ Retrieve a paginated list of contact groups.
 use \Digitonic\PassonaClient\Entities\ContactGroups\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->paginate(20)->get();
+$response = $endpoint->paginate(20, 1)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\ContactGroups\RetrieveContactGroups;
-$response = RetrieveContactGroups::paginate(20)->get();
+$response = RetrieveContactGroups::paginate(20, 1)->get();
 ```
 
 **Response**

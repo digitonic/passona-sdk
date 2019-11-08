@@ -166,11 +166,11 @@ Retrieve a paginated list of senders.
 use \Digitonic\PassonaClient\Entities\Senders\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->paginate(20)->get();
+$response = $endpoint->paginate(20, 1)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Senders\RetrieveSenders;
-$response = RetrieveSenders::paginate(20)->get();
+$response = RetrieveSenders::paginate(20, 1)->get();
 ```
 
 **Response**

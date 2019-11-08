@@ -151,11 +151,11 @@ Retrieve a paginated list of campaigns
 use \Digitonic\PassonaClient\Entities\Campaigns\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->paginate(20)->get();
+$response = $endpoint->paginate(20, 1)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Campaigns\RetrieveCampaigns;
-$response = RetrieveCampaigns::paginate(20)->get();
+$response = RetrieveCampaigns::paginate(20, 1)->get();
 ```
 
 **Response**

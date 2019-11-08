@@ -181,11 +181,11 @@ Retrieve a paginated list of vanity domains.
 use \Digitonic\PassonaClient\Entities\VanityDomains\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->paginate(20)->get();
+$response = $endpoint->paginate(20, 1)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\VanityDomains\RetrieveVanityDomains;
-$response = RetrieveVanityDomains::paginate(20)->get();
+$response = RetrieveVanityDomains::paginate(20, 1)->get();
 ```
 
 **Response**

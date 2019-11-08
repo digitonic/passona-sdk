@@ -173,11 +173,11 @@ Retrieve a paginated list of templates.
 use \Digitonic\PassonaClient\Entities\Templates\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->paginate(20)->get();
+$response = $endpoint->paginate(20, 1)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Templates\RetrieveTemplates;
-$response = RetrieveTemplates::paginate(20)->get();
+$response = RetrieveTemplates::paginate(20, 1)->get();
 ```
 
 **Response**
