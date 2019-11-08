@@ -30,7 +30,7 @@ class UpdateTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_update_an_existing_campaign()
+    public function it_can_update_an_existing_template()
     {
         $data = [
             'name' => 'SDK Template Updated',
@@ -41,7 +41,7 @@ class UpdateTest extends BaseTestCase
 
         $usage = new Update($passonaApi);
 
-        $response = $usage->put('96dc25e4-f709-11e9-967a-0a58646001ac', $data);
+        $response = $usage->setPayload($data)->put('96dc25e4-f709-11e9-967a-0a58646001ac');
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(1, $response);
@@ -50,7 +50,7 @@ class UpdateTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_will_throw_an_exception_if_the_campaign_uuid_is_missing()
+    public function it_will_throw_an_exception_if_the_template_uuid_is_missing()
     {
         $data = [
             'name' => 'SDK Template Updated',
@@ -63,7 +63,7 @@ class UpdateTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->put('', $data);
+        $usage->setPayload($data)->put('');
     }
 
     /** @test */

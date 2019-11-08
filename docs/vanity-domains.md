@@ -26,11 +26,11 @@ $data = [
 ];
 
 $endpoint = new Create($client);
-$response = $endpoint->post($data);
+$response = $endpoint->setPayload($data)->post();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\VanityDomains\CreateVanityDomain;
-$response = CreateVanityDomain::post($data);
+$response = CreateVanityDomain::setPayload($data)->post();
 ```
 
 **Response**
@@ -72,11 +72,11 @@ $data = [
 ];
 
 $endpoint = new Update($client);
-$response = $endpoint->put('55fb450c-fb03-11e9-b23a-0a586460022b', $data);
+$response = $endpoint->setPayload($data)->put('55fb450c-fb03-11e9-b23a-0a586460022b');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\VanityDomains\UpdateVanityDomain;
-$response = UpdateVanityDomain::put('55fb450c-fb03-11e9-b23a-0a586460022b', $data);
+$response = UpdateVanityDomain::setPayload($data)->put('55fb450c-fb03-11e9-b23a-0a586460022b');
 ```
 
 **Response**
@@ -114,11 +114,11 @@ Retrieve a specific keyword.
 use \Digitonic\PassonaClient\Entities\VanityDomains\Show;
 
 $endpoint = new Show($client);
-$response = $endpoint->get('7ba996f0-fb03-11e9-b29e-0a586460022b', false, null);
+$response = $endpoint->get('7ba996f0-fb03-11e9-b29e-0a586460022b');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\VanityDomains\ShowVanityDomain;
-$response = ShowVanityDomain::get('7ba996f0-fb03-11e9-b29e-0a586460022b', false, null);
+$response = ShowVanityDomain::get('7ba996f0-fb03-11e9-b29e-0a586460022b');
 ```
 
 **Response**
@@ -181,11 +181,11 @@ Retrieve a paginated list of vanity domains.
 use \Digitonic\PassonaClient\Entities\VanityDomains\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->get(null, true, 20);
+$response = $endpoint->paginate(20, 1)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\VanityDomains\RetrieveVanityDomains;
-$response = RetrieveVanityDomains::get(null, true, 20);
+$response = RetrieveVanityDomains::paginate(20, 1)->get();
 ```
 
 **Response**

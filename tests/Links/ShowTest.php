@@ -40,7 +40,7 @@ class ShowTest extends BaseTestCase
 
         $usage = new Show($passonaApi);
 
-        $response = $usage->get($linkUuid, false, null);
+        $response = $usage->get($linkUuid);
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(1, $response);
@@ -57,6 +57,6 @@ class ShowTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->get('', false, null);
+        $usage->get('');
     }
 }

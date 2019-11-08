@@ -34,13 +34,17 @@ abstract class BaseRequest
     /**
      * @var int
      */
-    protected $defaultPaginateBy = 15;
+    protected $paginateBy = 15;
+
+    /**
+     * @var int
+     */
+    protected $currentPage;
 
     /**
      * @var bool
      */
     protected $requiresPagination = false;
-
 
     /**
      * BaseRequest constructor.
@@ -64,14 +68,12 @@ abstract class BaseRequest
     }
 
     /**
-     * @param array $payload
      * @return Collection
      * @throws InvalidData
      */
-    public function post(array $payload = []): Collection
+    public function post(): Collection
     {
         $this->method = 'POST';
-        $this->payload = $payload;
 
         if (empty($this->payload)) {
             throw InvalidData::invalidValuesProvided('A payload is required for a POST request');
@@ -82,14 +84,12 @@ abstract class BaseRequest
 
     /**
      * @param string $entityIdentifier
-     * @param array $payload
      * @return Collection
      * @throws InvalidData
      */
-    public function put(string $entityIdentifier, array $payload = []): Collection
+    public function put(string $entityIdentifier): Collection
     {
         $this->method = 'PUT';
-        $this->payload = $payload;
 
         if ($this->requiresEntityUuid()) {
             $this->entityUuid = $entityIdentifier;
@@ -127,12 +127,10 @@ abstract class BaseRequest
 
     /**
      * @param string|null $entityIdentifier
-     * @param bool $requirePagination
-     * @param int|null $paginateBy
      * @return Collection
      * @throws InvalidData
      */
-    public function get(?string $entityIdentifier, bool $requirePagination = false, ?int $paginateBy = 15): Collection
+    public function get(string $entityIdentifier = null): Collection
     {
         if ($this->requiresEntityUuid()) {
             $this->entityUuid = $entityIdentifier;
@@ -144,17 +142,41 @@ abstract class BaseRequest
             }
         }
 
-        $this->requiresPagination = $requirePagination;
+        return $this->send();
+    }
 
-        if ($this->requiresPagination) {
-            if ($this->defaultPaginateBy <= 0) {
-                throw InvalidData::invalidValuesProvided('Pagination cannot be 0 or a negative integer.');
-            }
+    /**
+     * @param array $payload
+     * @return $this
+     */
+    public function setPayload(array $payload): self
+    {
+        $this->payload = $payload;
+
+        return $this;
+    }
+
+    /**
+     * @param int $paginateBy
+     * @param int $pageNumber
+     * @return $this
+     * @throws InvalidData
+     */
+    public function paginate(int $paginateBy = 15, int $pageNumber = 1)
+    {
+        if ($paginateBy <= 0) {
+            throw InvalidData::invalidValuesProvided('Pagination cannot be 0 or a negative integer.');
         }
 
-        $this->defaultPaginateBy = $paginateBy;
+        if ($pageNumber <= 0) {
+            throw InvalidData::invalidValuesProvided('The current page selector cannot be 0 or a negative integer');
+        }
 
-        return $this->send();
+        $this->requiresPagination = true;
+        $this->paginateBy = $paginateBy;
+        $this->currentPage = $pageNumber;
+
+        return $this;
     }
 
     /**
@@ -168,11 +190,11 @@ abstract class BaseRequest
             $regex = '/({((?:[^{}]* | (?1))*)})/x';
 
             $endpoint = preg_replace($regex, $this->entityUuid, $endpoint);
-            return $endpoint .= $this->requiresPagination ? "/?per_page={$this->defaultPaginateBy}" : '';
+            return $endpoint;
         }
 
         if ($this->requiresPagination) {
-            return $endpoint .=  "/?per_page={$this->defaultPaginateBy}";
+            return $endpoint .= "/?per_page={$this->paginateBy}&page={$this->currentPage}";
         }
 
         return $endpoint;

@@ -20,11 +20,11 @@ $data = [
 ];
 
 $endpoint = new Create($client);
-$response = $endpoint->post($data);
+$response = $endpoint->setPayload($data)->post();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Webhooks\CreateWebhook;
-$response = CreateWebhook::post($data);
+$response = CreateWebhook::setPayload($data)->post();
 ```
 
 **Response**
@@ -64,11 +64,11 @@ $data = [
 ];
 
 $endpoint = new Update($client);
-$response = $endpoint->put('346575fc-fb0d-11e9-a4d2-0a586460022b', $data);
+$response = $endpoint->setPayload($data)->put('346575fc-fb0d-11e9-a4d2-0a586460022b');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Webhooks\UpdateWebhook;
-$response = UpdateWebhook::put('346575fc-fb0d-11e9-a4d2-0a586460022b', $data);
+$response = UpdateWebhook::setPayload($data)->put('346575fc-fb0d-11e9-a4d2-0a586460022b');
 ```
 
 **Response**
@@ -105,11 +105,11 @@ Retrieve a specific webhook.
 use \Digitonic\PassonaClient\Entities\Webhooks\Show;
 
 $endpoint = new Show($client);
-$response = $endpoint->get('491460ee-fb0d-11e9-a46c-0a586460022b', false, null);
+$response = $endpoint->get('491460ee-fb0d-11e9-a46c-0a586460022b');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Webhhoks\ShowWebhook;
-$response = ShowWebhook::get('491460ee-fb0d-11e9-a46c-0a586460022b', false, null);
+$response = ShowWebhook::get('491460ee-fb0d-11e9-a46c-0a586460022b');
 ```
 
 **Response**
@@ -170,11 +170,11 @@ Retrieve a paginated list of webhooks.
 use \Digitonic\PassonaClient\Entities\Webhooks\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->get(null, true, 20);
+$response = $endpoint->paginate(20, 1)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Webhooks\RetrieveWebhooks;
-$response = RetrieveWebhooks::get(null, true, 20);
+$response = RetrieveWebhooks::paginate(20, 1)->get();
 ```
 
 **Response**

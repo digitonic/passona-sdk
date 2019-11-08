@@ -37,13 +37,15 @@ class SyncGroupsTest extends BaseTestCase
 
         $usage = new SyncGroups($passonaApi);
 
-        $response = $usage->post([
+        $data = [
             'groups' => [
                 '3e70c8e0-fbd4-11e9-993f-0a586460024f',
                 '4a109a68-fbd4-11e9-a9aa-0a586460024f'
             ],
             'contact' => '447715898521'
-        ]);
+        ];
+
+        $response = $usage->setPayload($data)->post();
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(0, $response);
@@ -58,6 +60,6 @@ class SyncGroupsTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->post([]);
+        $usage->setPayload([])->post();
     }
 }

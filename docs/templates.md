@@ -29,11 +29,11 @@ $data = [
 ];
 
 $endpoint = new Create($client);
-$response = $endpoint->post($data);
+$response = $endpoint->setPayload($data)->post();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Templates\CreateTemplate;
-$response = CreateTemplate::post($data);
+$response = CreateTemplate::setPayload($data)->post();
 ```
 
 **Response**
@@ -76,11 +76,11 @@ $data = [
 ];
 
 $endpoint = new Update($client);
-$response = $endpoint->put('ae17d458-fa63-11e9-83fe-0a58646001fd', $data);
+$response = $endpoint->setPayload($data)->put('ae17d458-fa63-11e9-83fe-0a58646001fd');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Templates\UpdateTemplate;
-$response = UpdateTemplate::put('ae17d458-fa63-11e9-83fe-0a58646001fd', $data);
+$response = UpdateTemplate::setPayload($data)->put('ae17d458-fa63-11e9-83fe-0a58646001fd');
 ```
 
 **Response**
@@ -112,11 +112,11 @@ Retrieve a specific template.
 use \Digitonic\PassonaClient\Entities\Templates\Show;
 
 $endpoint = new Show($client);
-$response = $endpoint->get('ae17d458-fa63-11e9-83fe-0a58646001fd', false, null);
+$response = $endpoint->get('ae17d458-fa63-11e9-83fe-0a58646001fd');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Templates\ShowTemplate;
-$response = ShowTemplate::delete('ae17d458-fa63-11e9-83fe-0a58646001fd');
+$response = ShowTemplate::get('ae17d458-fa63-11e9-83fe-0a58646001fd');
 ```
 
 **Response**
@@ -173,11 +173,11 @@ Retrieve a paginated list of templates.
 use \Digitonic\PassonaClient\Entities\Templates\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->get(null, true, 20);
+$response = $endpoint->paginate(20, 1)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Templates\RetrieveTemplates;
-$response = RetrieveTemplates::get(null, true, 20);
+$response = RetrieveTemplates::paginate(20, 1)->get();
 ```
 
 **Response**
@@ -237,11 +237,11 @@ respective real counterparts.
 use \Digitonic\PassonaClient\Entities\Templates\Preview;
 
 $endpoint = new Preview($client);
-$response = $endpoint->get('bedf2e8a-f653-11e9-bcd4-0a58646002d9', false, null);
+$response = $endpoint->get('bedf2e8a-f653-11e9-bcd4-0a58646002d9');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\Templates\PreviewTemplate;
-$response = PreviewTemplate::get('bedf2e8a-f653-11e9-bcd4-0a58646002d9', false, null);
+$response = PreviewTemplate::get('bedf2e8a-f653-11e9-bcd4-0a58646002d9');
 ```
 
 **Response**

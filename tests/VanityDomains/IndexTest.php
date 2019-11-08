@@ -31,13 +31,13 @@ class IndexTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_retrieve_a_paginated_list_of_templates()
+    public function it_can_retrieve_a_paginated_list_of_vanity_domains()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
 
         $usage = new Index($passonaApi);
 
-        $response = $usage->get(null, true, 20);
+        $response = $usage->paginate(20)->get();
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(3, $response);

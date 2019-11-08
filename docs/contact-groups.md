@@ -18,11 +18,11 @@ $data = [
 ];
 
 $endpoint = new Create($client);
-$response = $endpoint->post($data);
+$response = $endpoint->setPayload($data)->post();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\ContactGroups\CreateContactGroup;
-$response = CreateContactGroup::post($data);
+$response = CreateContactGroup::setPayload($data)->post();
 ```
 
 **Response**
@@ -67,11 +67,11 @@ $data = [
 ];
 
 $endpoint = new Update($client);
-$response = $endpoint->put('dffcefc8-fa52-11e9-b179-0a58646001fa', $data);
+$response = $endpoint->setPayload($data)->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\ContactGroups\UpdateContactGroup;
-$response = UpdateContactGroup::put('dffcefc8-fa52-11e9-b179-0a58646001fa', $data);
+$response = UpdateContactGroup::setPayload($data)->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
 ```
 
 **Response**
@@ -115,7 +115,7 @@ $response = $endpoint->get('dffcefc8-fa52-11e9-b179-0a58646001fa');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\ContactGroups\ShowContactGroup;
-$response = ShowContactGroup::put('dffcefc8-fa52-11e9-b179-0a58646001fa', false, null);
+$response = ShowContactGroup::put('dffcefc8-fa52-11e9-b179-0a58646001fa');
 ```
 
 **Response**
@@ -183,11 +183,11 @@ Retrieve a paginated list of contact groups.
 use \Digitonic\PassonaClient\Entities\ContactGroups\Index;
 
 $endpoint = new Index($client);
-$response = $endpoint->get(null, true, 20);
+$response = $endpoint->paginate(20, 1)->get();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\ContactGroups\RetrieveContactGroups;
-$response = RetrieveContactGroups::get(null, true, 20);
+$response = RetrieveContactGroups::paginate(20, 1)->get();
 ```
 
 **Response**
@@ -283,11 +283,11 @@ $data = [
 ];
 
 $endpoint = new AddContacts($client);
-$response = $endpoint->put('dffcefc8-fa52-11e9-b179-0a58646001fa', $data);
+$response = $endpoint->setPayload($data)->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\ContactGroups\AddContactsToGroup;
-$response = AddContactsToGroup::put('dffcefc8-fa52-11e9-b179-0a58646001fa', $data);
+$response = AddContactsToGroup::setPayload($data)->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
 ```
 
 **Response**
@@ -336,11 +336,11 @@ $data = [
 
 
 $endpoint = new RemoveContacts($client);
-$response = $endpoint->put('dffcefc8-fa52-11e9-b179-0a58646001fa', $data);
+$response = $endpoint->setPayload($data)->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\ContactGroups\RemoveContactsFromGroup;
-$response = RemoveContactsFromGroup::put('dffcefc8-fa52-11e9-b179-0a58646001fa', $data);
+$response = RemoveContactsFromGroup::setPayload($data)->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
 ```
 
 **Response**
@@ -394,11 +394,11 @@ $data = [
 
 
 $endpoint = new UploadBulkContacts($client);
-$response = $endpoint->post($data);
+$response = $endpoint->setPayload($data)->post();
 
 // Laravel
 use \Digitonic\PassonaClient\Facades\ContactGroups\UploadBulkContactsGroup;
-$response = UploadBulkContactsGroup::post($data);
+$response = UploadBulkContactsGroup::setPayload($data)->post();
 ```
 
 **Response**

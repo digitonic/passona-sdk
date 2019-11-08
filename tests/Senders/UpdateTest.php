@@ -43,7 +43,7 @@ class UpdateTest extends BaseTestCase
 
         $usage = new Update($passonaApi);
 
-        $response = $usage->put($senderUuid, $data);
+        $response = $usage->setPayload($data)->put($senderUuid);
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertCount(1, $response);
@@ -60,7 +60,7 @@ class UpdateTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->put('', ['some' => 'data']);
+        $usage->setPayload(['some' => 'data'])->put('');
     }
 
     /** @test */
@@ -74,6 +74,6 @@ class UpdateTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->put($senderUuid, []);
+        $usage->setPayload([])->put($senderUuid);
     }
 }
