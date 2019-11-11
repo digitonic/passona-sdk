@@ -20,5 +20,5 @@ return [
     | This URL is used to configure the client for every request.
     |
     */
-    'passona_base_uri' => env('PASSONA_BASE_URI'),
+    'passona_base_uri' => env('PASSONA_BASE_URI', 'https://passona.co.uk/api/2.0'),
 ];
