@@ -6,6 +6,10 @@ The SDK for Passona, a campaign management platform by Digitonic.
 
 `composer require digitonic/passona-sdk`
 
+## Usage
+
+Please see the [documentation](https://digitonic.github.io/passona-sdk/#/) for details.
+
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
