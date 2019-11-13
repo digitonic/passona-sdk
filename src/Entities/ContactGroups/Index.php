@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\ContactGroups;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\CollectionRequest;
 
-class Index extends BaseRequest
+class Index extends CollectionRequest
 {
     const ENDPOINT = 'contact-groups/';
 

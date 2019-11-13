@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\Links;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\EntityRequest;
 
-class Create extends BaseRequest
+class Create extends EntityRequest
 {
     const ENDPOINT = 'links/';
 

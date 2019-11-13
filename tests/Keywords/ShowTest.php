@@ -23,7 +23,7 @@ class ShowTest extends BaseTestCase
         parent::setUp();
 
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"uuid":"cece8728-fa2c-11e9-832a-0a5864600210","keyword":"TestKeyword","message":"This is a test","status":"1","help":"Test Text","add_contact_to_group":true,"contact_groups_uuid":["f213fd72-f986-11e9-970f-0a58646001df"],"call_webhook":false,"webhooks_uuid":[],"links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/keywords\/cece8728-fa2c-11e9-832a-0a5864600210"}]}}')
+            new Response(200, [], '{"238":{"uuid":"cece8728-fa2c-11e9-832a-0a5864600210","keyword":"TestKeyword","message":"This is a test","status":"1","help":"Test Text","add_contact_to_group":true,"contact_groups_uuid":["f213fd72-f986-11e9-970f-0a58646001df"],"call_webhook":false,"webhooks_uuid":[],"links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/keywords\/cece8728-fa2c-11e9-832a-0a5864600210"}]}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -42,9 +42,8 @@ class ShowTest extends BaseTestCase
 
         $response = $usage->get($keywordUuid);
 
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(1, $response);
-        $this->assertEquals($keywordUuid, $response['data']->uuid);
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($keywordUuid, $response->uuid);
 
     }
 

@@ -40,7 +40,6 @@ class DeleteTest extends BaseTestCase
         $response = $usage->delete('5662af3c-f70f-11e9-24ad-0a5864600e04');
 
         $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(0, $response);
     }
 
     /** @test */

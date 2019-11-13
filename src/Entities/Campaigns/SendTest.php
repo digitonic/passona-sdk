@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\Campaigns;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\EntityRequest;
 
-class SendTest extends BaseRequest
+class SendTest extends EntityRequest
 {
     const ENDPOINT = 'campaigns/send-test';
 

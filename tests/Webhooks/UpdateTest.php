@@ -22,7 +22,7 @@ class UpdateTest extends BaseTestCase
     {
         parent::setUp();
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"name":"Updated Webhook","uuid":"491460ee-fb0d-11e9-a46c-0a586460022b","url":"https:\/\/digitonic.co.uk\/webhook","headers":{"Content-Type":"application\/json"},"links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/webhooks\/491460ee-fb0d-11e9-a46c-0a586460022b"}]}}')
+            new Response(200, [], '{"238":{"name":"Updated Webhook","uuid":"491460ee-fb0d-11e9-a46c-0a586460022b","url":"https:\/\/digitonic.co.uk\/webhook","headers":{"Content-Type":"application\/json"},"links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/webhooks\/491460ee-fb0d-11e9-a46c-0a586460022b"}]}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -45,9 +45,8 @@ class UpdateTest extends BaseTestCase
 
         $response = $usage->setPayload($data)->put('491460ee-fb0d-11e9-a46c-0a586460022b');
 
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(1, $response);
-        $this->assertEquals($data['name'], $response['data']->name);
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($data['name'], $response->name);
     }
 
     /** @test */

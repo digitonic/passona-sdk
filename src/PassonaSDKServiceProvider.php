@@ -36,7 +36,6 @@ class PassonaSDKServiceProvider extends ServiceProvider
                 'headers' => [
                     'Accept' => 'application/json',
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer ' . $config['passona_api_key']
                 ],
             ]);
             return new \Digitonic\PassonaClient\Client($guzzle);

@@ -47,20 +47,30 @@ abstract class BaseRequest
     protected $requiresPagination = false;
 
     /**
+     * @var array
+     */
+    protected $headers = [];
+
+    /**
      * BaseRequest constructor.
      * @param Passona $api
      */
     public function __construct(Passona $api)
     {
         $this->api = $api;
+        $config = config('passona-sdk');
+
+        $this->headers = [
+            'Authorization' => 'Bearer ' . $config['passona_api_key']
+        ];
     }
 
     /**
-     * @return Collection
+     * @return Collection|\stdClass
      */
-    public function send(): Collection
+    public function send()
     {
-        $request = new Request($this->method, $this->buildEndpoint(), [], json_encode($this->payload));
+        $request = new Request($this->method, $this->buildEndpoint(), $this->headers, json_encode($this->payload));
 
         $response = $this->api->send($request);
 
@@ -68,10 +78,10 @@ abstract class BaseRequest
     }
 
     /**
-     * @return Collection
+     * @return \stdClass
      * @throws InvalidData
      */
-    public function post(): Collection
+    public function post(): \stdClass
     {
         $this->method = 'POST';
 
@@ -84,10 +94,10 @@ abstract class BaseRequest
 
     /**
      * @param string $entityIdentifier
-     * @return Collection
+     * @return \stdClass
      * @throws InvalidData
      */
-    public function put(string $entityIdentifier): Collection
+    public function put(string $entityIdentifier): \stdClass
     {
         $this->method = 'PUT';
 
@@ -127,10 +137,10 @@ abstract class BaseRequest
 
     /**
      * @param string|null $entityIdentifier
-     * @return Collection
+     * @return Collection|\stdClass
      * @throws InvalidData
      */
-    public function get(string $entityIdentifier = null): Collection
+    public function get(string $entityIdentifier = null)
     {
         if ($this->requiresEntityUuid()) {
             $this->entityUuid = $entityIdentifier;
@@ -162,7 +172,7 @@ abstract class BaseRequest
      * @return $this
      * @throws InvalidData
      */
-    public function paginate(int $paginateBy = 15, int $pageNumber = 1)
+    public function paginate(int $paginateBy = 15, int $pageNumber = 1): self
     {
         if ($paginateBy <= 0) {
             throw InvalidData::invalidValuesProvided('Pagination cannot be 0 or a negative integer.');
@@ -198,6 +208,16 @@ abstract class BaseRequest
         }
 
         return $endpoint;
+    }
+
+    /**
+     * @param array $headers
+     * @return $this
+     */
+    public function setHeaders(array $headers)
+    {
+        $this->headers = $headers;
+        return $this;
     }
 
     /**

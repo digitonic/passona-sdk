@@ -23,7 +23,7 @@ class RemoveContactsFromGroupTest extends BaseTestCase
         parent::setUp();
 
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"uuid":"f1bdee3e-f704-11e9-95bd-0a58646001ae","name":"SDK Group Updated","description":"Created from the SDK.","created_at":"2019-10-25 09:53:41","updated_at":"2019-10-28 11:48:47","deletable":true,"number_of_contacts":1,"scheduled_jobs_number":1,"status":"Modifying","headers":[],"links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/contact-groups\/f1bdee3e-f704-11e9-95bd-0a58646001ae"}]}}')
+            new Response(200, [], '{"238":{"uuid":"f1bdee3e-f704-11e9-95bd-0a58646001ae","name":"SDK Group Updated","description":"Created from the SDK.","created_at":"2019-10-25 09:53:41","updated_at":"2019-10-28 11:48:47","deletable":true,"number_of_contacts":1,"scheduled_jobs_number":1,"status":"Modifying","headers":[],"links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/contact-groups\/f1bdee3e-f704-11e9-95bd-0a58646001ae"}]}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -31,7 +31,7 @@ class RemoveContactsFromGroupTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_add_a_contact_to_a_contact_group()
+    public function it_can_remove_a_contact_to_a_contact_group()
     {
         $groupUuid = 'f1bdee3e-f704-11e9-95bd-0a58646001ae';
 
@@ -47,9 +47,8 @@ class RemoveContactsFromGroupTest extends BaseTestCase
 
         $response = $usage->setPayload($data)->put($groupUuid);
 
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(1, $response);
-        $this->assertEquals($groupUuid, $response['data']->uuid);
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($groupUuid, $response->uuid);
     }
 
     /** @test */

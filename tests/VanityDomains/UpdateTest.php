@@ -22,7 +22,7 @@ class UpdateTest extends BaseTestCase
     {
         parent::setUp();
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"uuid":"7ba996f0-fb03-11e9-b29e-0a586460022b","domain":"https:\/\/vaniup.io","dns_status":"Pending Validation","nameservers":"[]","status":"1","created_at":"2019-10-30 10:53:18","updated_at":"2019-10-30 10:55:43","zone_id":"","links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/vanity-domains\/7ba996f0-fb03-11e9-b29e-0a586460022b"}]}}')
+            new Response(200, [], '{"data":{"238":"7ba996f0-fb03-11e9-b29e-0a586460022b","domain":"https:\/\/vaniup.io","dns_status":"Pending Validation","nameservers":"[]","status":"1","created_at":"2019-10-30 10:53:18","updated_at":"2019-10-30 10:55:43","zone_id":"","links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/vanity-domains\/7ba996f0-fb03-11e9-b29e-0a586460022b"}]}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -43,9 +43,8 @@ class UpdateTest extends BaseTestCase
 
         $response = $usage->setPayload($data)->put('7ba996f0-fb03-11e9-b29e-0a586460022b');
 
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(1, $response);
-        $this->assertEquals($data['domain'], $response['data']->domain);
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($data['domain'], $response->domain);
     }
 
     /** @test */

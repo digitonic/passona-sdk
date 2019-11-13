@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\Campaigns;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\EntityRequest;
 
-class Update extends BaseRequest
+class Update extends EntityRequest
 {
     const ENDPOINT = 'campaigns/{campaignUuid}';
 

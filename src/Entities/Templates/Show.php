@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\Templates;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\EntityRequest;
 
-class Show extends BaseRequest
+class Show extends EntityRequest
 {
     const ENDPOINT = 'templates/{templateUuid}';
 

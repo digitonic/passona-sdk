@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\ContactGroups;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\EntityRequest;
 
-class RemoveContacts extends BaseRequest
+class RemoveContacts extends EntityRequest
 {
     const ENDPOINT = 'contact-groups/{contactGroupUuid}/remove-contacts';
 

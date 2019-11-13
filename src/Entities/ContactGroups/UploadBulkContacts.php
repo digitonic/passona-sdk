@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\ContactGroups;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\EntityRequest;
 
-class UploadBulkContacts extends BaseRequest
+class UploadBulkContacts extends EntityRequest
 {
     const ENDPOINT = 'contact-groups/bulk-contacts';
 

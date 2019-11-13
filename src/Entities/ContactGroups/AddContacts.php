@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\ContactGroups;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\EntityRequest;
 
-class AddContacts extends BaseRequest
+class AddContacts extends EntityRequest
 {
     const ENDPOINT = 'contact-groups/{contactGroupUuid}/add-contacts';
 

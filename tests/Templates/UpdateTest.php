@@ -22,7 +22,7 @@ class UpdateTest extends BaseTestCase
     {
         parent::setUp();
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"uuid":"96dc25e4-f709-11e9-967a-0a58646001ac","name":"SDK Template Updated","body":"This template has been updated from the SDK","links":[],"is_locked":false,"sender":"SDK-Sender","created_at":"2019-10-25 10:26:56","updated_at":"2019-10-25 16:37:53"}}')
+            new Response(200, [], '{"238":{"uuid":"96dc25e4-f709-11e9-967a-0a58646001ac","name":"SDK Template Updated","body":"This template has been updated from the SDK","links":[],"is_locked":false,"sender":"SDK-Sender","created_at":"2019-10-25 10:26:56","updated_at":"2019-10-25 16:37:53"}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -43,10 +43,9 @@ class UpdateTest extends BaseTestCase
 
         $response = $usage->setPayload($data)->put('96dc25e4-f709-11e9-967a-0a58646001ac');
 
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(1, $response);
-        $this->assertEquals($data['name'], $response['data']->name);
-        $this->assertEquals($data['body'], $response['data']->body);
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($data['name'], $response->name);
+        $this->assertEquals($data['body'], $response->body);
     }
 
     /** @test */
@@ -75,6 +74,6 @@ class UpdateTest extends BaseTestCase
 
         $this->expectException(InvalidData::class);
         $this->expectExceptionCode(422);
-        $usage->put('bedf2e8a-f653-11e9-bcd4-0a58646002d9', []);
+        $usage->setPayload([])->put('bedf2e8a-f653-11e9-bcd4-0a58646002d9');
     }
 }
