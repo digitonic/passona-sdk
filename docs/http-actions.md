@@ -3,6 +3,20 @@
 The SDK supports typical http verbs such as `GET`, `POST`, `PUT` and `DELETE`. However to allow for flexibility some of these will
 take extra parameters depending on what you wish to do with them. This is explained below.
 
+## Headers
+By default the SDK will use the API key that is set in the env of your project or as is provided when it is instantiated.
+
+However if you wish to utilize multiple API keys then you can set the headers on the fly when you create the request, as demonstrated below.
+
+```php
+use Digitonic\PassonaClient\Facades\Campaigns\CreateCampaign;
+
+CreateCampaign::setHeaders([
+    'Authorization' => 'Bearer EiVNqFMZmqTFEgLS0hsLBlZLXQ2309nXSnskD8ttKRtr1UQ1qweifVHK6kcn'
+    ])->setPayload($data)->post();
+```
+By doing this you are free to swap keys in and out as you wish. If the `setHeaders()` method is not called, the default API key provided in the env will be used instead.
+
 ## Explanation
 
 ## GET
