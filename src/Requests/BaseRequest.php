@@ -4,8 +4,11 @@ namespace Digitonic\PassonaClient\Requests;
 
 use Digitonic\PassonaClient\Contracts\Passona;
 use Digitonic\PassonaClient\Exceptions\InvalidData;
+use Digitonic\PassonaClient\Exceptions\UndefinedMethodException;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use mysql_xdevapi\Exception;
 
 abstract class BaseRequest
 {
@@ -50,6 +53,8 @@ abstract class BaseRequest
      * @var array
      */
     protected $headers = [];
+
+    protected $attributes = [];
 
     /**
      * BaseRequest constructor.
@@ -229,4 +234,17 @@ abstract class BaseRequest
      * @return bool
      */
     abstract protected function requiresEntityUuid(): bool;
+
+    public function __call($method, $parameters)
+    {
+        $attribute = Str::snake(str_replace('set', '', $method));
+
+        if (!in_array($attribute, array_keys($this->attributes))){
+            throw new UndefinedMethodException('Call to undefined method '. self::class.'::'. $method.'()');
+        }
+
+        $this->payload[$attribute] = $parameters[0];
+
+        return $this;
+    }
 }

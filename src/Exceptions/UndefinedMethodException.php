@@ -2,7 +2,7 @@
 
 namespace Digitonic\PassonaClient\Exceptions;
 
-class UndefinedMethodException
+class UndefinedMethodException extends \Exception
 {
 
 }
