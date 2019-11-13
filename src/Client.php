@@ -7,6 +7,7 @@ use Digitonic\PassonaClient\Exceptions\InvalidData;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -16,6 +17,7 @@ class Client implements Passona
      * @var Guzzle
      */
     private $client = null;
+    private $bearerToken;
 
     /**
      * Client constructor.
@@ -33,12 +35,41 @@ class Client implements Passona
      */
     public function send(RequestInterface $request): ResponseInterface
     {
+        $this->updateBearerToken($request);
+
         try {
             return $this->client->send($request);
         } catch (ClientException $e) {
             throw new InvalidData($e->getMessage());
         } catch (GuzzleException $e) {
             throw new InvalidData($e->getMessage());
+        }
+    }
+
+    /**
+     * @param array $bearerToken
+     * @return $this
+     */
+    public function setBearerToken(string $bearerToken)
+    {
+        $this->bearerToken = $bearerToken;
+        return $this;
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @return Request|RequestInterface
+     */
+    private function updateBearerToken(RequestInterface &$request)
+    {
+        if ($this->bearerToken) {
+            $request = new Request(
+                $request->getMethod(),
+                $request->getUri(),
+                array_merge($request->getHeaders(), ['Authorization' => ['Bearer ' . $this->bearerToken]]),
+                $request->getBody(),
+                $request->getProtocolVersion()
+            );
         }
     }
 }
