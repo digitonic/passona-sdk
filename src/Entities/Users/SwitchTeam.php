@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitonic\PassonaClient\Entities\Users;
+namespace Digitonic\PassonaClient\Entities\Contacts;
 
 use Digitonic\PassonaClient\Requests\EntityRequest;
 
