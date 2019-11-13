@@ -9,7 +9,6 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Client;
-use Illuminate\Support\Collection;
 
 /**
  * @property MockHandler mock
@@ -46,9 +45,7 @@ class SyncGroupsTest extends BaseTestCase
         ];
 
         $response = $usage->setPayload($data)->post();
-
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(0, $response);
+        $this->assertEquals($response->count(), 0);
     }
 
     /** @test */

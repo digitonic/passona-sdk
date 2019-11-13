@@ -78,10 +78,10 @@ abstract class BaseRequest
     }
 
     /**
-     * @return \stdClass
+     * @return Collection|\stdClass
      * @throws InvalidData
      */
-    public function post(): \stdClass
+    public function post()
     {
         $this->method = 'POST';
 
@@ -94,10 +94,10 @@ abstract class BaseRequest
 
     /**
      * @param string $entityIdentifier
-     * @return \stdClass
+     * @return Collection|\stdClass
      * @throws InvalidData
      */
-    public function put(string $entityIdentifier): \stdClass
+    public function put(string $entityIdentifier)
     {
         $this->method = 'PUT';
 
