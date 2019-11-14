@@ -60,6 +60,34 @@ class SendTestTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_create_a_test_campaign_with_one_contact_using_setters()
+    {
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new SendTest($passonaApi);
+
+        $name = "Campaign Test Send";
+        $sender = 'Digitonic';
+        $uuid = '79b56ffa-f972-11e9-af8c-0a58646001df';
+        $usage
+            ->setName($name)
+            ->setSender($sender)
+            ->setContactNumber('447758412549')
+            ->setCustomFields([
+                'first_name' => 'John',
+                'last_name' => 'Doe'
+            ])
+            ->setTemplateUuid($uuid);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($sender, $response->sender);
+        $this->assertEquals($uuid, $response->template_uuid);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_payload_is_missing()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);

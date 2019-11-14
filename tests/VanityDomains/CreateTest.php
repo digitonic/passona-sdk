@@ -49,6 +49,23 @@ class CreateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_create_a_vanity_domain_in_passona_with_setters()
+    {
+        $domain = 'https://vani.io';
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Create($passonaApi);
+        $usage->setDomain($domain);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($domain, $response->domain);
+    }
+
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_payload_is_missing()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);

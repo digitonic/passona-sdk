@@ -36,6 +36,21 @@ use \Digitonic\PassonaClient\Facades\Links\CreateLink;
 $response = CreateLink::setPayload($data)->post();
 ```
 
+or use the built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\Links\Create;
+
+$endpoint = new Create($client);
+$endpoint
+    ->setVanityDomainUuid('4d47ca82-f63c-11e9-a674-0a58646002d8')
+    ->setTemplateUuid('ae17d458-fa63-11e9-83fe-0a58646001fd')
+    ->setName('New Link')
+    ->setDestination('https://digitonic.co.uk');
+
+$response = $endpoint->post();
+```
+
 **Response**
 
 ```php
@@ -75,6 +90,21 @@ $response = $endpoint->setPayload($data)->put('e8cbe94a-faf4-11e9-96cc-0a5864600
 use \Digitonic\PassonaClient\Facades\Links\UpdateLink;
 $response = UpdateLink::setPayload($data)->put('e8cbe94a-faf4-11e9-96cc-0a5864600115');
 ```
+
+or use the built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\Links\Update;
+
+$endpoint = new Update($client);
+$endpoint
+    ->setName('New Link Updated')
+    ->setDestination('https://digitonic.co.uk/update');
+];
+
+$response = $endpoint->put('e8cbe94a-faf4-11e9-96cc-0a5864600115');
+```
+
 
 **Response**
 

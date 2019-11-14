@@ -50,6 +50,25 @@ class CreateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_create_a_contact_group_in_passona_with_setters()
+    {
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Create($passonaApi);
+        $name = 'SDK Contact Group';
+        $description = "Created from the SDK";
+        $usage->setName($name)
+            ->setDescription($description);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($description, $response->description);
+    }
+
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_payload_is_missing()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);

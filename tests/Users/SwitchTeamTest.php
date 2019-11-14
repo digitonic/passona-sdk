@@ -5,11 +5,10 @@ namespace Digitonic\PassonaClient\Tests\Users;
 use Digitonic\PassonaClient\Entities\Users\SwitchTeam;
 use Digitonic\PassonaClient\Exceptions\InvalidData;
 use Digitonic\PassonaClient\Tests\BaseTestCase;
+use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Client;
-use Illuminate\Support\Collection;
 
 
 /**

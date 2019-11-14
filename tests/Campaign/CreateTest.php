@@ -67,4 +67,25 @@ class CreateTest extends BaseTestCase
         $this->expectExceptionCode(422);
         $usage->setPayload([])->post();
     }
+
+    /** @test */
+    public function can_use_setters_for_payload()
+    {
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Create($passonaApi);
+        $uuid = "cadf2e2a-f241-11e9-bcd4-0a58646002d9";
+        $usage->setName("SDK MADE")
+            ->setSender('Digitonic')
+            ->setScheduledSendDate("2019-11-25 15:25:05")
+            ->setExpiryDate('2019-12-26 15:25:05')
+            ->setIncludedContactGroups(["ab8e21ac-f653-11e9-93bb-1b16546002d9"])
+            ->setExcludedContactGroups(["4dbbc66c-f63c-11e9-b532-0a58646002d8"])
+            ->setTemplateUuid($uuid);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($uuid, $response->template_uuid);
+    }
 }

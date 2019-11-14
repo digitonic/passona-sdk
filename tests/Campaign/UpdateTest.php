@@ -50,6 +50,24 @@ class UpdateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_update_an_existing_campaign_with_setters()
+    {
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Update($passonaApi);
+        $name = 'Update SDK';
+        $uuid = 'afc52e8a-f653-12a2-bcd4-0a58646002d9';
+        $usage->setName($name)
+            ->setTemplateUuid($uuid);
+
+        $response = $usage->put('bedf2e8a-f653-11e9-bcd4-0a58646002d9');
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($uuid, $response->template_uuid);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_campaign_uuid_is_missing()
     {
         $data = [

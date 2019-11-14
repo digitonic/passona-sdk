@@ -53,6 +53,28 @@ class CreateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_create_a_template_in_passona_with_setters()
+    {
+        $name = 'SDK Template';
+        $body = 'This is a template created from the SDK';
+        $sender = 'SDK-Sender';
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Create($passonaApi);
+        $usage->setName($name)
+            ->setBody($body)
+            ->setSender($sender);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($body, $response->body);
+        $this->assertEquals($sender, $response->sender);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_payload_is_missing()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);

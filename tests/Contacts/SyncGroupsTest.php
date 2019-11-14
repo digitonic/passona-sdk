@@ -1,14 +1,14 @@
 <?php
 
-namespace Digitonic\PassonaClient\Tests\Users;
+namespace Digitonic\PassonaClient\Tests\Contacts;
 
-use Digitonic\PassonaClient\Entities\Users\SyncGroups;
+use Digitonic\PassonaClient\Entities\Contacts\SyncGroups;
 use Digitonic\PassonaClient\Exceptions\InvalidData;
 use Digitonic\PassonaClient\Tests\BaseTestCase;
+use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Client;
 
 /**
  * @property MockHandler mock
@@ -45,6 +45,26 @@ class SyncGroupsTest extends BaseTestCase
         ];
 
         $response = $usage->setPayload($data)->post();
+        $this->assertEquals($response->count(), 0);
+    }
+
+    /** @test */
+    public function it_can_sync_a_contact_to_a_contact_group_with_setters()
+    {
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new SyncGroups($passonaApi);
+
+        $groups = [
+            '3e70c8e0-fbd4-11e9-993f-0a586460024f',
+            '4a109a68-fbd4-11e9-a9aa-0a586460024f'
+        ];
+        $contact = '447715898521';
+
+        $usage->setGroups($groups)
+            ->setContact($contact);
+
+        $response = $usage->post();
         $this->assertEquals($response->count(), 0);
     }
 

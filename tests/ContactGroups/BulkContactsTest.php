@@ -54,6 +54,29 @@ class BulkContactsTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_create_a_contact_group_and_add_contacts_to_it_with_setters()
+    {
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new UploadBulkContacts($passonaApi);
+
+        $name = 'Bulk Contact Group';
+        $description = 'A Bulk contact group.';
+        $usage->setName($name)
+            ->setDescription($description)
+            ->setContacts([
+                '447712547874',
+                '447758521519'
+            ]);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($description, $response->description);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_payload_is_missing()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);

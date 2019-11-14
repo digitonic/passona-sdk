@@ -48,6 +48,22 @@ class CreateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_create_a_sender_in_passona_with_setters()
+    {
+        $sender = 'NewSend';
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Create($passonaApi);
+        $usage->setSender($sender);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($sender, $response->sender);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_payload_is_missing()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);

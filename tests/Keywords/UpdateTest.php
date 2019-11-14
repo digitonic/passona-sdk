@@ -2,14 +2,13 @@
 
 namespace Digitonic\PassonaClient\Tests\Keywords;
 
-use Digitonic\PassonaClient\Entities\ContactGroups\Update;
+use Digitonic\PassonaClient\Entities\Keywords\Update;
 use Digitonic\PassonaClient\Exceptions\InvalidData;
 use Digitonic\PassonaClient\Tests\BaseTestCase;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Client;
-use Illuminate\Support\Collection;
 
 /**
  * @property MockHandler mock
@@ -48,6 +47,28 @@ class UpdateTest extends BaseTestCase
         $this->assertEquals($data['keyword'], $response->keyword);
         $this->assertEquals($data['message'], $response->message);
         $this->assertEquals($data['help'], $response->help);
+    }
+
+    /** @test */
+    public function it_can_update_an_existing_keyword_with_setters()
+    {
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Update($passonaApi);
+        $keyword = 'TestKeywordUpdated';
+        $message = 'This is an update';
+        $help = 'Update Text';
+
+        $usage->setKeyword($keyword)
+            ->setMessage($message)
+            ->setHelp($help);
+
+        $response = $usage->put('cece8728-fa2c-11e9-832a-0a5864600210');
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($keyword, $response->keyword);
+        $this->assertEquals($message, $response->message);
+        $this->assertEquals($help, $response->help);
     }
 
     /** @test */

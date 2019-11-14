@@ -52,6 +52,24 @@ class RemoveContactsFromGroupTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_remove_a_contact_to_a_contact_group_with_setters()
+    {
+        $groupUuid = 'f1bdee3e-f704-11e9-95bd-0a58646001ae';
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new RemoveContacts($passonaApi);
+        $usage->setPhoneNumbers([
+            '447751256582'
+        ]);
+
+        $response = $usage->put($groupUuid);
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($groupUuid, $response->uuid);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_identifier_is_missing()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);

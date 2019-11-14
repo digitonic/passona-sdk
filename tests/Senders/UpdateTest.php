@@ -51,6 +51,25 @@ class UpdateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_create_a_sender_in_passona_with_setters()
+    {
+        $senderUuid = 'c611e89e-fa6a-11e9-b302-0a5864600225';
+
+        $sender = 'NewSendUp';
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Update($passonaApi);
+        $usage->setSender($sender);
+
+        $response = $usage->put($senderUuid);
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($senderUuid, $response->uuid);
+        $this->assertEquals($sender, $response->sender);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_sender_uuid_is_missing()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);

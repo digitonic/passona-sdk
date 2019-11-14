@@ -49,6 +49,24 @@ class UpdateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_update_an_existing_link_with_setters()
+    {
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Update($passonaApi);
+        $name = 'New Link Updated';
+        $destination = 'https://digitonic.co.uk/update';
+        $usage->setName($name)
+            ->setDestination($destination);
+
+        $response = $usage->put('85f7b244-faf5-11e9-a5d9-0a5864600115');
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($destination, $response->destination);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_link_uuid_is_missing()
     {
         $data = [

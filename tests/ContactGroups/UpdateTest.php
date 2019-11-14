@@ -47,6 +47,22 @@ class UpdateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_update_an_existing_contact_group_with_setters()
+    {
+        $name ='SDK Group Updated';
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Update($passonaApi);
+        $usage->setName($name);
+
+        $response = $usage->put('bedf2e8a-f653-11e9-bcd4-0a58646002d9');
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_campaign_uuid_is_missing()
     {
         $data = [

@@ -32,6 +32,25 @@ use \Digitonic\PassonaClient\Facades\Keywords\CreateKeyword;
 $response = CreateKeyword::setPayload($data)->post();
 ```
 
+or use built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\Keywords\Create;
+
+$endpoint = new Create($client);
+$endpoint
+    ->setKeyword('OPTOUT')
+    ->setMessage('Optout example.')
+    ->setHelp('Optout tooltip text.')
+    ->setAddContactToGroup(true)
+    ->setCallWebhook(true)
+    ->setContactGroupsUuid(['c9caf71c-fa58-11e9-b486-0a58646001fa'])
+    ->setWebhooksUuid(['4db7d890-f63c-11e9-afc6-0a58646002d8']);
+
+$response = $endpoint->post();
+```
+
+
 **Response**
 
 ```php
@@ -86,6 +105,23 @@ $response = $endpoint->setPayload($data)->put('a6589912-fa42-11e9-80c5-0a5864600
 use \Digitonic\PassonaClient\Facades\Keywords\UpdateKeyword;
 $response = UpdateKeyword::setPayload($data)->put('a6589912-fa42-11e9-80c5-0a58646001fa');
 ```
+
+or use built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\Keywords\Update;
+
+$endpoint = new Update($client);
+$endpoint
+    ->setKeyword('OPTOUT')
+    ->setMessage('Optout example updated.')
+    ->setHelp('Optout tooltip text.')
+    ->setCallWebhook(true)
+    ->setWebhooksUuid(['4db7d890-f63c-11e9-afc6-0a58646002d8']);
+
+$response = $endpoint->put('a6589912-fa42-11e9-80c5-0a58646001fa');
+```
+
 
 **Response**
 

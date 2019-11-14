@@ -36,6 +36,21 @@ use \Digitonic\PassonaClient\Facades\Templates\CreateTemplate;
 $response = CreateTemplate::setPayload($data)->post();
 ```
 
+or use the buit-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\Templates\Create;
+
+$endpoint = new Create($client);
+$endpoint
+    ->setName('New Template')
+    ->setBody('This is the content with a ::LINK:: OPTOUT')
+    ->setSender('Digitonic');
+
+$response = $endpoint->post();
+```
+
+
 **Response**
 
 ```php
@@ -82,6 +97,21 @@ $response = $endpoint->setPayload($data)->put('ae17d458-fa63-11e9-83fe-0a5864600
 use \Digitonic\PassonaClient\Facades\Templates\UpdateTemplate;
 $response = UpdateTemplate::setPayload($data)->put('ae17d458-fa63-11e9-83fe-0a58646001fd');
 ```
+
+or use the built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\Templates\Update;
+
+$endpoint = new Update($client);
+$endpoint
+    ->setName('New Template')
+    ->setBody('This is the updated body content with a ::LINK:: OPTOUT')
+    ->setSender('Digitonic');
+
+$response = $endpoint->put('ae17d458-fa63-11e9-83fe-0a58646001fd');
+```
+
 
 **Response**
 

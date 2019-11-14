@@ -54,6 +54,30 @@ class CreateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_create_a_webhook_in_passonad_with_setters()
+    {
+        $name = 'New Webhook';
+        $url = 'https://digitonic.co.uk/webhook';
+        $headers = [
+            'Accept' => 'application/json'
+        ];
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Create($passonaApi);
+        $usage->setHeaders($headers)
+            ->setUrl($url)
+            ->setName($name);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($url, $response->url);
+    }
+
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_payload_is_missing()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);

@@ -49,6 +49,25 @@ class UpdateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_update_an_existing_template_with_setters()
+    {
+        $name = 'SDK Template Updated';
+        $body = 'This template has been updated from the SDK';
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Update($passonaApi);
+        $usage->setName($name)
+            ->setBody($body);
+
+        $response = $usage->put('96dc25e4-f709-11e9-967a-0a58646001ac');
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($body, $response->body);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_template_uuid_is_missing()
     {
         $data = [

@@ -34,7 +34,6 @@ class UpdateTest extends BaseTestCase
     {
         $data = [
             'domain' => 'https://vaniup.io'
-
         ];
 
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
@@ -45,6 +44,22 @@ class UpdateTest extends BaseTestCase
 
         $this->assertInstanceOf(\stdClass::class, $response);
         $this->assertEquals($data['domain'], $response->domain);
+    }
+
+    /** @test */
+    public function it_can_update_an_existing_vanity_domain_with_setters()
+    {
+        $domain = 'https://vaniup.io';
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Update($passonaApi);
+        $usage->setDomain($domain);
+
+        $response = $usage->put('7ba996f0-fb03-11e9-b29e-0a586460022b');
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($domain, $response->domain);
     }
 
     /** @test */

@@ -55,6 +55,26 @@ class CreateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_create_a_link_via_post_with_setters()
+    {
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Create($passonaApi);
+        $name = 'New Link';
+        $destination = 'https://digitonic.co.uk';
+        $usage->setVanityDomainUuid('4d47ca82-f63c-11e9-a674-0a58646002d8')
+            ->setTemplateUuid('ae17d458-fa63-11e9-83fe-0a58646001fd')
+            ->setName($name)
+            ->setDestination($destination);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($destination, $response->destination);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_payload_is_missing()
     {
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);

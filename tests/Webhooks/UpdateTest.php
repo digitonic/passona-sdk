@@ -50,6 +50,27 @@ class UpdateTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_update_an_existing_webhooks_with_setters()
+    {
+        $name = 'Updated Webhook';
+        $headers = [
+            'Content-Type' => 'application/json'
+        ];
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Update($passonaApi);
+        $usage->setName($name)
+            ->setHeaders($headers);
+
+        $response = $usage->put('491460ee-fb0d-11e9-a46c-0a586460022b');
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+    }
+
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_webhook_uuid_is_missing()
     {
         $data = [

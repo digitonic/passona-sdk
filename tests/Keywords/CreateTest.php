@@ -9,7 +9,6 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Client;
-use Illuminate\Support\Collection;
 
 /**
  * @property MockHandler mock
@@ -44,7 +43,6 @@ class CreateTest extends BaseTestCase
             'contact_groups_uuid' => ['f213fd72-f986-11e9-970f-0a58646001df']
         ];
 
-
         $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
 
         $usage = new Create($passonaApi);
@@ -54,6 +52,29 @@ class CreateTest extends BaseTestCase
         $this->assertInstanceOf(\stdClass::class, $response);
         $this->assertEquals($data['keyword'], $response->keyword);
         $this->assertEquals($data['add_contact_to_group'], $response->add_contact_to_group);
+    }
+
+    /** @test */
+    public function it_can_create_a_keyword_via_post_with_setters()
+    {
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Create($passonaApi);
+        $keyword = 'TestKeyword';
+        $message = 'This is a test';
+        $usage->setKeyword($keyword)
+            ->setMessage($message)
+            ->setHelp('Test Text')
+            ->setAddContactToGroup(true)
+            ->setCallWebhook(false)
+            ->setContactGroupsUuid(['f213fd72-f986-11e9-970f-0a58646001df']);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($keyword, $response->keyword);
+        $this->assertEquals($message, $response->message);
+        $this->assertEquals(true, $response->add_contact_to_group);
     }
 
     /** @test */
