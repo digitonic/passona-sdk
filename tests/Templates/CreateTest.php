@@ -23,7 +23,7 @@ class CreateTest extends BaseTestCase
         parent::setUp();
 
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"uuid":"96dc25e4-f709-11e9-967a-0a58646001ac","name":"SDK Template","body":"This is a template created from the SDK","links":[],"is_locked":false,"sender":"SDK-Sender","created_at":"2019-10-25 10:26:56","updated_at":"2019-10-25 10:26:56"}}')
+            new Response(200, [], '{"238":{"uuid":"96dc25e4-f709-11e9-967a-0a58646001ac","name":"SDK Template","body":"This is a template created from the SDK","links":[],"is_locked":false,"sender":"SDK-Sender","created_at":"2019-10-25 10:26:56","updated_at":"2019-10-25 10:26:56"}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -46,11 +46,32 @@ class CreateTest extends BaseTestCase
 
         $response = $usage->setPayload($data)->post();
 
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(1, $response);
-        $this->assertEquals($data['name'], $response['data']->name);
-        $this->assertEquals($data['body'], $response['data']->body);
-        $this->assertEquals($data['sender'], $response['data']->sender);
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($data['name'], $response->name);
+        $this->assertEquals($data['body'], $response->body);
+        $this->assertEquals($data['sender'], $response->sender);
+    }
+
+    /** @test */
+    public function it_can_create_a_template_in_passona_with_setters()
+    {
+        $name = 'SDK Template';
+        $body = 'This is a template created from the SDK';
+        $sender = 'SDK-Sender';
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Create($passonaApi);
+        $usage->setName($name)
+            ->setBody($body)
+            ->setSender($sender);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($body, $response->body);
+        $this->assertEquals($sender, $response->sender);
     }
 
     /** @test */

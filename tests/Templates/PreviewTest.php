@@ -23,7 +23,7 @@ class PreviewTest extends BaseTestCase
         parent::setUp();
 
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"uuid":"79b56ffa-f972-11e9-af8c-0a58646001df","name":"SDK Template Updated REGEX YALL","body":"This template has been updated from the SDK","links":[],"is_locked":false,"sender":"SDK-Sender","created_at":"2019-10-28 11:02:47","updated_at":"2019-10-28 11:03:44"}}')
+            new Response(200, [], '{"238":{"uuid":"79b56ffa-f972-11e9-af8c-0a58646001df","name":"SDK Template Updated REGEX YALL","body":"This template has been updated from the SDK","links":[],"is_locked":false,"sender":"SDK-Sender","created_at":"2019-10-28 11:02:47","updated_at":"2019-10-28 11:03:44"}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -42,9 +42,8 @@ class PreviewTest extends BaseTestCase
 
         $response = $usage->get($templateUuid);
 
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(1, $response);
-        $this->assertEquals($templateUuid, $response['data']->uuid);
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($templateUuid, $response->uuid);
     }
 
     /** @test */

@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\Campaigns;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\CollectionRequest;
 
-class Index extends BaseRequest
+class Index extends CollectionRequest
 {
     const ENDPOINT = 'campaigns/';
 

@@ -33,6 +33,18 @@ use \Digitonic\PassonaClient\Facades\VanityDomains\CreateVanityDomain;
 $response = CreateVanityDomain::setPayload($data)->post();
 ```
 
+or use the built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\VanityDomains\Create;
+
+$endpoint = new Create($client);
+$endpoint->setDomain('https://vani.io');
+
+$response = $endpoint->post();
+```
+
+
 **Response**
 
 ```php
@@ -78,6 +90,18 @@ $response = $endpoint->setPayload($data)->put('55fb450c-fb03-11e9-b23a-0a5864600
 use \Digitonic\PassonaClient\Facades\VanityDomains\UpdateVanityDomain;
 $response = UpdateVanityDomain::setPayload($data)->put('55fb450c-fb03-11e9-b23a-0a586460022b');
 ```
+
+or use the built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\VanityDomains\Update;
+
+$endpoint = new Update($client);
+$endpoint->setDomain('https://vaniup.io');
+
+$response = $endpoint->put('55fb450c-fb03-11e9-b23a-0a586460022b');
+```
+
 
 **Response**
 

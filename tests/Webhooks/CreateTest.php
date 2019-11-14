@@ -23,7 +23,7 @@ class CreateTest extends BaseTestCase
         parent::setUp();
 
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"name":"New Webhook","uuid":"491460ee-fb0d-11e9-a46c-0a586460022b","url":"https:\/\/digitonic.co.uk\/webhook","headers":{"Accept":"application\/json"},"links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/webhooks\/491460ee-fb0d-11e9-a46c-0a586460022b"}]}}')
+            new Response(200, [], '{"238":{"name":"New Webhook","uuid":"491460ee-fb0d-11e9-a46c-0a586460022b","url":"https:\/\/digitonic.co.uk\/webhook","headers":{"Accept":"application\/json"},"links":[{"rel":"self","uri":"https:\/\/staging.passona.co.uk\/api\/2.0\/webhooks\/491460ee-fb0d-11e9-a46c-0a586460022b"}]}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -48,11 +48,34 @@ class CreateTest extends BaseTestCase
 
         $response = $usage->setPayload($data)->post();
 
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(1, $response);
-        $this->assertEquals($data['name'], $response['data']->name);
-        $this->assertEquals($data['url'], $response['data']->url);
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($data['name'], $response->name);
+        $this->assertEquals($data['url'], $response->url);
     }
+
+    /** @test */
+    public function it_can_create_a_webhook_in_passonad_with_setters()
+    {
+        $name = 'New Webhook';
+        $url = 'https://digitonic.co.uk/webhook';
+        $headers = [
+            'Accept' => 'application/json'
+        ];
+
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Create($passonaApi);
+        $usage->setHeaders($headers)
+            ->setUrl($url)
+            ->setName($name);
+
+        $response = $usage->post();
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($url, $response->url);
+    }
+
 
     /** @test */
     public function it_will_throw_an_exception_if_the_payload_is_missing()

@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\Keywords;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\CollectionRequest;
 
-class Delete extends BaseRequest
+class Delete extends CollectionRequest
 {
     const ENDPOINT = 'keywords/{keywordUuid}';
 

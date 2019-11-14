@@ -4,8 +4,11 @@ namespace Digitonic\PassonaClient\Requests;
 
 use Digitonic\PassonaClient\Contracts\Passona;
 use Digitonic\PassonaClient\Exceptions\InvalidData;
+use Digitonic\PassonaClient\Exceptions\UndefinedMethodException;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use mysql_xdevapi\Exception;
 
 abstract class BaseRequest
 {
@@ -47,20 +50,32 @@ abstract class BaseRequest
     protected $requiresPagination = false;
 
     /**
+     * @var array
+     */
+    protected $headers = [];
+
+    protected $attributes = [];
+
+    /**
      * BaseRequest constructor.
      * @param Passona $api
      */
     public function __construct(Passona $api)
     {
         $this->api = $api;
+        $config = config('passona-sdk');
+
+        $this->headers = [
+            'Authorization' => 'Bearer ' . $config['passona_api_key']
+        ];
     }
 
     /**
-     * @return Collection
+     * @return Collection|\stdClass
      */
-    public function send(): Collection
+    public function send()
     {
-        $request = new Request($this->method, $this->buildEndpoint(), [], json_encode($this->payload));
+        $request = new Request($this->method, $this->buildEndpoint(), $this->headers, json_encode($this->payload));
 
         $response = $this->api->send($request);
 
@@ -68,10 +83,10 @@ abstract class BaseRequest
     }
 
     /**
-     * @return Collection
+     * @return Collection|\stdClass
      * @throws InvalidData
      */
-    public function post(): Collection
+    public function post()
     {
         $this->method = 'POST';
 
@@ -84,10 +99,10 @@ abstract class BaseRequest
 
     /**
      * @param string $entityIdentifier
-     * @return Collection
+     * @return Collection|\stdClass
      * @throws InvalidData
      */
-    public function put(string $entityIdentifier): Collection
+    public function put(string $entityIdentifier)
     {
         $this->method = 'PUT';
 
@@ -127,10 +142,10 @@ abstract class BaseRequest
 
     /**
      * @param string|null $entityIdentifier
-     * @return Collection
+     * @return Collection|\stdClass
      * @throws InvalidData
      */
-    public function get(string $entityIdentifier = null): Collection
+    public function get(string $entityIdentifier = null)
     {
         if ($this->requiresEntityUuid()) {
             $this->entityUuid = $entityIdentifier;
@@ -162,7 +177,7 @@ abstract class BaseRequest
      * @return $this
      * @throws InvalidData
      */
-    public function paginate(int $paginateBy = 15, int $pageNumber = 1)
+    public function paginate(int $paginateBy = 15, int $pageNumber = 1): self
     {
         if ($paginateBy <= 0) {
             throw InvalidData::invalidValuesProvided('Pagination cannot be 0 or a negative integer.');
@@ -201,6 +216,16 @@ abstract class BaseRequest
     }
 
     /**
+     * @param array $headers
+     * @return $this
+     */
+    public function setHeaders(array $headers)
+    {
+        $this->headers = $headers;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     abstract protected function getFullEndpoint(): string;
@@ -209,4 +234,17 @@ abstract class BaseRequest
      * @return bool
      */
     abstract protected function requiresEntityUuid(): bool;
+
+    public function __call($method, $parameters)
+    {
+        $attribute = Str::snake(str_replace('set', '', $method));
+
+        if (!in_array($attribute, array_keys($this->attributes))){
+            throw new UndefinedMethodException('Call to undefined method '. self::class.'::'. $method.'()');
+        }
+
+        $this->payload[$attribute] = $parameters[0];
+
+        return $this;
+    }
 }

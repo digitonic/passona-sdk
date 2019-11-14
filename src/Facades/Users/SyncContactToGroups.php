@@ -2,7 +2,7 @@
 
 namespace Digitonic\PassonaClient\Facades\Users;
 
-use Digitonic\PassonaClient\Entities\Users\SyncGroups;
+use Digitonic\PassonaClient\Entities\Contacts\SyncGroups;
 use Illuminate\Support\Facades\Facade;
 
 class SyncContactToGroups extends Facade

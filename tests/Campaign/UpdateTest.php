@@ -23,7 +23,7 @@ class UpdateTest extends BaseTestCase
         parent::setUp();
 
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"uuid":"5662af3c-f70f-11e9-84ad-0a5864600e04","team_uuid":"4db7d890-f63c-11e9-afc6-0a58646002d8","name":"Update SDK","sender":"Digitonic","scheduled_send_date":"2019-11-25 15:25:05","expiry_date":"2019-12-26 15:25:05","status":0,"included_contact_groups":[],"excluded_contact_groups":[],"started_sending_at":"","template_uuid":"afc52e8a-f653-12a2-bcd4-0a58646002d9","finished_sending_at":"","created_at":"2019-10-25 11:08:05","updated_at":""}}')
+            new Response(200, [], '{"238":{"uuid":"5662af3c-f70f-11e9-84ad-0a5864600e04","team_uuid":"4db7d890-f63c-11e9-afc6-0a58646002d8","name":"Update SDK","sender":"Digitonic","scheduled_send_date":"2019-11-25 15:25:05","expiry_date":"2019-12-26 15:25:05","status":0,"included_contact_groups":[],"excluded_contact_groups":[],"started_sending_at":"","template_uuid":"afc52e8a-f653-12a2-bcd4-0a58646002d9","finished_sending_at":"","created_at":"2019-10-25 11:08:05","updated_at":""}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -44,10 +44,27 @@ class UpdateTest extends BaseTestCase
 
         $response = $usage->setPayload($data)->put('bedf2e8a-f653-11e9-bcd4-0a58646002d9');
 
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(1, $response);
-        $this->assertEquals($data['name'], $response['data']->name);
-        $this->assertEquals($data['template_uuid'], $response['data']->template_uuid);
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($data['name'], $response->name);
+        $this->assertEquals($data['template_uuid'], $response->template_uuid);
+    }
+
+    /** @test */
+    public function it_can_update_an_existing_campaign_with_setters()
+    {
+        $passonaApi = new \Digitonic\PassonaClient\Client($this->client);
+
+        $usage = new Update($passonaApi);
+        $name = 'Update SDK';
+        $uuid = 'afc52e8a-f653-12a2-bcd4-0a58646002d9';
+        $usage->setName($name)
+            ->setTemplateUuid($uuid);
+
+        $response = $usage->put('bedf2e8a-f653-11e9-bcd4-0a58646002d9');
+
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($name, $response->name);
+        $this->assertEquals($uuid, $response->template_uuid);
     }
 
     /** @test */

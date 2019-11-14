@@ -28,6 +28,18 @@ use \Digitonic\PassonaClient\Facades\Senders\CreateSender;
 $response = CreateSender::setPayload($data)->post();
 ```
 
+or use the built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\Senders\Create;
+
+$endpoint = new Create($client);
+$endpoint->setSender('NewSend');
+
+$response = $endpoint->post();
+```
+
+
 **Response**
 
 ```php
@@ -66,6 +78,18 @@ $response = $endpoint->setPayload($data)->put('02e8187e-fa6b-11e9-94c2-0a5864600
 use \Digitonic\PassonaClient\Facades\Senders\UpdateSender;
 $response = UpdateSender::setPayload($data)->put('a6589912-fa42-11e9-80c5-0a58646001fa');
 ```
+
+or use the built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\Senders\Update;
+
+$endpoint = new Update($client);
+$endpoint->setSender('NewSendUp');
+
+$response = $endpoint->put('02e8187e-fa6b-11e9-94c2-0a5864600225');
+```
+
 
 **Response**
 

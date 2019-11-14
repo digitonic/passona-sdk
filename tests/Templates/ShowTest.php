@@ -24,7 +24,7 @@ class ShowTest extends BaseTestCase
         parent::setUp();
 
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"uuid":"bedf2e8a-f653-11e9-bcd4-0a58646002d9","name":"Testing","body":"test","links":[{"id":5,"uuid":"cbbf2c04-f653-11e9-9025-0a58646002d9","vanity_domain_id":1,"template_id":5,"vanity_domain_uuid":"4d47ca82-f63c-11e9-a674-0a58646002d8","template_uuid":"bedf2e8a-f653-11e9-bcd4-0a58646002d9","name":"test","destination":"http:\/\/www.google.co.uk","created_at":"2019-10-24 12:45:37","updated_at":"2019-10-24 12:45:37"}],"is_locked":false,"sender":"QA_Test_Tea","created_at":"2019-10-24 12:45:15","updated_at":"2019-10-24 12:45:15"}}')
+            new Response(200, [], '{"238":{"uuid":"bedf2e8a-f653-11e9-bcd4-0a58646002d9","name":"Testing","body":"test","links":[{"id":5,"uuid":"cbbf2c04-f653-11e9-9025-0a58646002d9","vanity_domain_id":1,"template_id":5,"vanity_domain_uuid":"4d47ca82-f63c-11e9-a674-0a58646002d8","template_uuid":"bedf2e8a-f653-11e9-bcd4-0a58646002d9","name":"test","destination":"http:\/\/www.google.co.uk","created_at":"2019-10-24 12:45:37","updated_at":"2019-10-24 12:45:37"}],"is_locked":false,"sender":"QA_Test_Tea","created_at":"2019-10-24 12:45:15","updated_at":"2019-10-24 12:45:15"}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -43,9 +43,8 @@ class ShowTest extends BaseTestCase
 
         $response = $usage->get($templateUuid);
 
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(1, $response);
-        $this->assertEquals($templateUuid, $response['data']->uuid);
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($templateUuid, $response->uuid);
     }
 
     /** @test */

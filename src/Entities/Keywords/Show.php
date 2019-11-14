@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\Keywords;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\EntityRequest;
 
-class Show extends BaseRequest
+class Show extends EntityRequest
 {
     const ENDPOINT = 'keywords/{keywordUuid}';
 

@@ -2,9 +2,9 @@
 
 namespace Digitonic\PassonaClient\Entities\Users;
 
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\EntityRequest;
 
-class SwitchTeam extends BaseRequest
+class SwitchTeam extends EntityRequest
 {
     const ENDPOINT = 'users/switch/team/{teamUuid}';
 

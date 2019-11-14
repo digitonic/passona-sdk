@@ -5,11 +5,10 @@ namespace Digitonic\PassonaClient\Tests\Users;
 use Digitonic\PassonaClient\Entities\Users\SwitchTeam;
 use Digitonic\PassonaClient\Exceptions\InvalidData;
 use Digitonic\PassonaClient\Tests\BaseTestCase;
+use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Client;
-use Illuminate\Support\Collection;
 
 
 /**
@@ -24,7 +23,7 @@ class SwitchTeamTest extends BaseTestCase
         parent::setUp();
 
         $this->mock = new MockHandler([
-            new Response(200, [], '{"data":{"uuid":"4da54216-f63c-11e9-902c-0a58646002d8","name":"Team Owner","email":"owner@digitonic.co.uk","current_team_id":3,"created_at":"2019-10-24 09:57:27","updated_at":"2019-10-29 10:38:16"}}')
+            new Response(200, [], '{"238":{"uuid":"4da54216-f63c-11e9-902c-0a58646002d8","name":"Team Owner","email":"owner@digitonic.co.uk","current_team_id":3,"created_at":"2019-10-24 09:57:27","updated_at":"2019-10-29 10:38:16"}}')
         ]);
 
         $this->handler = HandlerStack::create($this->mock);
@@ -43,9 +42,8 @@ class SwitchTeamTest extends BaseTestCase
 
         $response = $usage->get($teamUuid);
 
-        $this->assertInstanceOf(Collection::class, $response);
-        $this->assertCount(1, $response);
-        $this->assertEquals($teamUuid, $response['data']->uuid);
+        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertEquals($teamUuid, $response->uuid);
     }
 
     /** @test */

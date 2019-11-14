@@ -1,5 +1,6 @@
 tests/report/
 vendor/
+build/
 phpunit.xml
 .idea
 composer.lock

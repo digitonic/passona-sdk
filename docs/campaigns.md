@@ -31,6 +31,23 @@ use \Digitonic\PassonaClient\Facades\Campaigns\CreateCampaign;
 $response = CreateCampaign::setPayload($data)->post();
 ```
 
+Or use the built in request setters
+
+```php
+use \Digitonic\PassonaClient\Entities\Campaigns\Create;
+
+$endpoint = new Create($client);
+$endpoint
+    ->setName('SDK MADE')
+    ->setSender('Digitonic')
+    ->setScheduledSendDate('2019-11-25 15:25:00')
+    ->setExpiryDate('2019-12-26 15:25:00')
+    ->setIncludedContactGroups(['f213fd72-f986-11e9-970f-0a58646001df'])
+    ->setExcludedContactGroups(['f213fd72-f521-21e9-970f-0a58614121df'])
+    ->setTemplateUuid('bedf2e8a-f653-11e9-bcd4-0a58646002d9');
+$response = $endpoint->post();
+```
+
 **Response**
 
 ```php
@@ -86,6 +103,24 @@ $response = $endpoint->setPayload($data)->put('a6589912-fa42-11e9-80c5-0a5864600
 use \Digitonic\PassonaClient\Facades\Campaigns\UpdateCampaign;
 $response = UpdateCampaign::setPayload($data)->put('a6589912-fa42-11e9-80c5-0a58646001fa');
 ```
+
+Or use the built in request setters
+
+```php
+use \Digitonic\PassonaClient\Entities\Campaigns\Update;
+
+$endpoint = new Update($client);
+$endpoint
+    ->setName('SDK MADE Update')
+    ->setSender('Digitonic')
+    ->setScheduledSendDate('2019-11-25 17:30:00')
+    ->setExpiryDate('2019-12-26 17:30:00')
+    ->setIncludedContactGroups(['f213fd72-f986-11e9-970f-0a58646001df'])
+    ->setExcludedContactGroups( ['f213fd72-f521-21e9-970f-0a58614121df'])
+    ->setTemplateUuid('bedf2e8a-f653-11e9-bcd4-0a58646002d9');
+$response = $endpoint->put('a6589912-fa42-11e9-80c5-0a58646001fa');
+```
+
 
 **Response**
 

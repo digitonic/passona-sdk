@@ -25,6 +25,19 @@ use \Digitonic\PassonaClient\Facades\ContactGroups\CreateContactGroup;
 $response = CreateContactGroup::setPayload($data)->post();
 ```
 
+or use the built-in setters
+
+```php
+use Digitonic\PassonaClient\Entities\ContactGroups\Create;use Digitonic\PassonaClient\Facades\ContactGroups\CreateContactGroup;
+
+$endpoint = new Create($client);
+$endpoint
+     ->setName('SDK Contact Group')
+     ->setDescription('Created from the SDK');
+$response = $endpoint->setPayload($data)->post();
+```
+
+
 **Response**
 
 ```php
@@ -73,6 +86,20 @@ $response = $endpoint->setPayload($data)->put('dffcefc8-fa52-11e9-b179-0a5864600
 use \Digitonic\PassonaClient\Facades\ContactGroups\UpdateContactGroup;
 $response = UpdateContactGroup::setPayload($data)->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
 ```
+
+or use the built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\ContactGroups\Update;
+
+
+$endpoint = new Update($client);
+$endpoint
+    ->setName('SDK Contact Group Updated')
+    ->setDescription('Updated from the SDK.');
+$response = $endpoint->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
+```
+
 
 **Response**
 
@@ -290,6 +317,34 @@ use \Digitonic\PassonaClient\Facades\ContactGroups\AddContactsToGroup;
 $response = AddContactsToGroup::setPayload($data)->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
 ```
 
+or use the built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\ContactGroups\AddContacts;
+
+
+$endpoint = new AddContacts($client);
+$endpoint
+->setContacts([
+    [
+        'phone_number' => '447713252151',
+        'custom_fields' => [
+            'first_name' => 'John',
+            'last_name' => 'Doe'
+        ]
+    ],
+    [
+        'phone_number' => '447711256854',
+        'custom_fields' => [
+            'first_name' => 'Jane',
+            'last_name' => 'Doe'
+        ]
+    ]
+]);
+$response = $endpoint->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
+```
+
+
 **Response**
 
 ```php
@@ -342,6 +397,17 @@ $response = $endpoint->setPayload($data)->put('dffcefc8-fa52-11e9-b179-0a5864600
 use \Digitonic\PassonaClient\Facades\ContactGroups\RemoveContactsFromGroup;
 $response = RemoveContactsFromGroup::setPayload($data)->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
 ```
+
+or use the built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\ContactGroups\RemoveContacts;
+
+$endpoint = new RemoveContacts($client);
+$endpoint->setPhoneNumbers(['447713252151']);
+$response = $endpoint->put('dffcefc8-fa52-11e9-b179-0a58646001fa');
+```
+
 
 **Response**
 
@@ -400,6 +466,20 @@ $response = $endpoint->setPayload($data)->post();
 use \Digitonic\PassonaClient\Facades\ContactGroups\UploadBulkContactsGroup;
 $response = UploadBulkContactsGroup::setPayload($data)->post();
 ```
+
+or use the built-in setters
+
+```php
+use \Digitonic\PassonaClient\Entities\ContactGroups\UploadBulkContacts;
+
+$endpoint = new UploadBulkContacts($client);
+$endpoint
+    ->setName('Bulk Contact Group')
+    ->setDescription('A Bulk contact group.')
+    ->setContacts(['447252625874','447798521302']);
+$response = $endpoint->post();
+```
+
 
 **Response**
 

@@ -3,10 +3,19 @@
 namespace Digitonic\PassonaClient\Entities\ContactGroups;
 
 use Digitonic\PassonaClient\Contracts\Passona;
-use Digitonic\PassonaClient\Requests\BaseRequest;
+use Digitonic\PassonaClient\Requests\EntityRequest;
 
-class Create extends BaseRequest
+/**
+ * Class Create
+ * @package Digitonic\PassonaClient\Entities\ContactGroups
+ * @method self setName(string $name)
+ * @method self setDescription(string $description)
+ * @method self setDeletable(bool $deletable)
+ */
+class Create extends EntityRequest
 {
+    protected $attributes = ['name', 'description', 'deletable'];
+    
     const ENDPOINT = 'contact-groups/';
 
     /**
