@@ -1,7 +1,10 @@
 # Changelog
 
-### v2.1.0 - 14th November 2019
+### v2.1.1 - 14th November 2019
+### Added
+- **Changelog** - Updates to the changelog were published to reflect the development cycle up to this point.
 
+### v2.1.0 - 14th November 2019
 ### Added
 - **Setters** - Built in setters are now available for all entities which can be referenced in the documentation.
 - **Header Override** - The `setHeaders()` function is now available on all entities for swapping out headers as required.
