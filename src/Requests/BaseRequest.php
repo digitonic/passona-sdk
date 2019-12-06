@@ -197,7 +197,7 @@ abstract class BaseRequest
     /**
      * @return string
      */
-    private function buildEndpoint(): string
+    protected function buildEndpoint(): string
     {
         $endpoint = $this->getFullEndpoint();
 
