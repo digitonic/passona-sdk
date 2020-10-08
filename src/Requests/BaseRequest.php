@@ -118,7 +118,7 @@ abstract class BaseRequest
         }
 
         return $this->send();
-}
+    }
 
     /**
      * @param string $entityIdentifier
