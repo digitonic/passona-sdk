@@ -31,6 +31,12 @@ class BaseTestCase extends TestCase
         $this->app['config']->set('passona-sdk.passona_base_uri', 'https://passona.co.uk/api/2.0/');
     }
 
+    protected function getPackageProviders($app)
+    {
+        return [
+            'Digitonic\PassonaClient\PassonaSDKServiceProvider',
+        ];
+    }
     /**
      * @param Response $response
      * @return \Digitonic\PassonaClient\Client\
