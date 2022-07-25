@@ -239,7 +239,7 @@ abstract class BaseRequest
     {
         $attribute = Str::snake(str_replace('set', '', $method));
 
-        if (!in_array($attribute, array_keys($this->attributes))){
+        if (!in_array($attribute, array_values($this->attributes))){
             throw new UndefinedMethodException('Call to undefined method '. self::class.'::'. $method.'()');
         }
 
